@@ -8,6 +8,7 @@ import vista.PanelAyudaPreguntas;
 import vista.PanelAyudaSinPreguntas;
 import vista.PanelTablero;
 import vista.VentanaPrincipal;
+import vista.PanelPantallaPrincipal;
 
 
 /**
@@ -22,6 +23,7 @@ public class ManejadorJuego {
 	private Juego juego;
 	private PanelTablero panelTablero;
 	private VentanaPrincipal ventanaPrincipal;
+	private PanelPantallaPrincipal panelPantallaPrincipal;
 	
 	/**
 	 * Constructor único de la clase. 
@@ -39,11 +41,20 @@ public class ManejadorJuego {
 			panelAyuda = new PanelAyudaSinPreguntas();
 		}
         
-		this.setVentanaPrincipal(new VentanaPrincipal(this.panelTablero, 
-        		panelAyuda)
-		);
+		//this.setVentanaPrincipal(new VentanaPrincipal(this.panelTablero, 
+        //		panelAyuda));
+		
+		this.setPanelPantallaPrincipal(new PanelPantallaPrincipal(this.panelTablero, panelAyuda));
 	}
 	
+	protected PanelPantallaPrincipal getPanelPantallaPrincipal() {
+		return panelPantallaPrincipal;
+	}
+
+	protected void setPanelPantallaPrincipal(PanelPantallaPrincipal panelPantallaPrincipal) {
+		this.panelPantallaPrincipal = panelPantallaPrincipal;
+	}
+
 	/**
 	 * @return the tablero
 	 */

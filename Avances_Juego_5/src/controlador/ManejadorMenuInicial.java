@@ -16,8 +16,8 @@ import vista.PanelMenuInicio;
  *
  */
 public class ManejadorMenuInicial {
-	
 	JFrame frame;
+	ManejadorJuego manejadorJuego;
 	
 	/**
 	 * Construye la ventana inicial del juego
@@ -29,7 +29,7 @@ public class ManejadorMenuInicial {
 		frame = new JFrame("Solitario con Monedas");
 		
 		frame.add(panelMenuInicio);
-		frame.setSize(300,300);
+		frame.setSize(400,400);
 		frame.repaint();
 		frame.setLocationByPlatform(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -52,8 +52,10 @@ public class ManejadorMenuInicial {
 	 */
 	private class LanzarJuegoConPreguntas implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			new ManejadorJuego(true);
-			frame.dispose();
+			manejadorJuego = new ManejadorJuego(true);
+			frame.getContentPane().removeAll();
+			frame.add(manejadorJuego.getPanelPantallaPrincipal());
+			frame.validate();			
 		}
 		
 	}
@@ -64,8 +66,10 @@ public class ManejadorMenuInicial {
 	 */
 	private class LanzarJuegoSinPreguntas implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			new ManejadorJuego(false);
-			frame.dispose();
+			manejadorJuego = new ManejadorJuego(false);
+			frame.getContentPane().removeAll();
+			frame.add(manejadorJuego.getPanelPantallaPrincipal());
+			frame.validate();
 		}
 	}
 	

@@ -26,8 +26,7 @@ public abstract class BotonListenerPadre implements ActionListener {
 	public BotonListenerPadre(ManejadorJuego manejador) {
 		this.setManejadorPrincipal(manejador);
 	}
-	
-	
+		
 
 	/**
 	 * @return the manejadorPrincipal
