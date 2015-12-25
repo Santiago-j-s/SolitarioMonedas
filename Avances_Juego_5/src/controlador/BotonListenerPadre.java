@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
+import javax.swing.JFrame;
 
 import vista.PanelIngresoDireccion;
 import vista.VentanaPrincipal;
@@ -92,7 +93,7 @@ public abstract class BotonListenerPadre implements ActionListener {
 	 * @return una cadena con la dirección
 	 */
 	protected String preguntarDireccion(ArrayList<Direccion> direcciones) {
-		VentanaPrincipal ventanaPrincipal = this.getManejadorPrincipal()
+		JFrame ventanaPrincipal = this.getManejadorPrincipal()
 				.getVentanaPrincipal();
 		
 		JDialog ventana = new JDialog(ventanaPrincipal, "Dirección");

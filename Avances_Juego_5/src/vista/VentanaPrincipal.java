@@ -19,10 +19,8 @@ public class VentanaPrincipal extends JFrame {
 	 * Crea la ventana, introduce los elementos en un BorderLayout 
 	 * 	y finalmente muestra la ventana
 	 */
-	public VentanaPrincipal(JPanel panelTablero, PanelAyuda panelAyuda) {
-		
+	public VentanaPrincipal() {
 		super("Solitario con Monedas");
-		this.add(new Pantallas(panelTablero, panelAyuda));
 		
 		ImageIcon icono = new ImageIcon(getClass().getResource("/logoJuego2.png"));
 		this.setIconImage(icono.getImage());

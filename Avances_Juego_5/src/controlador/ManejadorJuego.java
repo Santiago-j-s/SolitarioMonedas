@@ -1,6 +1,7 @@
 package controlador;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 
 import juego.Juego;
 import vista.PanelAyuda;
@@ -22,7 +23,7 @@ public class ManejadorJuego {
 	
 	private Juego juego;
 	private PanelTablero panelTablero;
-	private VentanaPrincipal ventanaPrincipal;
+	private JFrame ventanaPrincipal;
 	private PanelPantallaPrincipal panelPantallaPrincipal;
 	
 	/**
@@ -86,7 +87,7 @@ public class ManejadorJuego {
 	/**
 	 * @return the ventanaPrincipal
 	 */
-	protected VentanaPrincipal getVentanaPrincipal() {
+	protected JFrame getVentanaPrincipal() {
 		return ventanaPrincipal;
 	}
 

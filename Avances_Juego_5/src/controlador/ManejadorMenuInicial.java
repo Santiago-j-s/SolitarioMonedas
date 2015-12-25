@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.ImageIcon;
 import vista.PanelMenuInicio;
+import vista.VentanaPrincipal;
 
 /**
  * Maneja la GUI del menú inicial del juego.
@@ -16,33 +17,26 @@ import vista.PanelMenuInicio;
  *
  */
 public class ManejadorMenuInicial {
-	JFrame frame;
+	VentanaPrincipal ventanaPrincipal;
 	ManejadorJuego manejadorJuego;
 	
 	/**
 	 * Construye la ventana inicial del juego
 	 */
-	public ManejadorMenuInicial() {
+	public ManejadorMenuInicial(VentanaPrincipal ventanaPrincipal) {
 		PanelMenuInicio panelMenuInicio = new PanelMenuInicio();
-		ImageIcon icono = new ImageIcon(getClass().getResource("/logoJuego2.png"));
 		
-		frame = new JFrame("Solitario con Monedas");
+		this.ventanaPrincipal = ventanaPrincipal;
 		
-		frame.add(panelMenuInicio);
-		frame.setSize(400,400);
-		frame.repaint();
-		frame.setLocationByPlatform(true);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setResizable(false);
-		frame.setIconImage(icono.getImage());
-		frame.setVisible(true);
+		ventanaPrincipal.add(panelMenuInicio);
+		ventanaPrincipal.setSize(400,400);
+		ventanaPrincipal.repaint();
 		
 		panelMenuInicio.getBotonJugarConPreguntas().addActionListener(
 				new LanzarJuegoConPreguntas());
 		
 		panelMenuInicio.getBotonJugarSinPreguntas().addActionListener(
 				new LanzarJuegoSinPreguntas());
-		
 	}
 	
 	/**
@@ -53,9 +47,10 @@ public class ManejadorMenuInicial {
 	private class LanzarJuegoConPreguntas implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			manejadorJuego = new ManejadorJuego(true);
-			frame.getContentPane().removeAll();
-			frame.add(manejadorJuego.getPanelPantallaPrincipal());
-			frame.validate();			
+			ventanaPrincipal.getContentPane().removeAll();
+			ventanaPrincipal.add(manejadorJuego.getPanelPantallaPrincipal());
+			manejadorJuego.setVentanaPrincipal(ventanaPrincipal);
+			ventanaPrincipal.validate();			
 		}
 		
 	}
@@ -67,9 +62,10 @@ public class ManejadorMenuInicial {
 	private class LanzarJuegoSinPreguntas implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			manejadorJuego = new ManejadorJuego(false);
-			frame.getContentPane().removeAll();
-			frame.add(manejadorJuego.getPanelPantallaPrincipal());
-			frame.validate();
+			ventanaPrincipal.getContentPane().removeAll();
+			ventanaPrincipal.add(manejadorJuego.getPanelPantallaPrincipal());
+			manejadorJuego.setVentanaPrincipal(ventanaPrincipal);
+			ventanaPrincipal.validate();
 		}
 	}
 	
@@ -78,6 +74,6 @@ public class ManejadorMenuInicial {
 	 * @param args - argumentos a recibir
 	 */
 	public static void main(String[] args) {
-		new ManejadorMenuInicial();
+		new ManejadorMenuInicial(new VentanaPrincipal());
 	}
 }
