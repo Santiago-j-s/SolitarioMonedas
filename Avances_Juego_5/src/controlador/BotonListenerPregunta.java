@@ -172,6 +172,8 @@ public class BotonListenerPregunta extends BotonListenerPadre implements
 		}
 		
 		this.getManejador().getPanelTablero().setearTablero();
+		this.getManejador().getVentanaPrincipal().setEnabled(true);
+		this.getManejador().getVentanaPrincipal().toFront();
 	}
 	
 	/**
