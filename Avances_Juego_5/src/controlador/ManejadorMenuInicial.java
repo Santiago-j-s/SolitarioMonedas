@@ -34,8 +34,6 @@ public class ManejadorMenuInicial {
 		
 		ventanaPrincipal.add(panelMenuInicio);
 		ventanaPrincipal.setSize(400,400);
-		ventanaPrincipal.setResizable(true);
-		
 		ventanaPrincipal.repaint();
 		
 		panelMenuInicio.getBotonJugarConPreguntas().addActionListener(
@@ -50,7 +48,7 @@ public class ManejadorMenuInicial {
 		
 		JPanel content = new JPanel(new GridBagLayout());
         ventanaPrincipal.setContentPane(content);
-					            
+        ventanaPrincipal.setJMenuBar(ventanaPrincipal.crearMenu());			            
 		ventanaPrincipal.getContentPane().add(manejadorJuego.getPanelPantallaPrincipal());
 		ventanaPrincipal.pack();
 		ventanaPrincipal.validate();	
