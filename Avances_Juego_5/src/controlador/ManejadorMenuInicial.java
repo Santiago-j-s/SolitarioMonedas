@@ -45,6 +45,20 @@ public class ManejadorMenuInicial {
 				new LanzarJuegoSinPreguntas());
 	}
 	
+	private void ponerPanelEnFrame() {
+		ventanaPrincipal.getContentPane().removeAll();
+		
+		JPanel content = new JPanel(new GridBagLayout());
+        ventanaPrincipal.setContentPane(content);
+					            
+		ventanaPrincipal.getContentPane().add(manejadorJuego.getPanelPantallaPrincipal());
+		ventanaPrincipal.pack();
+		ventanaPrincipal.validate();	
+		ventanaPrincipal.setLocationRelativeTo(null);
+		
+		manejadorJuego.setVentanaPrincipal(ventanaPrincipal);
+	}
+	
 	/**
 	 * Inicia el juego con las preguntas activadas
 	 * @author Santana, Dibez
@@ -53,16 +67,7 @@ public class ManejadorMenuInicial {
 	private class LanzarJuegoConPreguntas implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			manejadorJuego = new ManejadorJuego(true);
-			
-			ventanaPrincipal.getContentPane().removeAll();
-		
-			ventanaPrincipal.getContentPane().add(manejadorJuego.getPanelPantallaPrincipal());
-			ventanaPrincipal.pack();
-			ventanaPrincipal.validate();	
-			ventanaPrincipal.setLocationRelativeTo(null);
-			
-			manejadorJuego.setVentanaPrincipal(ventanaPrincipal);
-			
+			ponerPanelEnFrame();			
 		}
 		
 	}
@@ -74,15 +79,7 @@ public class ManejadorMenuInicial {
 	private class LanzarJuegoSinPreguntas implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			manejadorJuego = new ManejadorJuego(false);
-			
-			ventanaPrincipal.getContentPane().removeAll();
-						            
-			ventanaPrincipal.getContentPane().add(manejadorJuego.getPanelPantallaPrincipal());
-			ventanaPrincipal.pack();
-			ventanaPrincipal.validate();	
-			ventanaPrincipal.setLocationRelativeTo(null);
-			
-			manejadorJuego.setVentanaPrincipal(ventanaPrincipal);
+			ponerPanelEnFrame();
 		}
 	}
 	
