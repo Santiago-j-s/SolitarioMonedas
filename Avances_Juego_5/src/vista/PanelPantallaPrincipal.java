@@ -1,5 +1,7 @@
 package vista;
 
+import java.awt.GridBagLayout;
+
 import javax.swing.JPanel;
 
 /**
@@ -16,10 +18,9 @@ public class PanelPantallaPrincipal extends JPanel {
 	private static final long serialVersionUID = 1L;
 
 	public PanelPantallaPrincipal(JPanel panelTablero, PanelAyuda panelAyuda) {
-		
+		new GridBagLayout(); //el panel se vuelve GridBagLayout
 		this.add(new Pantallas(panelTablero, panelAyuda));
 		
-	
 	}
 
 }

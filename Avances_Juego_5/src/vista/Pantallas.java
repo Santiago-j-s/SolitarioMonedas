@@ -26,14 +26,17 @@ public class Pantallas extends JTabbedPane {
 	 * @param panelAyuda
 	 */
 	public Pantallas(JPanel panelTablero, PanelAyuda panelAyuda) {
-		super(JTabbedPane.TOP);
-
+		//super();
+		this.setAlignmentX(CENTER_ALIGNMENT);
+		this.setAlignmentY(CENTER_ALIGNMENT);
 		this.setPreferredSize(new Dimension(300, 300));
 		
 		JScrollPane ayuda = new JScrollPane(panelAyuda);
 
 		this.addTab("Juego", panelTablero);
 		this.addTab("Ayuda", ayuda);
+		
+		
 	}
 	
 	/**

@@ -1,9 +1,13 @@
 package controlador;
 
+import java.awt.Color;
+import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
 import javax.swing.ImageIcon;
 import vista.PanelMenuInicio;
 import vista.VentanaPrincipal;
@@ -30,6 +34,8 @@ public class ManejadorMenuInicial {
 		
 		ventanaPrincipal.add(panelMenuInicio);
 		ventanaPrincipal.setSize(400,400);
+		ventanaPrincipal.setResizable(true);
+		
 		ventanaPrincipal.repaint();
 		
 		panelMenuInicio.getBotonJugarConPreguntas().addActionListener(
@@ -47,10 +53,16 @@ public class ManejadorMenuInicial {
 	private class LanzarJuegoConPreguntas implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			manejadorJuego = new ManejadorJuego(true);
+			
 			ventanaPrincipal.getContentPane().removeAll();
-			ventanaPrincipal.add(manejadorJuego.getPanelPantallaPrincipal());
+		
+			ventanaPrincipal.getContentPane().add(manejadorJuego.getPanelPantallaPrincipal());
+			ventanaPrincipal.pack();
+			ventanaPrincipal.validate();	
+			ventanaPrincipal.setLocationRelativeTo(null);
+			
 			manejadorJuego.setVentanaPrincipal(ventanaPrincipal);
-			ventanaPrincipal.validate();			
+			
 		}
 		
 	}
@@ -62,10 +74,15 @@ public class ManejadorMenuInicial {
 	private class LanzarJuegoSinPreguntas implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			manejadorJuego = new ManejadorJuego(false);
+			
 			ventanaPrincipal.getContentPane().removeAll();
-			ventanaPrincipal.add(manejadorJuego.getPanelPantallaPrincipal());
+						            
+			ventanaPrincipal.getContentPane().add(manejadorJuego.getPanelPantallaPrincipal());
+			ventanaPrincipal.pack();
+			ventanaPrincipal.validate();	
+			ventanaPrincipal.setLocationRelativeTo(null);
+			
 			manejadorJuego.setVentanaPrincipal(ventanaPrincipal);
-			ventanaPrincipal.validate();
 		}
 	}
 	
