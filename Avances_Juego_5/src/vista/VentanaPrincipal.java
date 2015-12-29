@@ -1,11 +1,12 @@
 package vista;
 
+import java.awt.Dimension;
+
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JPanel;
 
 /**
  * La ventana principal del juego; es decir la que 
@@ -30,6 +31,8 @@ public class VentanaPrincipal extends JFrame {
 		
 		ImageIcon icono = new ImageIcon(getClass().getResource("/logoJuego2.png"));
 		this.setIconImage(icono.getImage());
+		
+		this.setMinimumSize(new Dimension(400,400));
 		
 		this.setResizable(true);
 		this.pack();
