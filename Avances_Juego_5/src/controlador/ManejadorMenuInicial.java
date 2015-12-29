@@ -33,7 +33,6 @@ public class ManejadorMenuInicial {
 		this.ventanaPrincipal = ventanaPrincipal;
 		
 		ventanaPrincipal.add(panelMenuInicio);
-		ventanaPrincipal.setSize(400,400);
 		ventanaPrincipal.repaint();
 		
 		panelMenuInicio.getBotonJugarConPreguntas().addActionListener(
