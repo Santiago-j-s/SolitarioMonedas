@@ -1,5 +1,8 @@
 package controlador;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
@@ -19,7 +22,7 @@ import vista.PanelPantallaPrincipal;
  * @author Dibez, Santana
  *
  */
-public class ManejadorJuego {
+public class ManejadorJuego{
 	
 	private Juego juego;
 	private PanelTablero panelTablero;
@@ -42,10 +45,8 @@ public class ManejadorJuego {
 			panelAyuda = new PanelAyudaSinPreguntas();
 		}
         
-		//this.setVentanaPrincipal(new VentanaPrincipal(this.panelTablero, 
-        //		panelAyuda));
-		
 		this.setPanelPantallaPrincipal(new PanelPantallaPrincipal(this.panelTablero, panelAyuda));
+		
 	}
 	
 	protected PanelPantallaPrincipal getPanelPantallaPrincipal() {
@@ -139,6 +140,7 @@ public class ManejadorJuego {
 		this.getPanelTablero().setearTablero();
 		this.getPanelTablero().setVisible(true);
 	}
+	
 	
 	/**
 	 * Inicia el juego
