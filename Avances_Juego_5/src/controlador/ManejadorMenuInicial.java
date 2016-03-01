@@ -1,15 +1,12 @@
 package controlador;
 
-import java.awt.Color;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.ImageIcon;
 import vista.PanelMenuInicio;
+import vista.PanelPantallaPrincipal;
 import vista.VentanaPrincipal;
 
 /**
@@ -22,7 +19,6 @@ import vista.VentanaPrincipal;
  */
 public class ManejadorMenuInicial {
 	VentanaPrincipal ventanaPrincipal;
-	ManejadorJuego manejadorJuego;
 	
 	/**
 	 * Construye la ventana inicial del juego
@@ -33,6 +29,7 @@ public class ManejadorMenuInicial {
 		this.ventanaPrincipal = ventanaPrincipal;
 		
 		ventanaPrincipal.add(panelMenuInicio);
+		ventanaPrincipal.validate();
 		ventanaPrincipal.repaint();
 		
 		panelMenuInicio.getBotonJugarConPreguntas().addActionListener(
@@ -41,19 +38,24 @@ public class ManejadorMenuInicial {
 		panelMenuInicio.getBotonJugarSinPreguntas().addActionListener(
 				new LanzarJuegoSinPreguntas());
 	}
-	
-	private void ponerPanelEnFrame() {
-		ventanaPrincipal.getContentPane().removeAll();
+
+	/**
+	 * Inicia el juego
+	 * @param preguntas - true si las preguntas estarán activadas
+	 */
+	private void LanzarJuego(boolean preguntas) {
+		PanelPantallaPrincipal juego = 
+				new ManejadorJuego(preguntas, this.ventanaPrincipal)
+					.getPanelPantallaPrincipal();
 		
 		JPanel content = new JPanel(new GridBagLayout());
-        ventanaPrincipal.setContentPane(content);
-        ventanaPrincipal.setJMenuBar(ventanaPrincipal.crearMenu());			            
-		ventanaPrincipal.getContentPane().add(manejadorJuego.getPanelPantallaPrincipal());
+        ventanaPrincipal.setContentPane(content);	            
+		ventanaPrincipal.getContentPane().add(juego);
+		ventanaPrincipal.getNuevoJuego().setEnabled(true);
 		ventanaPrincipal.pack();
-		ventanaPrincipal.validate();	
-		ventanaPrincipal.setLocationRelativeTo(null);
 		
-		manejadorJuego.setVentanaPrincipal(ventanaPrincipal);
+		ventanaPrincipal.revalidate();
+		ventanaPrincipal.repaint();
 	}
 	
 	/**
@@ -63,8 +65,7 @@ public class ManejadorMenuInicial {
 	 */
 	private class LanzarJuegoConPreguntas implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			manejadorJuego = new ManejadorJuego(true);
-			ponerPanelEnFrame();			
+			LanzarJuego(true);
 		}
 		
 	}
@@ -75,8 +76,7 @@ public class ManejadorMenuInicial {
 	 */
 	private class LanzarJuegoSinPreguntas implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			manejadorJuego = new ManejadorJuego(false);
-			ponerPanelEnFrame();
+			LanzarJuego(false);
 		}
 	}
 	

@@ -33,7 +33,7 @@ public class ManejadorJuego{
 	 * Constructor único de la clase. 
 	 * Crea y muestra la ventana principal con el tablero de juego.
 	 */
-	public ManejadorJuego(boolean conPreguntas) {
+	public ManejadorJuego(boolean conPreguntas, VentanaPrincipal mainWindow) {
 		
 		PanelAyuda panelAyuda;
 		
@@ -45,8 +45,10 @@ public class ManejadorJuego{
 			panelAyuda = new PanelAyudaSinPreguntas();
 		}
         
-		this.setPanelPantallaPrincipal(new PanelPantallaPrincipal(this.panelTablero, panelAyuda));
+		this.setPanelPantallaPrincipal(
+				new PanelPantallaPrincipal(this.panelTablero, panelAyuda));
 		
+		this.setVentanaPrincipal(mainWindow);
 	}
 	
 	protected PanelPantallaPrincipal getPanelPantallaPrincipal() {
@@ -95,7 +97,7 @@ public class ManejadorJuego{
 	/**
 	 * @param ventanaPrincipal the ventanaPrincipal to set
 	 */
-	protected void setVentanaPrincipal(VentanaPrincipal ventanaPrincipal) {
+	private void setVentanaPrincipal(VentanaPrincipal ventanaPrincipal) {
 		this.ventanaPrincipal = ventanaPrincipal;
 	}
 	
@@ -140,13 +142,4 @@ public class ManejadorJuego{
 		this.getPanelTablero().setearTablero();
 		this.getPanelTablero().setVisible(true);
 	}
-	
-	
-	/**
-	 * Inicia el juego
-	 */
-	public static void main(String[] args) {
-		new ManejadorJuego(true);
-	}
-
 }

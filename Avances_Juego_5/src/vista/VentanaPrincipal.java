@@ -1,5 +1,6 @@
 package vista;
 
+
 import java.awt.Dimension;
 
 import javax.swing.ImageIcon;
@@ -16,10 +17,11 @@ import javax.swing.JMenuItem;
  */
 public class VentanaPrincipal extends JFrame {
 
-	
 	private static final long serialVersionUID = 1L;
-
 	
+	private JMenuItem nuevoJuego;
+	private JMenuItem salir;
+	private JMenuItem ayuda;
 	
 	/**
 	 * Único constructor de la clase. Recibe como parámetro al panel con el tablero de juego.
@@ -40,25 +42,25 @@ public class VentanaPrincipal extends JFrame {
 		
 		this.setVisible(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setJMenuBar(crearMenu());
 	}
 
-	public JMenuBar crearMenu() {
+	private JMenuBar crearMenu() {
 		JMenuBar barraMenu;
 		JMenu menuJuego,menuAyuda;
-		JMenuItem nuevoJuego,salir,verAyuda;
 		
 		//trabajamos con el menu
 		
-		nuevoJuego = new JMenuItem("Nuevo juego");
-		salir = new JMenuItem("Salir");
-		verAyuda = new JMenuItem("Ver ayuda");
+		this.setNuevoJuego(new JMenuItem("Nuevo juego"));
+		this.setSalir(new JMenuItem("Salir"));
+		this.setAyuda(new JMenuItem("Ver ayuda"));
 		
 		menuJuego = new JMenu("Juego");
-		menuJuego.add(nuevoJuego);
-		menuJuego.add(salir);
+		menuJuego.add(this.getNuevoJuego());
+		menuJuego.add(this.getSalir());
 		
-		menuAyuda = new JMenu("Ayuda");
-		menuAyuda.add(verAyuda);
+		menuAyuda = new JMenu("Acerca de");
+		menuAyuda.add(this.getAyuda());
 		
 		barraMenu = new JMenuBar();
 		
@@ -68,5 +70,29 @@ public class VentanaPrincipal extends JFrame {
 		return barraMenu;
 	}
 	
+	public JMenuItem getAyuda() {
+		return this.ayuda;
+	}
 	
+	private void setAyuda(JMenuItem item) {
+		item.setEnabled(false);
+		this.ayuda = item;
+	}
+	
+	public JMenuItem getSalir() {
+		return this.salir;
+	}
+	
+	private void setSalir(JMenuItem item) {
+		this.salir = item;
+	}
+	
+	public JMenuItem getNuevoJuego() {
+		return this.nuevoJuego;
+	}
+	
+	private void setNuevoJuego(JMenuItem item) {
+		item.setEnabled(false);
+		this.nuevoJuego = item;
+	}
 }
