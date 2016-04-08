@@ -43,7 +43,7 @@ public class PanelTablero extends JPanel
     	                
     	tablero = new JButton[this.cantFilas][this.cantColumnas];
     	this.setOpaque(false);
-    	this.setPreferredSize(new Dimension(300, 300));
+    	this.setPreferredSize(new Dimension(500, 500));
     }
 	
     /**
