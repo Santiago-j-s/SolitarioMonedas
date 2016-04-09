@@ -10,6 +10,7 @@ import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JFrame;
 
+import vista.CasillaButton;
 import vista.PanelIngresoDireccion;
 import vista.VentanaPrincipal;
 import juego.Direccion;
@@ -55,7 +56,7 @@ public abstract class BotonListenerPadre implements ActionListener {
 	 * @param casilla - el botón correspondiente a la moneda seleccionada
 	 * @return true si la moneda tiene saltos posibles, false si no los tiene
 	 */
-	protected ArrayList<Direccion> colorearDireccionesSalto(JButton casilla) {
+	protected ArrayList<Direccion> colorearDireccionesSalto(CasillaButton casilla) {
 		
 		ManejadorJuego manejador = this.getManejadorPrincipal();
 		
@@ -125,13 +126,7 @@ public abstract class BotonListenerPadre implements ActionListener {
 		ManejadorJuego manejador = this.getManejadorPrincipal();
 		
 		manejador.getJuego().saltar(fila, columna, direccion);
-		
-		for (int i = 0; i < manejador.getPanelTablero().getCantFilas(); i++) {
-			for (int j = 0; j < manejador.getPanelTablero().getCantColumnas(); j++) {
-				String casilla = manejador.getJuego().getCasilla(i, j).toString();
-				(manejador.getPanelTablero().getBoton(i, j)).setText(casilla);
-			}
-		}
+		manejador.getPanelTablero().actualizar();
 	}
 	
 	/**

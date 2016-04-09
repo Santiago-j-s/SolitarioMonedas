@@ -6,7 +6,9 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
+import juego.Casilla;
 import juego.Juego;
+import juego.Tablero;
 import vista.PanelAyuda;
 import vista.PanelAyudaPreguntas;
 import vista.PanelAyudaSinPreguntas;
@@ -111,35 +113,32 @@ public class ManejadorJuego{
 	 * @param escuchador
 	 */
 	private void inicializarBoton(int fila, int columna, BotonListenerPadre escuchador) {
-		String casilla = juego.getCasilla(fila, columna).toString();
+		PanelTablero panelTablero = this.getPanelTablero();
 		
-		PanelTablero panelDeJuego = this.getPanelTablero();
-		
-		panelDeJuego.setBoton(fila, columna, new JButton(casilla));
-		panelDeJuego.add(panelTablero.getBoton(fila, columna));
-		panelDeJuego.getBoton(fila, columna).addActionListener(escuchador);
+		panelTablero.add(panelTablero.getBoton(fila, columna));
+		panelTablero.getBoton(fila, columna).addActionListener(escuchador);
 	}
 	
 	/**
 	 * Prepara el panel con la interfaz gráfica del tablero según el modelo
 	 */
 	private void inicializarPanelTablero(BotonListenerPadre escuchadorBoton) {
-		this.setJuego(new Juego());
+		this.setJuego(new Juego());	
 		
-		int cantFilas = this.getJuego().getCantFilas();
-		int cantColumnas = this.getJuego().getCantColumnas();
+		Tablero tablero = this.getJuego().getTablero();
+		int filas = tablero.getCantFilas();
+		int cols = tablero.getCantColumnas();
 		
-		PanelTablero panelDeJuego = new PanelTablero(cantFilas, cantColumnas);
+		PanelTablero panelTablero = new PanelTablero(tablero);
 		
-		this.setPanelTablero(panelDeJuego);
+		this.setPanelTablero(panelTablero);
 		
-		for (int fila = 0; fila < cantFilas; fila++) {
-			for (int columna = 0; columna < cantColumnas; columna++) {
+		for (int fila = 0; fila < filas; fila++) {
+			for (int columna = 0; columna < cols; columna++) {
 				inicializarBoton(fila, columna, escuchadorBoton);
 			}
 		}
 		
-		this.getPanelTablero().setearTablero();
 		this.getPanelTablero().setVisible(true);
 	}
 }

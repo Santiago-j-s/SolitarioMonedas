@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 
 import juego.Direccion;
+import vista.CasillaButton;
 
 /**
  * Escuchador para los botones cuando se juega sin preguntas
@@ -16,7 +17,7 @@ import juego.Direccion;
 public class BotonListenerSinPregunta extends BotonListenerPadre {
 
 	ManejadorJuego manejador;
-	JButton casilla;
+	CasillaButton casilla;
 	
 	/**
 	 * Constructor
@@ -46,14 +47,14 @@ public class BotonListenerSinPregunta extends BotonListenerPadre {
 	/**
 	 * @return the casilla
 	 */
-	protected JButton getCasilla() {
+	protected CasillaButton getCasilla() {
 		return casilla;
 	}
 
 	/**
 	 * @param casilla the casilla to set
 	 */
-	protected void setCasilla(JButton casilla) {
+	protected void setCasilla(CasillaButton casilla) {
 		this.casilla = casilla;
 	}
 
@@ -68,9 +69,9 @@ public class BotonListenerSinPregunta extends BotonListenerPadre {
 		int columna;
 		ManejadorJuego manejador = this.getManejador();
 		
-		manejador.getPanelTablero().setearTablero();
+		manejador.getPanelTablero().actualizar();
 		
-		this.setCasilla(((JButton) e.getSource()));
+		this.setCasilla(((CasillaButton) e.getSource()));
 		
 		fila = manejador.getPanelTablero().getFila(casilla);
 		columna = manejador.getPanelTablero().getColumna(casilla);
@@ -106,7 +107,7 @@ public class BotonListenerSinPregunta extends BotonListenerPadre {
 		
 		this.verificarFinJuego();
 		
-		manejador.getPanelTablero().setearTablero();
+		manejador.getPanelTablero().actualizar();
 	}
 
 }

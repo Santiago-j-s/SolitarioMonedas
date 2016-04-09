@@ -29,7 +29,6 @@ public class Juego {
 	 */
 	public Juego (int cantFilas, int cantColumnas, int cantNulas, int cantVacias) {
 		this.setTablero(new Tablero5x5());
-		
 		this.setCantSaltos(1);
 	}
 	
@@ -44,7 +43,7 @@ public class Juego {
 	/**
 	 * @return the tablero
 	 */
-	private Tablero getTablero() {
+	public Tablero getTablero() {
 		return tablero;
 	}
 

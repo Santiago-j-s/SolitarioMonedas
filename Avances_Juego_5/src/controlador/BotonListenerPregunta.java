@@ -8,6 +8,7 @@ import javax.swing.JButton;
 
 import juego.Direccion;
 import juego.HistoricoPreguntas;
+import vista.CasillaButton;
 
 /**
  * Invocado cuando se presiona una casilla. 
@@ -29,7 +30,7 @@ public class BotonListenerPregunta extends BotonListenerPadre implements
 	private int fila;
 	private int columna;
 	
-	private JButton casilla;
+	private CasillaButton casilla;
 
 	private ManejadorJuego manejador;
 	
@@ -48,14 +49,14 @@ public class BotonListenerPregunta extends BotonListenerPadre implements
 	/**
 	 * @return the casilla
 	 */
-	protected JButton getCasilla() {
+	protected CasillaButton getCasilla() {
 		return casilla;
 	}
 
 	/**
 	 * @param casilla the casilla to set
 	 */
-	protected void setCasilla(JButton casilla) {
+	protected void setCasilla(CasillaButton casilla) {
 		this.casilla = casilla;
 	}
 
@@ -171,7 +172,7 @@ public class BotonListenerPregunta extends BotonListenerPadre implements
 			this.getManejador().getPanelTablero().setEnabled(false);
 		}
 		
-		this.getManejador().getPanelTablero().setearTablero();
+		this.getManejador().getPanelTablero().actualizar();
 		this.getManejador().getVentanaPrincipal().setEnabled(true);
 		this.getManejador().getVentanaPrincipal().toFront();
 	}
@@ -192,9 +193,9 @@ public class BotonListenerPregunta extends BotonListenerPadre implements
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
-		this.getManejador().getPanelTablero().setearTablero();
+		this.getManejador().getPanelTablero().actualizar();
 		
-		this.setCasilla(((JButton) e.getSource()));
+		this.setCasilla(((CasillaButton) e.getSource()));
 		
 		this.setFila(this.getManejador().getPanelTablero().getFila(casilla));
 		this.setColumna(this.getManejador().getPanelTablero().getColumna(casilla));
