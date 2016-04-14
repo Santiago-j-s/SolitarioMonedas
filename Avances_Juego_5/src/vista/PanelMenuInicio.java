@@ -20,21 +20,25 @@ import javax.swing.JFrame;
  */
 public class PanelMenuInicio extends JPanel
 {
-
 	private static final long serialVersionUID = 1L;
-	//atributos
+	private static final int HEIGHT = 500;
+	private static final int WIDTH = 500;
+	private static final Dimension SIZE = new Dimension(HEIGHT, WIDTH);
+	
 	JButton botonJugarConPreguntas;
 	JButton botonJugarSinPreguntas;
-	ImageIcon fondoMenu;
+
+	private ImageIcon fondoMenu;
 	
 	/**
 	 * Constructor que se encarga de crear el panel
 	 * que se verá en la ventana de inicio del juego
 	 * Agrega sus botones necesarios
 	 */
-	public PanelMenuInicio()
+	public PanelMenuInicio(Recursos r)
 	{
 		BoxLayout caja = new BoxLayout(this, BoxLayout.Y_AXIS);
+		this.fondoMenu = r.getImgMenu();
 		
 		this.setLayout(caja);
 		
@@ -45,17 +49,12 @@ public class PanelMenuInicio extends JPanel
 		this.botonJugarSinPreguntas.setAlignmentX(CENTER_ALIGNMENT);
 		
 		this.add(Box.createRigidArea(new Dimension(0, 204)));
-		
 		this.add(botonJugarConPreguntas);
-		
 		this.add(Box.createRigidArea(new Dimension(0, 2)));
-		
 		this.add(botonJugarSinPreguntas);
 		
 		this.setVisible(true);
-		
-		this.setPreferredSize(new Dimension(300, 300));
-		
+		this.setPreferredSize(SIZE);
 	}
 	
 	/**
@@ -77,22 +76,8 @@ public class PanelMenuInicio extends JPanel
      */
     public void paintComponent(Graphics g)
     {
-    	this.fondoMenu = new ImageIcon(getClass().getResource("/menu2.jpg"));
     	g.drawImage(this.fondoMenu.getImage(), 0,0, this.getWidth(), this.getHeight(), null);
     	this.setOpaque(false);
     	super.paintComponents(g);
     }
-
-	
-	public static void main (String[] args)
-	{
-		JFrame frame = new JFrame("Prueba Menu Inicio");
-		PanelMenuInicio menu = new PanelMenuInicio();
-		frame.add(menu);
-		frame.setSize(300,300);
-		frame.repaint();
-		frame.setVisible(true);	
-		
-		
-	}
 }

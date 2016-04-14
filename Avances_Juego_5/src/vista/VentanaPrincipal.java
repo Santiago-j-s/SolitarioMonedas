@@ -23,15 +23,21 @@ public class VentanaPrincipal extends JFrame {
 	private JMenuItem salir;
 	private JMenuItem ayuda;
 	
+	private ImageIcon icono;
+	
+	private Recursos recursos;
+	
 	/**
 	 * Único constructor de la clase. Recibe como parámetro al panel con el tablero de juego.
 	 * Crea la ventana, introduce los elementos en un BorderLayout 
 	 * 	y finalmente muestra la ventana
 	 */
-	public VentanaPrincipal() {
+	public VentanaPrincipal(Recursos r) {
 		super("Solitario con Monedas");
 		
-		ImageIcon icono = new ImageIcon(getClass().getResource("/logoJuego2.png"));
+		this.setRecursos(r);
+		
+		icono = r.getImgIcono();
 		this.setIconImage(icono.getImage());
 		
 		this.setMinimumSize(new Dimension(400,400));
@@ -95,4 +101,12 @@ public class VentanaPrincipal extends JFrame {
 		item.setEnabled(false);
 		this.nuevoJuego = item;
 	}
+
+  public Recursos getRecursos() {
+    return recursos;
+  }
+
+  private void setRecursos(Recursos recursos) {
+    this.recursos = recursos;
+  }
 }

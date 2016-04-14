@@ -13,6 +13,7 @@ import vista.PanelAyuda;
 import vista.PanelAyudaPreguntas;
 import vista.PanelAyudaSinPreguntas;
 import vista.PanelTablero;
+import vista.Recursos;
 import vista.VentanaPrincipal;
 import vista.PanelPantallaPrincipal;
 
@@ -30,12 +31,15 @@ public class ManejadorJuego{
 	private PanelTablero panelTablero;
 	private JFrame ventanaPrincipal;
 	private PanelPantallaPrincipal panelPantallaPrincipal;
+	private Recursos recursos;
 	
 	/**
 	 * Constructor único de la clase. 
 	 * Crea y muestra la ventana principal con el tablero de juego.
 	 */
-	public ManejadorJuego(boolean conPreguntas, VentanaPrincipal mainWindow) {
+	public ManejadorJuego(boolean conPreguntas, VentanaPrincipal mainWindow, Recursos r) {
+	  
+	  this.setRecursos(r);
 		
 		PanelAyuda panelAyuda;
 		
@@ -96,7 +100,15 @@ public class ManejadorJuego{
 		return ventanaPrincipal;
 	}
 
-	/**
+	private Recursos getRecursos() {
+    return recursos;
+  }
+
+  private void setRecursos(Recursos recursos) {
+    this.recursos = recursos;
+  }
+
+  /**
 	 * @param ventanaPrincipal the ventanaPrincipal to set
 	 */
 	private void setVentanaPrincipal(VentanaPrincipal ventanaPrincipal) {
@@ -129,7 +141,7 @@ public class ManejadorJuego{
 		int filas = tablero.getCantFilas();
 		int cols = tablero.getCantColumnas();
 		
-		PanelTablero panelTablero = new PanelTablero(tablero);
+		PanelTablero panelTablero = new PanelTablero(tablero, this.getRecursos());
 		
 		this.setPanelTablero(panelTablero);
 		

@@ -24,7 +24,7 @@ public class ManejadorMenuInicial {
 	 * Construye la ventana inicial del juego
 	 */
 	public ManejadorMenuInicial(VentanaPrincipal ventanaPrincipal) {
-		PanelMenuInicio panelMenuInicio = new PanelMenuInicio();
+		PanelMenuInicio panelMenuInicio = new PanelMenuInicio(ventanaPrincipal.getRecursos());
 		
 		this.ventanaPrincipal = ventanaPrincipal;
 		
@@ -45,7 +45,7 @@ public class ManejadorMenuInicial {
 	 */
 	private void LanzarJuego(boolean preguntas) {
 		PanelPantallaPrincipal juego = 
-				new ManejadorJuego(preguntas, this.ventanaPrincipal)
+				new ManejadorJuego(preguntas, this.ventanaPrincipal, ventanaPrincipal.getRecursos())
 					.getPanelPantallaPrincipal();
 		
 		JPanel content = new JPanel(new GridBagLayout());
@@ -78,13 +78,5 @@ public class ManejadorMenuInicial {
 		public void actionPerformed(ActionEvent e) {
 			LanzarJuego(false);
 		}
-	}
-	
-	/**
-	 * Método solo usado para fines de testeo
-	 * @param args - argumentos a recibir
-	 */
-	public static void main(String[] args) {
-		new ManejadorMenuInicial(new VentanaPrincipal());
 	}
 }

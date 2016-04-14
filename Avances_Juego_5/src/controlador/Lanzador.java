@@ -3,16 +3,18 @@ package controlador;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import vista.Recursos;
 import vista.VentanaPrincipal;
 
 public class Lanzador {
 	VentanaPrincipal mainWindow;
+	private final Recursos recursos = new Recursos();
 	
 	/**
 	 * Setea la ventana principal e inicia el programa
 	 */
 	public Lanzador() {
-		this.mainWindow = new VentanaPrincipal();
+		this.mainWindow = new VentanaPrincipal(recursos);
 		reset();
 	}
 	

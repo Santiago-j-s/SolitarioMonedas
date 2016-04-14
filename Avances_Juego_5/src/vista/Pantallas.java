@@ -29,7 +29,7 @@ public class Pantallas extends JTabbedPane {
 		//super();
 		this.setAlignmentX(CENTER_ALIGNMENT);
 		this.setAlignmentY(CENTER_ALIGNMENT);
-		this.setPreferredSize(new Dimension(300, 300));
+		this.setPreferredSize(new Dimension(500, 500));
 		
 		JScrollPane ayuda = new JScrollPane(panelAyuda);
 

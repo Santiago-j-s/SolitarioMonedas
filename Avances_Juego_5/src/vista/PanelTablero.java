@@ -22,8 +22,12 @@ import juego.Tablero;
 public class PanelTablero extends JPanel {
 
   private static final long serialVersionUID = 1L;
+  private static final int HEIGHT = 500;
+  private static final int WIDTH = HEIGHT;
+  private static final Dimension SIZE = new Dimension(WIDTH, HEIGHT);
+  
 
-  private static final Recursos recursos = new Recursos();
+  private Recursos recursos;
 
   private Tablero tablero;
   private ImageIcon fondoTablero;
@@ -39,8 +43,9 @@ public class PanelTablero extends JPanel {
    * @param cantColumnas
    *          - cantidad total de columnas
    */
-  public PanelTablero(Tablero t) {
+  public PanelTablero(Tablero t, Recursos r) {
     this.tablero = t;
+    this.setRecursos(r);
 
     int filas = t.getCantFilas();
     int cols = t.getCantColumnas();
@@ -49,7 +54,7 @@ public class PanelTablero extends JPanel {
     tableroVista = new CasillaButton[filas][cols];
 
     this.setOpaque(false);
-    this.setPreferredSize(new Dimension(500, 500));
+    this.setPreferredSize(SIZE);
     this.actualizar();
   }
 
@@ -57,7 +62,7 @@ public class PanelTablero extends JPanel {
    * Metodo que agrega una imagen de fondo al panel del tablero
    */
   public void paint(Graphics g) {
-    this.fondoTablero = recursos.getImgFondo();
+    this.fondoTablero = getRecursos().getImgFondo();
 
     g.drawImage(this.fondoTablero.getImage(), this.getX(), this.getY(),
         this.getWidth(), this.getHeight(), null);
@@ -96,7 +101,7 @@ public class PanelTablero extends JPanel {
    */
   public void setBoton(int fila, int columna, Casilla casilla) {
     if (getBoton(fila, columna) == null) {
-      tableroVista[fila][columna] = new CasillaButton(recursos, casilla);
+      tableroVista[fila][columna] = new CasillaButton(getRecursos(), casilla);
     } else {
       tableroVista[fila][columna].setTipoCasilla(casilla);
     }
@@ -122,6 +127,14 @@ public class PanelTablero extends JPanel {
     Point punto = casilla.getLocation();
     Dimension dimensiones = casilla.getSize();
     return (int) ((punto.getX() + dimensiones.width / 2) / (dimensiones.width));
+  }
+
+  private Recursos getRecursos() {
+    return recursos;
+  }
+
+  private void setRecursos(Recursos recursos) {
+    this.recursos = recursos;
   }
 
   /**
