@@ -9,7 +9,7 @@ public class Recursos {
   private static final String NULA_PATH = "/nula.png";
   private static final String FONDO_PATH = "/fondoTablero.png";
   private static final String MENU_FONDO = "/pantallaMenuInicialConLogo.png";
-  private static final String ICONO = "/logoJuego.png";
+  private static final String ICONO = "/logoJuego2.png";
 
   private ImageIcon imgMoneda, imgVacia, imgNula, imgFondo, imgMenu, imgIcono;
   
