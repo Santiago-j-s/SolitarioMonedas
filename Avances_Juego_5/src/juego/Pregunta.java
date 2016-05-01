@@ -1,7 +1,5 @@
 package juego;
 
-import java.util.Scanner;
-
 /**
  * Una pregunta con 3 opciones posibles de respuesta
  * @author Dibez, Santana
@@ -41,35 +39,6 @@ public class Pregunta
 				"Manuel BELGRANO",
 				"Cornelio SAAVEDRA"
 				);
-	}
-
-	/**
-	 * Método interno de prueba.
-	 */
-	@SuppressWarnings("unused")
-	private void ejecutarPregunta()
-	{
-		//variables u objetos locales
-		char respuesta;
-		Scanner entrada = new Scanner(System.in); //declaro e inicializo 
-		
-		//comienza el algoritmo
-		System.out.print(pregunta+"\n\n"+
-						 opcion1.getTituloOpcion()+"\n"+
-						 opcion2.getTituloOpcion()+"\n"+
-						 ")"+opcion3.getTituloOpcion()+"\n\n"+
-						 "Ingrese su respuesta: ");
-		respuesta = entrada.next().charAt(0);
-		//ACLARACION: a opcion1 le corresponde la letra A, a opcion2 la B y a opcion3 la C 
-						
-		//verifica si la respuesta es correcta
-		if ((respuesta=='A' && opcion1.esCorrecta())||(respuesta=='B' && opcion2.esCorrecta())
-				||(respuesta=='C' && opcion3.esCorrecta()))
-			{System.out.println("\nLa respuesta es CORRECTA! Puede mover una ficha");}
-		else{System.out.println("\nLa respuesta es INCORRECTA! Pierde un turno");}
-		
-		entrada.close();
-				
 	}
 
 	/**

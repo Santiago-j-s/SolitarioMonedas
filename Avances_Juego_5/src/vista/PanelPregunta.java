@@ -27,7 +27,8 @@ public class PanelPregunta extends JPanel
 {
 	private static final long serialVersionUID = 6228974768116494807L;
 	
-	private JLabel pregunta;	
+	private JLabel pregunta;
+	private ArrayList<JButton> botones;
 	
 	/**
 	 * Constructor que crea el panel de la pregunta
@@ -38,9 +39,9 @@ public class PanelPregunta extends JPanel
 	public PanelPregunta(Pregunta unaPregunta)
 	{
 		this.pregunta = new JLabel(unaPregunta.getPregunta());
-
-		ArrayList<JButton> botones = new ArrayList<JButton>();
-
+		
+		botones = new ArrayList<JButton>();
+		
 		botones.add(new JButton(unaPregunta.getOpcion1().getTituloOpcion()));
 		botones.add(new JButton(unaPregunta.getOpcion2().getTituloOpcion()));
 		botones.add(new JButton(unaPregunta.getOpcion3().getTituloOpcion()));
@@ -76,7 +77,8 @@ public class PanelPregunta extends JPanel
 	 * @param opcion2
 	 * @param opcion3
 	 */
-	public PanelPregunta(String pregunta, JButton opcion1, JButton opcion2, JButton opcion3)
+	@SuppressWarnings("unused")
+  private PanelPregunta(String pregunta, JButton opcion1, JButton opcion2, JButton opcion3)
 	{
 		this.pregunta = new JLabel(pregunta);
 		ArrayList<JButton> botones = new ArrayList<JButton>();
@@ -143,28 +145,7 @@ public class PanelPregunta extends JPanel
 		
 	}
 	
-	/**
-	 * Metodo main de prueba de la clase Panel Pregunta
-	 */
-	public static void main (String[] args)
-	{
-		String preg = "¿Cuál es la capital de Argentina?";
-						
-		Opcion op1 = new Opcion("Buenos Aires",true);
-		Opcion op2 = new Opcion("Cordoba",false);
-		Opcion op3 = new Opcion("Rosario",false);
-		
-		JFrame ventana = new JFrame("PREGUNTA");
-		PanelPregunta panelPreg = new PanelPregunta(preg, 
-					new JButton(op1.toString()), 
-					new JButton(op2.toString()),
-					new JButton(op3.toString())
-				);
-		
-		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		ventana.add(panelPreg);
-		ventana.pack();
-		ventana.setVisible(true);
+	public ArrayList<JButton> getBotones() {
+	  return botones;
 	}
-	
 }

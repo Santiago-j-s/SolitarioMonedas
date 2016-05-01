@@ -35,8 +35,6 @@ public class Pantallas extends JTabbedPane {
 
 		this.addTab("Juego", panelTablero);
 		this.addTab("Ayuda", ayuda);
-		
-		
 	}
 	
 	/**

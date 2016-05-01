@@ -71,7 +71,7 @@ public class VentanaPrincipal extends JFrame {
 		barraMenu = new JMenuBar();
 		
 		barraMenu.add(menuJuego);
-		barraMenu.add(menuAyuda);		
+		barraMenu.add(menuAyuda);
 		
 		return barraMenu;
 	}
