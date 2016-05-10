@@ -15,14 +15,14 @@ import juego.Direccion;
 public class PanelIngresoDireccion extends JPanel {
 	private static final long serialVersionUID = 1L;
 	
-	private String direccion;
+	private Direccion direccion;
 	
 	/**
 	 * Devuelve una cadena con la dirección seleccionada por el usuario.
 	 * 
 	 * @return String direccion
 	 */
-	public String getDireccion() {
+	public Direccion getDireccion() {
 		return direccion;
 	}
 	
@@ -30,7 +30,7 @@ public class PanelIngresoDireccion extends JPanel {
 	 * Devuelve una cadena con la dirección seleccionada por el usuario
 	 * @param direccion
 	 */
-	public void setDireccion(String direccion) {
+	private void setDireccion(Direccion direccion) {
 		this.direccion = direccion;
 	}
 	
@@ -40,21 +40,13 @@ public class PanelIngresoDireccion extends JPanel {
 	 */
 	public PanelIngresoDireccion(Container contenedor, ArrayList<Direccion> direcciones) {
 		
-		ArrayList<String> direccionesString = new ArrayList<String>();
-		
-		java.util.Iterator<Direccion> iteradorDirecciones = direcciones.iterator();
-		
-		while(iteradorDirecciones.hasNext()) {
-			direccionesString.add(iteradorDirecciones.next().toString());
-		}
-		
-		String valor = (String) (JOptionPane.showInputDialog(contenedor,
+		Direccion valor = (Direccion) JOptionPane.showInputDialog(contenedor,
 				"Seleccione la dirección en que desea saltar", 
 				"Dirección", 
 				JOptionPane.PLAIN_MESSAGE,
 				null,
-				direccionesString.toArray(), 
-				direcciones.get(0)));
+				direcciones.toArray(), 
+				direcciones.get(0));
 		
 		this.setDireccion(valor);
 	}

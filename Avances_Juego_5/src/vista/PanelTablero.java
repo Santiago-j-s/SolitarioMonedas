@@ -5,12 +5,14 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Point;
+import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import juego.Casilla;
+import juego.Direccion;
 import juego.Tablero;
 
 /**
@@ -25,7 +27,6 @@ public class PanelTablero extends JPanel {
   private static final int HEIGHT = 500;
   private static final int WIDTH = HEIGHT;
   private static final Dimension SIZE = new Dimension(WIDTH, HEIGHT);
-  
 
   private Recursos recursos;
 
@@ -165,15 +166,40 @@ public class PanelTablero extends JPanel {
    */
   public void colorearBoton(int fila, int columna, Color color)
       throws ArrayIndexOutOfBoundsException {
-    
+
     int filas = tablero.getCantFilas();
     int cols = tablero.getCantColumnas();
-    
+
     if (fila < filas && columna < cols) {
       this.getBoton(fila, columna).setContentAreaFilled(true);
       this.getBoton(fila, columna).setBackground(color);
     } else {
       throw new ArrayIndexOutOfBoundsException();
+    }
+  }
+
+  /**
+   * Colorea las casillas a las que una moneda puede saltar
+   * 
+   * @param direcciones
+   *          - las direcciones a las que la moneda puede saltar
+   */
+  public void colorearDireccionesSalto(CasillaButton casilla,
+      List<Direccion> direcciones) {
+    int fila = getFila(casilla);
+    int columna = getColumna(casilla);
+    
+    if (direcciones.contains(Direccion.Derecha)) {
+      this.colorearBoton(fila, columna+2, Color.GREEN);
+    }
+    if (direcciones.contains(Direccion.Izquierda)) {
+      this.colorearBoton(fila, columna-2, Color.GREEN);
+    }
+    if (direcciones.contains(Direccion.Arriba)) {
+      this.colorearBoton(fila-2, columna, Color.GREEN);
+    }
+    if (direcciones.contains(Direccion.Abajo)) {
+      this.colorearBoton(fila+2, columna, Color.GREEN);
     }
   }
 }

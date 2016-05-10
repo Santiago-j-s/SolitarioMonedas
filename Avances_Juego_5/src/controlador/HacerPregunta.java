@@ -24,59 +24,51 @@ import vista.PanelPregunta;
  */
 public class HacerPregunta {
 
-  private Pregunta unaPregunta;
-  private PanelPregunta unPanelPregunta;
+  private Pregunta pregunta;
+  private PanelPregunta panelPregunta;
   private ArrayList<ObservadorPregunta> observadores;
   JFrame ventanaPregunta;
   /**
    * Constructor
    * 
-   * @param unaPregunta
+   * @param pregunta
    *          - pregunta con sus opciones que será mostrada en pantalla
    */
-  public HacerPregunta(Pregunta unaPregunta) {
-    this.unaPregunta = unaPregunta; // el colaborador unaPregunta apunta al
-                                    // mismo objeto del parametro
-
+  public HacerPregunta(Pregunta pregunta) {
+    this.pregunta = pregunta; 
+    
     this.observadores = new ArrayList<ObservadorPregunta>();
     
-    // inicializamos y cargamos unPanelPregunta con los datos de unaPregunta
-    unPanelPregunta = new PanelPregunta(unaPregunta);
+    panelPregunta = new PanelPregunta(pregunta);
     
     Manejador manejadorPreg = new Manejador();
-    unPanelPregunta.getBotones().forEach(
+    panelPregunta.getBotones().forEach(
         boton -> boton.addActionListener(manejadorPreg)
     );
     
-    this.lanzarPregunta(unPanelPregunta);
+    this.lanzarPregunta(panelPregunta);
   }
 
   /**
-   * Según cual sea el botón presionado lanza un método de los observadores
    * 
    * @author Dibez, Santana
    */
   private class Manejador implements ActionListener {
 
-    Iterator<ObservadorPregunta> iteradorObservadores;
+    ArrayList<ObservadorPregunta> observadores;
 
     /**
      * Verifica si la pregunta fue respondida correctamente, lanza el método
      * 'correcto' o 'incorrecto' de cada observador
      */
     public void actionPerformed(ActionEvent e) {
-      this.iteradorObservadores = getIteradorObservadores();
+      this.observadores = getObservadores();
+      String respuesta = ((JButton) e.getSource()).getText();
 
-      JButton boton = (JButton) e.getSource();
-
-      if (boton.getText().equals(unaPregunta.getOpcion1().toString())) {
-        while (this.iteradorObservadores.hasNext()) {
-          this.iteradorObservadores.next().correcto();
-        }
+      if (pregunta.correcta(respuesta)) {
+        this.observadores.forEach(ObservadorPregunta::correcto);
       } else {
-        while (this.iteradorObservadores.hasNext()) {
-          this.iteradorObservadores.next().incorrecto();
-        }
+        this.observadores.forEach(ObservadorPregunta::incorrecto);
       }
     }
   }
@@ -94,8 +86,8 @@ public class HacerPregunta {
   /**
    * @return un iterador con los observadores de la instancia actual
    */
-  public Iterator<ObservadorPregunta> getIteradorObservadores() {
-    return this.observadores.iterator();
+  public ArrayList<ObservadorPregunta> getObservadores() {
+    return this.observadores;
   }
   
   public void setVentanaPregunta(JFrame ventanaPregunta) {
@@ -120,16 +112,4 @@ public class HacerPregunta {
   public JFrame getVentanaPregunta() {
     return this.ventanaPregunta;
   }
-
-  /**
-   * Método de prueba
-   * 
-   * @param args
-   *          - no tiene parámetros
-   */
-  public static void main(String[] args) {
-    HistoricoPreguntas BDPreguntas = new HistoricoPreguntas();
-    new HacerPregunta(BDPreguntas.sortearPregunta());
-  }
-
 }
