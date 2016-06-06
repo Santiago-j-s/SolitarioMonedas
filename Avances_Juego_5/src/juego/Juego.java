@@ -232,7 +232,7 @@ public class Juego {
   /**
    * @return true si queda una sola moneda, false en caso contrario
    */
-  public boolean victoria() {
+  private boolean victoria() {
 
     Tablero tablero = this.getTablero();
 
@@ -246,7 +246,7 @@ public class Juego {
    * @return true si ninguna moneda puede saltar en ninguna dirección. false si
    *         al menos una moneda puede saltar en alguna dirección.
    */
-  public boolean derrota() {
+  private boolean derrota() {
 
     Tablero tablero = this.getTablero();
 
@@ -259,5 +259,20 @@ public class Juego {
     }
 
     return true;
+  }
+  
+  /**
+   * Retorna el estado actual del juego
+   * @return 
+   */
+  public EstadoJuego estadoJuego() {
+    EstadoJuego estado = EstadoJuego.EnProgreso;
+    if (victoria()) {
+      estado = EstadoJuego.Victoria;
+    } else if (derrota()) {
+      estado = EstadoJuego.Derrota;
+    }
+    
+    return estado;
   }
 }

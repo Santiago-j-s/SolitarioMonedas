@@ -16,6 +16,7 @@ import vista.PanelIngresoDireccion;
 import vista.PanelTablero;
 import vista.VentanaPrincipal;
 import juego.Direccion;
+import juego.EstadoJuego;
 import juego.Juego;
 
 /**
@@ -187,11 +188,11 @@ public abstract class BotonListenerPadre
       }
     }
 
-    this.verificarFinJuego();
-
     panel.actualizar();
     manejador.getVentanaPrincipal().setEnabled(true);
     manejador.getVentanaPrincipal().toFront();
+    
+    this.verificarFinJuego();
   }
 
   /**
@@ -217,21 +218,19 @@ public abstract class BotonListenerPadre
    * Testea si el jugador ha ganado o perdido el juego y muestra un mensaje en
    * consecuencia.
    */
-  private boolean verificarFinJuego() {
+  private void verificarFinJuego() {
     ManejadorJuego manejador = this.getManejadorPrincipal();
     Juego juego = manejador.getJuego();
-    boolean fin = false;
-
-    if (juego.victoria()) {
-      JOptionPane.showMessageDialog(manejador.getVentanaPrincipal(),
-          "Ha ganado el juego");
-      fin = true;
-    } else if (juego.derrota()) {
-      JOptionPane.showMessageDialog(manejador.getVentanaPrincipal(),
-          "Ha perdido el juego");
-      fin = true;
+    JFrame ventana = manejador.getVentanaPrincipal();
+    EstadoJuego estado = juego.estadoJuego();
+    String mensaje;
+    
+    if (estado == EstadoJuego.Victoria) {
+      mensaje = "Ha ganado el juego";
+      JOptionPane.showMessageDialog(ventana, mensaje);
+    } else if (estado == EstadoJuego.Derrota) {
+      mensaje = "Ha perdido el juego";
+      JOptionPane.showMessageDialog(ventana, mensaje);
     }
-
-    return fin;
   }
 }
