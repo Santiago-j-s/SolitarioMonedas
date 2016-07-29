@@ -16,7 +16,7 @@ import vista.PanelPregunta;
 /**
  * Clase con observadores que muestra una pregunta en pantalla. Si la pregunta
  * es respondida correctamente lanza el método 'correcto' de sus observadores.
- * Si la pregunta es respondida incorrectamente lanza activa el método
+ * Si la pregunta es respondida incorrectamente lanza el método
  * 'incorrecto'
  *
  * @author Dibez, Santana
