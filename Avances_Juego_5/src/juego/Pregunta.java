@@ -29,16 +29,6 @@ public class Pregunta {
   }
 
   /**
-   * Constructor defecto La pregunta es: '¿Quien libero America?' Opcion1: 'Jose
-   * de SAN MARTIN' Opcion2: 'Manuel BELGRANO' Opcion3: 'Cornelio SAAVEDRA'
-   */
-  public Pregunta() {
-    // opciones locales
-    this("¿Quien libero America?", "Jose de SAN MARTIN", "Manuel BELGRANO",
-        "Cornelio SAAVEDRA");
-  }
-
-  /**
    * Getter de 'pregunta'
    * 
    * @return una cadena con la pregunta
