@@ -12,6 +12,9 @@ import java.util.stream.Collectors;
 import org.junit.Before;
 import org.junit.Test;
 
+import juego.Opcion;
+import juego.Pregunta;
+
 /**
  * @author santiago
  *
@@ -111,12 +114,13 @@ public class PreguntaTest {
 
   /**
    * Test method for {@link juego.Pregunta#correcta(java.lang.String)}.
-   * TODO: Crear array con tests para valores correctos y falsos para cada pregunta
    */
   @Test
   public void testCorrecta() {
     Pregunta pregunta = this.pruebasPregunta.get(0);
     assertTrue(pregunta.correcta("Respuesta"));
+    assertFalse(pregunta.correcta("NoRespuesta"));
+    assertFalse(pregunta.correcta("RespuestaNo"));
   }
 
   /**

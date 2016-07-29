@@ -107,34 +107,4 @@ public class Pregunta {
   private void setOpciones(ArrayList<Opcion> opciones) {
     this.opciones = opciones;
   }
-
-  /**
-   * Setter de 'opcion1'
-   * 
-   * @param opcion1
-   *          - la primer opción
-   */
-  private void setOpcion1(Opcion opcion1) {
-    this.opciones.set(0, opcion1);
-  }
-
-  /**
-   * Setter de 'opcion2'
-   * 
-   * @param opcion1
-   *          - la segunda opción
-   */
-  private void setOpcion2(Opcion opcion2) {
-    this.opciones.set(1, opcion2);
-  }
-
-  /**
-   * Setter de 'opcion3'
-   * 
-   * @param opcion1
-   *          - la tercer opción
-   */
-  private void setOpcion3(Opcion opcion3) {
-    this.opciones.set(2, opcion3);
-  }
 }
