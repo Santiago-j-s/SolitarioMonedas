@@ -1,5 +1,7 @@
 package juego;
 
+import java.util.ArrayList;
+
 /**
  * Una pregunta con 3 opciones posibles de respuesta
  * 
@@ -8,7 +10,7 @@ package juego;
  */
 public class Pregunta {
   private String pregunta;
-  private Opcion opcion1, opcion2, opcion3;
+  private ArrayList<Opcion> opciones = new ArrayList<Opcion>();
 
   /**
    * Constructor
@@ -28,7 +30,7 @@ public class Pregunta {
     this.setOpciones(opcion1, opcion2, opcion3);
   }
 
-  /**
+  /*
    * Getter de 'pregunta'
    * 
    * @return una cadena con la pregunta
@@ -37,13 +39,21 @@ public class Pregunta {
     return pregunta;
   }
 
+  /*
+   * Retorna la opción con el número especificado TODO: Crear una excepción para
+   * valores no permitidos
+   */
+  public Opcion getOpcion(int n) {
+    return opciones.get(n - 1);
+  }
+
   /**
    * Getter de 'opción1'
    * 
    * @return la instancia de la primer opción
    */
   public Opcion getOpcion1() {
-    return opcion1;
+    return opciones.get(0);
   }
 
   /**
@@ -52,7 +62,7 @@ public class Pregunta {
    * @return la instancia de la segunda opción
    */
   public Opcion getOpcion2() {
-    return opcion2;
+    return opciones.get(1);
   }
 
   /**
@@ -61,7 +71,7 @@ public class Pregunta {
    * @return la instancia de la tercer opción
    */
   public Opcion getOpcion3() {
-    return opcion3;
+    return opciones.get(2);
   }
 
   public Boolean correcta(String s) {
@@ -79,21 +89,23 @@ public class Pregunta {
   protected void setPregunta(String pregunta) {
     this.pregunta = pregunta;
   }
+  
+  protected void setOpciones(String opcion1, String opcion2, String opcion3) {
+    ArrayList<Opcion> opciones = new ArrayList<Opcion>();
+    opciones.add(new Opcion(opcion1, true));
+    opciones.add(new Opcion(opcion2, false));
+    opciones.add(new Opcion(opcion3, false));
+    this.setOpciones(opciones);
+  }
 
   /**
    * Setea las 3 opciones de la pregunta
    * 
-   * @param opcion1
-   *          - una cadena con la primer opción para la pregunta
-   * @param opcion2
-   *          - una cadena con la segunda opción para la pregunta
-   * @param opcion3
-   *          - una cadena con la tercer opción para la pregunta
+   * @param opciones
+   *          - Un array con las opciones
    */
-  protected void setOpciones(String opcion1, String opcion2, String opcion3) {
-    this.setOpcion1(new Opcion(opcion1, true));
-    this.setOpcion2(new Opcion(opcion2, false));
-    this.setOpcion3(new Opcion(opcion3, false));
+  private void setOpciones(ArrayList<Opcion> opciones) {
+    this.opciones = opciones;
   }
 
   /**
@@ -103,7 +115,7 @@ public class Pregunta {
    *          - la primer opción
    */
   private void setOpcion1(Opcion opcion1) {
-    this.opcion1 = opcion1;
+    this.opciones.set(0, opcion1);
   }
 
   /**
@@ -113,7 +125,7 @@ public class Pregunta {
    *          - la segunda opción
    */
   private void setOpcion2(Opcion opcion2) {
-    this.opcion2 = opcion2;
+    this.opciones.set(1, opcion2);
   }
 
   /**
@@ -123,6 +135,6 @@ public class Pregunta {
    *          - la tercer opción
    */
   private void setOpcion3(Opcion opcion3) {
-    this.opcion3 = opcion3;
+    this.opciones.set(2, opcion3);
   }
 }

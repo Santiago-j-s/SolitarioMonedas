@@ -6,8 +6,8 @@ package juego;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -21,6 +21,23 @@ public class PreguntaTest {
   ArrayList<Pregunta> pruebasPregunta = new ArrayList<Pregunta>();
   ArrayList<String> preguntas = new ArrayList<String>();
   ArrayList<List<Opcion>> opciones = new ArrayList<List<Opcion>>();
+
+  private boolean compararOpciones(ArrayList<Pregunta> preguntas,
+      ArrayList<List<Opcion>> opciones, int nroOpcion) {
+    // Obtiene la primer opción de cada pregunta
+    List<Opcion> opcionesPrueba = (ArrayList<Opcion>) this.pruebasPregunta
+        .stream()
+        .map(p -> p.getOpcion(nroOpcion))
+        .collect(Collectors.toList());
+
+    // Obtiene el primer item de cada array de opciones
+    List<Opcion> opcionesTest = (ArrayList<Opcion>) this.opciones
+        .stream()
+        .map(o -> o.get(nroOpcion-1))
+        .collect(Collectors.toList());
+    
+    return opcionesPrueba.equals(opcionesTest);
+  }
 
   private ArrayList<Opcion> crearOpciones(String respuesta, String opcion2,
       String opcion3) {
@@ -61,8 +78,11 @@ public class PreguntaTest {
    */
   @Test
   public void testGetPregunta() {
-    Pregunta pregunta = this.pruebasPregunta.get(0);
-    assertEquals("¿Prueba1?", pregunta.getPregunta());
+    // Retorna los enunciados de las preguntas
+    List<String> preguntas2 = (ArrayList<String>) this.pruebasPregunta.stream()
+        .map(p -> p.getPregunta()).collect(Collectors.toList());
+
+    assertEquals(this.preguntas, preguntas2);
   }
 
   /**
@@ -70,8 +90,7 @@ public class PreguntaTest {
    */
   @Test
   public void testGetOpcion1() {
-    Pregunta pregunta = this.pruebasPregunta.get(0);
-    assertEquals("Respuesta", pregunta.getOpcion1().toString());
+    assertTrue(compararOpciones(pruebasPregunta, opciones, 1));
   }
 
   /**
@@ -79,8 +98,7 @@ public class PreguntaTest {
    */
   @Test
   public void testGetOpcion2() {
-    Pregunta pregunta = this.pruebasPregunta.get(0);
-    assertEquals("Opción2", pregunta.getOpcion2().toString());
+    assertTrue(compararOpciones(pruebasPregunta, opciones, 2));
   }
 
   /**
@@ -88,12 +106,12 @@ public class PreguntaTest {
    */
   @Test
   public void testGetOpcion3() {
-    Pregunta pregunta = this.pruebasPregunta.get(0);
-    assertEquals("Opción3", pregunta.getOpcion3().toString());
+    assertTrue(compararOpciones(pruebasPregunta, opciones, 3));
   }
 
   /**
    * Test method for {@link juego.Pregunta#correcta(java.lang.String)}.
+   * TODO: Crear array con tests para valores correctos y falsos para cada pregunta
    */
   @Test
   public void testCorrecta() {
