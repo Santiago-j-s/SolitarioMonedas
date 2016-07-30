@@ -1,7 +1,7 @@
 package controlador;
 
-import juego.HistoricoPreguntas;
-import juego.Pregunta;
+import pregunta.FachadaHacerPregunta;
+import pregunta.ObservadorPregunta;
 
 /**
  * Invocado cuando se presiona una casilla.
@@ -20,44 +20,11 @@ import juego.Pregunta;
 public class BotonListenerPregunta extends BotonListenerPadre
     implements ObservadorPregunta {
 
-  private HacerPregunta hacerPregunta;
-  private HistoricoPreguntas preguntas;
+  private FachadaHacerPregunta hacerPregunta;
 
   public BotonListenerPregunta(ManejadorJuego manejador) {
     super(manejador);
-
-    this.setPreguntas(new HistoricoPreguntas());
-    this.setHacerPregunta(null);
-  }
-
-  /**
-   * @return the hacerPregunta
-   */
-  private HacerPregunta getHacerPregunta() {
-    return hacerPregunta;
-  }
-
-  /**
-   * @param hacerPregunta
-   *          the hacerPregunta to set
-   */
-  private void setHacerPregunta(HacerPregunta hacerPregunta) {
-    this.hacerPregunta = hacerPregunta;
-  }
-
-  /**
-   * @return the preguntaRandom
-   */
-  private HistoricoPreguntas getPreguntas() {
-    return preguntas;
-  }
-
-  /**
-   * @param preguntaRandom
-   *          the preguntaRandom to set
-   */
-  private void setPreguntas(HistoricoPreguntas preguntas) {
-    this.preguntas = preguntas;
+    this.hacerPregunta = new FachadaHacerPregunta();
   }
 
   /**
@@ -66,11 +33,8 @@ public class BotonListenerPregunta extends BotonListenerPadre
    */
   @Override
   public void llamarPregunta() {
-    Pregunta pregunta = this.getPreguntas().sortearPregunta();
-    HacerPregunta ventanaPregunta = new HacerPregunta(pregunta);
-    this.setHacerPregunta(ventanaPregunta);
-    this.getHacerPregunta().addObservadorPregunta(this);
     this.getManejadorPrincipal().getVentanaPrincipal().setEnabled(false);
+    this.hacerPregunta.lanzarPregunta(this);
   }
 
   /**
@@ -78,10 +42,7 @@ public class BotonListenerPregunta extends BotonListenerPadre
    */
   @Override
   public void correcto() {
-    if (this.getHacerPregunta() != null) {
-      this.getHacerPregunta().getVentanaPregunta().dispose();
-    }
-    
+    this.hacerPregunta.cerrarVentana();
     super.correcto();
   }
 
@@ -90,7 +51,7 @@ public class BotonListenerPregunta extends BotonListenerPadre
    */
   @Override
   public void incorrecto() {
-    this.getHacerPregunta().getVentanaPregunta().dispose();
+    this.hacerPregunta.cerrarVentana();
     this.llamarPregunta();
   }
 }

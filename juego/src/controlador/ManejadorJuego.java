@@ -1,12 +1,7 @@
 package controlador;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.JButton;
 import javax.swing.JFrame;
 
-import juego.Casilla;
 import juego.Juego;
 import juego.Tablero;
 import vista.PanelAyuda;

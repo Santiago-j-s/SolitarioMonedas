@@ -1,4 +1,4 @@
-package juego;
+package pregunta;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -21,13 +21,13 @@ import com.google.gson.reflect.TypeToken;
  * @author Dibez, Santana
  *
  */
-public class HistoricoPreguntas {
+class HistoricoPreguntas {
   ArrayList<Pregunta> historico_preguntas = new ArrayList<Pregunta>();
 
   /**
    * Constructor defecto
    */
-  public HistoricoPreguntas() {
+  HistoricoPreguntas() {
     this.inicializarPreguntas();
   }
 
@@ -52,7 +52,7 @@ public class HistoricoPreguntas {
    * 
    * @return la pregunta sorteada
    */
-  public Pregunta sortearPregunta() {
+  Pregunta sortearPregunta() {
     if (historico_preguntas.isEmpty()) {
       this.inicializarPreguntas();
       Collections.shuffle(historico_preguntas);

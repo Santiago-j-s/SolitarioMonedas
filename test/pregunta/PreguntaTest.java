@@ -1,7 +1,7 @@
 /**
  * 
  */
-package juego;
+package pregunta;
 
 import static org.junit.Assert.*;
 
@@ -12,8 +12,8 @@ import java.util.stream.Collectors;
 import org.junit.Before;
 import org.junit.Test;
 
-import juego.Opcion;
-import juego.Pregunta;
+import pregunta.Opcion;
+import pregunta.Pregunta;
 
 /**
  * @author santiago
@@ -61,7 +61,7 @@ public class PreguntaTest {
 
   /**
    * Test method for
-   * {@link juego.Pregunta#Pregunta(java.lang.String, java.lang.String, java.lang.String, java.lang.String)}
+   * {@link pregunta.Pregunta#Pregunta(java.lang.String, java.lang.String, java.lang.String, java.lang.String)}
    * .
    */
   @Test
@@ -77,7 +77,7 @@ public class PreguntaTest {
   }
 
   /**
-   * Test method for {@link juego.Pregunta#getPregunta()}.
+   * Test method for {@link pregunta.Pregunta#getPregunta()}.
    */
   @Test
   public void testGetPregunta() {
@@ -89,7 +89,7 @@ public class PreguntaTest {
   }
 
   /**
-   * Test method for {@link juego.Pregunta#getOpcion1()}.
+   * Test method for {@link pregunta.Pregunta#getOpcion1()}.
    */
   @Test
   public void testGetOpcion1() {
@@ -97,7 +97,7 @@ public class PreguntaTest {
   }
 
   /**
-   * Test method for {@link juego.Pregunta#getOpcion2()}.
+   * Test method for {@link pregunta.Pregunta#getOpcion2()}.
    */
   @Test
   public void testGetOpcion2() {
@@ -105,7 +105,7 @@ public class PreguntaTest {
   }
 
   /**
-   * Test method for {@link juego.Pregunta#getOpcion3()}.
+   * Test method for {@link pregunta.Pregunta#getOpcion3()}.
    */
   @Test
   public void testGetOpcion3() {
@@ -113,7 +113,7 @@ public class PreguntaTest {
   }
 
   /**
-   * Test method for {@link juego.Pregunta#correcta(java.lang.String)}.
+   * Test method for {@link pregunta.Pregunta#correcta(java.lang.String)}.
    */
   @Test
   public void testCorrecta() {
@@ -124,7 +124,7 @@ public class PreguntaTest {
   }
 
   /**
-   * Test method for {@link juego.Pregunta#setPregunta(java.lang.String)}.
+   * Test method for {@link pregunta.Pregunta#setPregunta(java.lang.String)}.
    */
   @Test
   public void testSetPregunta() {
@@ -135,7 +135,7 @@ public class PreguntaTest {
 
   /**
    * Test method for
-   * {@link juego.Pregunta#setOpciones(java.lang.String, java.lang.String, java.lang.String)}
+   * {@link pregunta.Pregunta#setOpciones(java.lang.String, java.lang.String, java.lang.String)}
    * .
    */
   @Test

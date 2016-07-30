@@ -1,4 +1,4 @@
-package controlador;
+package pregunta;
 
 /**
  * Las clases que implementen esta interfaz permitiran lanzar una pregunta.

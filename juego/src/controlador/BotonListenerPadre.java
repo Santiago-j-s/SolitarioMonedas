@@ -18,6 +18,7 @@ import vista.VentanaPrincipal;
 import juego.Direccion;
 import juego.EstadoJuego;
 import juego.Juego;
+import pregunta.ObservadorPregunta;
 
 /**
  * Clase padre de todas las clases que implementan escuchadores para las

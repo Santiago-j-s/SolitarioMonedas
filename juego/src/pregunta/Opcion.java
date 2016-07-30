@@ -1,4 +1,4 @@
-package juego;
+package pregunta;
 
 /**
  * Una opción que contiene un título y un valor de verdad
@@ -6,7 +6,7 @@ package juego;
  * @author Dibez, Santana
  *
  */
-public class Opcion {
+class Opcion {
   String tituloOpcion;
   boolean esCorrecta;
 
@@ -18,7 +18,7 @@ public class Opcion {
    * @param valorOpcion
    *          - El valor booleano que tendrá la opción
    */
-  public Opcion(String titulo, boolean valorOpcion) {
+  Opcion(String titulo, boolean valorOpcion) {
     this.setTituloOpcion(titulo);
     this.setEsCorrecta(valorOpcion);
   }
@@ -26,7 +26,7 @@ public class Opcion {
   /**
    * Constructor defecto con un título vacío y cuyo valor es 'false'
    */
-  public Opcion() {
+  Opcion() {
     this("", false);
   }
 
@@ -34,7 +34,7 @@ public class Opcion {
    * 
    * @return getter de 'tituloOpcion'
    */
-  public String getTituloOpcion() {
+  String getTituloOpcion() {
     return tituloOpcion;
   }
 
@@ -42,7 +42,7 @@ public class Opcion {
    * 
    * @return getter de 'esCorrecta'
    */
-  public boolean esCorrecta() {
+  boolean esCorrecta() {
     return this.esCorrecta;
   }
 

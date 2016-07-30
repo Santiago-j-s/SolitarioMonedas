@@ -1,6 +1,7 @@
-package juego;
+package pregunta;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Una pregunta con 3 opciones posibles de respuesta
@@ -8,7 +9,7 @@ import java.util.ArrayList;
  * @author Dibez, Santana
  *
  */
-public class Pregunta {
+class Pregunta {
   private String pregunta;
   private ArrayList<Opcion> opciones = new ArrayList<Opcion>();
 
@@ -24,7 +25,7 @@ public class Pregunta {
    * @param opcion3
    *          - Tercera opción
    */
-  public Pregunta(String pregunta, String opcion1, String opcion2,
+  Pregunta(String pregunta, String opcion1, String opcion2,
       String opcion3) {
     this.setPregunta(pregunta);
     this.setOpciones(opcion1, opcion2, opcion3);
@@ -35,7 +36,7 @@ public class Pregunta {
    * 
    * @return una cadena con la pregunta
    */
-  public String getPregunta() {
+  String getPregunta() {
     return pregunta;
   }
 
@@ -43,8 +44,12 @@ public class Pregunta {
    * Retorna la opción con el número especificado TODO: Crear una excepción para
    * valores no permitidos
    */
-  public Opcion getOpcion(int n) {
+  Opcion getOpcion(int n) {
     return opciones.get(n - 1);
+  }
+  
+  List<Opcion> getOpciones() {
+    return opciones;
   }
 
   /**
@@ -52,7 +57,7 @@ public class Pregunta {
    * 
    * @return la instancia de la primer opción
    */
-  public Opcion getOpcion1() {
+  Opcion getOpcion1() {
     return opciones.get(0);
   }
 
@@ -61,7 +66,7 @@ public class Pregunta {
    * 
    * @return la instancia de la segunda opción
    */
-  public Opcion getOpcion2() {
+  Opcion getOpcion2() {
     return opciones.get(1);
   }
 
@@ -70,11 +75,11 @@ public class Pregunta {
    * 
    * @return la instancia de la tercer opción
    */
-  public Opcion getOpcion3() {
+  Opcion getOpcion3() {
     return opciones.get(2);
   }
 
-  public Boolean correcta(String s) {
+  Boolean correcta(String s) {
     String respuesta = this.getOpcion1().getTituloOpcion();
     boolean equals = respuesta.equals(s);
     return equals;
@@ -86,11 +91,11 @@ public class Pregunta {
    * @param pregunta
    *          - la cadena con la pregunta
    */
-  protected void setPregunta(String pregunta) {
+  void setPregunta(String pregunta) {
     this.pregunta = pregunta;
   }
   
-  protected void setOpciones(String opcion1, String opcion2, String opcion3) {
+  void setOpciones(String opcion1, String opcion2, String opcion3) {
     ArrayList<Opcion> opciones = new ArrayList<Opcion>();
     opciones.add(new Opcion(opcion1, true));
     opciones.add(new Opcion(opcion2, false));

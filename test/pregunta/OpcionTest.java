@@ -1,4 +1,4 @@
-package juego;
+package pregunta;
 
 import static org.junit.Assert.*;
 
