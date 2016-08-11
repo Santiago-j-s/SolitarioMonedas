@@ -8,6 +8,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Type;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -23,11 +24,14 @@ import com.google.gson.reflect.TypeToken;
  */
 class HistoricoPreguntas {
   ArrayList<Pregunta> historico_preguntas = new ArrayList<Pregunta>();
+  String archivo_preguntas;
+  String recursos_path = Paths.get("juego", "src", "recursos").toString();
 
   /**
-   * Constructor defecto
+   * Inicializa las preguntas
    */
-  HistoricoPreguntas() {
+  HistoricoPreguntas(String filename) {
+    this.archivo_preguntas = filename.concat(".json");
     this.inicializarPreguntas();
   }
 
@@ -35,11 +39,13 @@ class HistoricoPreguntas {
    * Obtiene las preguntas desde un archivo json
    */
   private void inicializarPreguntas() {
-    File f = new File("preguntas.json");
+    String path = Paths.get(recursos_path, archivo_preguntas).toString();
+    File f = new File(path);
     try {
       BufferedReader br = new BufferedReader(new FileReader(f));
       Gson gson = new Gson();
-      Type preguntasType = new TypeToken<ArrayList<Pregunta>>() {}.getType();
+      Type preguntasType = new TypeToken<ArrayList<Pregunta>>() {
+      }.getType();
       this.historico_preguntas = gson.fromJson(br, preguntasType);
     } catch (FileNotFoundException e) {
       e.printStackTrace();
@@ -60,17 +66,19 @@ class HistoricoPreguntas {
     return this.historico_preguntas.remove(0);
   }
 
-  /*
-   * Permite serializar un objeto java a un archivo json
+  /**
+   * Serializa el historico_preguntas (un ArrayList<Pregunta>) a un archivo json
    */
   @SuppressWarnings("unused")
-  private void serialize() {
+  private void serialize(String filename) {
     String jsonString = new Gson().toJson(historico_preguntas);
+    String path = Paths.get(recursos_path, archivo_preguntas).toString();
+    
     try (BufferedWriter bw = new BufferedWriter(
-        new FileWriter(new File("preguntas.json")))) {
+        new FileWriter(new File(path)))) {
       bw.write(jsonString);
     } catch (IOException e) {
-      System.out.println(e.toString());
+      e.printStackTrace();
     }
   }
 }

@@ -1,6 +1,6 @@
 package controlador;
 
-import pregunta.FachadaHacerPregunta;
+import pregunta.FachadaPregunta;
 import pregunta.ObservadorPregunta;
 
 /**
@@ -20,11 +20,11 @@ import pregunta.ObservadorPregunta;
 public class BotonListenerPregunta extends BotonListenerPadre
     implements ObservadorPregunta {
 
-  private FachadaHacerPregunta hacerPregunta;
+  private FachadaPregunta hacerPregunta;
 
   public BotonListenerPregunta(ManejadorJuego manejador) {
     super(manejador);
-    this.hacerPregunta = new FachadaHacerPregunta();
+    this.hacerPregunta = new FachadaPregunta();
   }
 
   /**
@@ -42,7 +42,6 @@ public class BotonListenerPregunta extends BotonListenerPadre
    */
   @Override
   public void correcto() {
-    this.hacerPregunta.cerrarVentana();
     super.correcto();
   }
 
@@ -51,7 +50,6 @@ public class BotonListenerPregunta extends BotonListenerPadre
    */
   @Override
   public void incorrecto() {
-    this.hacerPregunta.cerrarVentana();
     this.llamarPregunta();
   }
 }

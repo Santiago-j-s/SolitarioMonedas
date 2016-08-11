@@ -14,10 +14,10 @@ import javax.swing.JFrame;
 import vista.CasillaButton;
 import vista.PanelIngresoDireccion;
 import vista.PanelTablero;
-import vista.VentanaPrincipal;
 import juego.Direccion;
 import juego.EstadoJuego;
 import juego.Juego;
+import menuinicial.VentanaPrincipal;
 import pregunta.ObservadorPregunta;
 
 /**

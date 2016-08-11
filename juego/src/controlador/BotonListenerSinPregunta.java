@@ -1,16 +1,6 @@
 package controlador;
 
-import java.awt.Color;
-import java.awt.Panel;
-import java.awt.event.ActionEvent;
-import java.util.ArrayList;
-
-import javax.swing.JButton;
-
-import juego.Direccion;
-import juego.Juego;
 import vista.CasillaButton;
-import vista.PanelTablero;
 
 /**
  * Escuchador para los botones cuando se juega sin preguntas
@@ -27,7 +17,6 @@ public class BotonListenerSinPregunta extends BotonListenerPadre {
    * Constructor
    * 
    * @param manejador
-   *          -
    * 
    */
   public BotonListenerSinPregunta(ManejadorJuego manejador) {
