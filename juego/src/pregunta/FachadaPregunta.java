@@ -5,6 +5,9 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
+import javafx.application.Application;
+import javafx.embed.swing.JFXPanel;
+
 /**
  * Clase que muestra una pregunta en pantalla y las opciones disponibles para
  * responderla.
@@ -18,12 +21,14 @@ public class FachadaPregunta implements ActionListener {
   private Pregunta preguntaActual;
   private ObservadorPregunta observador;
   private VentanaPregunta frame;
+  private FxPanelPregunta app;
 
   /**
    * Inicializa las preguntas
    */
   public FachadaPregunta() {
     this.preguntas = new HistoricoPreguntas("preguntas");
+    this.app = new FxPanelPregunta();
   }
 
   /**
@@ -50,16 +55,16 @@ public class FachadaPregunta implements ActionListener {
    *          Al responder la pregunta se activará el método 'correcto' o
    *          'incorrecto' del observador
    */
-  public void lanzarPregunta(ObservadorPregunta observador) {
-    preguntaActual = this.preguntas.sortearPregunta();
-    PanelPregunta panel = new PanelPregunta(preguntaActual);
-
-    this.observador = observador;
-
-    panel.getBotones().forEach(boton -> boton.addActionListener(this));
-
+  
+  public Pregunta lanzarPregunta()//ObservadorPregunta observador) {
+  {
+    this.preguntaActual = this.preguntas.sortearPregunta();
+    JFXPanel panel = this.app.start(this.preguntaActual);
     frame = new VentanaPregunta(panel);
+    return this.preguntaActual;
   }
+ 
+//  public String getPregunta
 
   private void cerrarVentana() {
     this.frame.cerrar();

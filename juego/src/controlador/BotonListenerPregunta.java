@@ -34,7 +34,7 @@ public class BotonListenerPregunta extends BotonListenerPadre
   @Override
   public void llamarPregunta() {
     this.getManejadorPrincipal().getVentanaPrincipal().setEnabled(false);
-    this.hacerPregunta.lanzarPregunta(this);
+    this.hacerPregunta.lanzarPregunta();
   }
 
   /**
