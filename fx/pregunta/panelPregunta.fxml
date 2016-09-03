@@ -7,29 +7,29 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<DialogPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pregunta.FxPanelPregunta">
+<DialogPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
     <header>
-      <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="480.0">
+      <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="193.0" prefWidth="395.0">
          <children>
-            <Label id="Pregunta" fx:id="title" layoutX="171.0" layoutY="14.0" text="Pregunta" />
+            <Label id="Pregunta" fx:id="title" alignment="TOP_LEFT" layoutX="5.0" layoutY="14.0" prefHeight="148.0" prefWidth="382.0" wrapText="true" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
          </children></AnchorPane>
     </header>
     <content>
-      <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="320.0">
+      <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="139.0" prefWidth="295.0">
          <children>
             <VBox prefHeight="201.0" prefWidth="480.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <Button id="opcion1" fx:id="opcion1Button" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="opcion1" VBox.vgrow="ALWAYS">
+                  <Button id="opcion1" fx:id="opcion1Button" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onAction" text="opcion1" VBox.vgrow="ALWAYS">
                      <VBox.margin>
                         <Insets bottom="10.0" />
                      </VBox.margin>
                   </Button>
-                  <Button id="opcion2" fx:id="opcion2Button" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="opcion2" VBox.vgrow="ALWAYS">
+                  <Button id="opcion2" fx:id="opcion2Button" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onAction" text="opcion2" VBox.vgrow="ALWAYS">
                      <VBox.margin>
                         <Insets bottom="10.0" />
                      </VBox.margin>
                   </Button>
-                  <Button id="opcion3" fx:id="opcion3Button" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="opcion3" VBox.vgrow="ALWAYS">
+                  <Button id="opcion3" fx:id="opcion3Button" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onAction" text="opcion3" VBox.vgrow="ALWAYS">
                      <VBox.margin>
                         <Insets bottom="10.0" />
                      </VBox.margin>

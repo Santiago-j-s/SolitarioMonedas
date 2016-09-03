@@ -5,7 +5,6 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
-import javafx.application.Application;
 import javafx.embed.swing.JFXPanel;
 
 /**
@@ -22,6 +21,7 @@ public class FachadaPregunta implements ActionListener {
   private ObservadorPregunta observador;
   private VentanaPregunta frame;
   private FxPanelPregunta app;
+  private JFXPanel panel;
 
   /**
    * Inicializa las preguntas
@@ -29,6 +29,7 @@ public class FachadaPregunta implements ActionListener {
   public FachadaPregunta() {
     this.preguntas = new HistoricoPreguntas("preguntas");
     this.app = new FxPanelPregunta();
+    panel = this.app.start();
   }
 
   /**
@@ -59,7 +60,7 @@ public class FachadaPregunta implements ActionListener {
   public Pregunta lanzarPregunta()//ObservadorPregunta observador) {
   {
     this.preguntaActual = this.preguntas.sortearPregunta();
-    JFXPanel panel = this.app.start(this.preguntaActual);
+    this.app.setPregunta(preguntaActual);
     frame = new VentanaPregunta(panel);
     return this.preguntaActual;
   }

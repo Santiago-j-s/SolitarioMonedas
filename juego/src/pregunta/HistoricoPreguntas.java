@@ -47,6 +47,7 @@ class HistoricoPreguntas {
       Type preguntasType = new TypeToken<ArrayList<Pregunta>>() {
       }.getType();
       this.historico_preguntas = gson.fromJson(br, preguntasType);
+      Collections.shuffle(historico_preguntas);
     } catch (FileNotFoundException e) {
       e.printStackTrace();
     }
@@ -61,7 +62,6 @@ class HistoricoPreguntas {
   Pregunta sortearPregunta() {
     if (historico_preguntas.isEmpty()) {
       this.inicializarPreguntas();
-      Collections.shuffle(historico_preguntas);
     }
     return this.historico_preguntas.remove(0);
   }
