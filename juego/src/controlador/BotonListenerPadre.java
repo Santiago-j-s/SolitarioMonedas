@@ -4,9 +4,7 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.List;
 
-import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JFrame;
@@ -17,7 +15,6 @@ import vista.PanelTablero;
 import juego.Direccion;
 import juego.EstadoJuego;
 import juego.Juego;
-import menuinicial.VentanaPrincipal;
 import pregunta.ObservadorPregunta;
 
 /**

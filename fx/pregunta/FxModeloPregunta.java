@@ -31,6 +31,14 @@ public class FxModeloPregunta {
     this.setOpcion3(list.get(2).toString());
   }
 
+  public void bind(StringProperty pregunta, StringProperty opcion1, StringProperty opcion2,
+      StringProperty opcion3) {
+    pregunta.bind(this.pregunta);
+    opcion1.bind(this.opcion1);
+    opcion2.bind(this.opcion2);
+    opcion3.bind(this.opcion3);
+  }
+
   public boolean correcta(String respuesta) {
     return this.modeloPregunta.correcta(respuesta);
   }
@@ -47,39 +55,15 @@ public class FxModeloPregunta {
     this.pregunta.set(pregunta);
   }
 
-  public final String getOpcion1() {
-    return opcion1.get();
-  }
-
-  public StringProperty getPropertyOpcion1() {
-    return opcion1;
-  }
-
-  public void setOpcion1(String opcion) {
+  private void setOpcion1(String opcion) {
     this.opcion1.set(opcion);
   }
 
-  public String getOpcion2() {
-    return opcion2.get();
-  }
-
-  public StringProperty getPropertyOpcion2() {
-    return opcion2;
-  }
-
-  public void setOpcion2(String opcion) {
+  private void setOpcion2(String opcion) {
     this.opcion2.set(opcion);
   }
 
-  public String getOpcion3() {
-    return opcion3.get();
-  }
-
-  public StringProperty getPropertyOpcion3() {
-    return opcion3;
-  }
-
-  public void setOpcion3(String opcion) {
+  private void setOpcion3(String opcion) {
     this.opcion3.set(opcion);
   }
 }

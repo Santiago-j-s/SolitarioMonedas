@@ -22,20 +22,21 @@ import com.google.gson.reflect.TypeToken;
  * @author Dibez, Santana
  *
  */
-class HistoricoPreguntas {
+class Preguntas {
   ArrayList<Pregunta> historico_preguntas = new ArrayList<Pregunta>();
   String archivo_preguntas;
-  String recursos_path = Paths.get("juego", "src", "recursos").toString();
+  String recursos_path = Paths.get("juego", "src", "recursos", "preguntas")
+      .toString();
 
   /**
    * Inicializa las preguntas
    */
-  HistoricoPreguntas(String filename) {
+  Preguntas(String filename) {
     this.archivo_preguntas = filename.concat(".json");
     this.inicializarPreguntas();
   }
 
-  /*
+  /**
    * Obtiene las preguntas desde un archivo json
    */
   private void inicializarPreguntas() {
@@ -73,7 +74,7 @@ class HistoricoPreguntas {
   private void serialize(String filename) {
     String jsonString = new Gson().toJson(historico_preguntas);
     String path = Paths.get(recursos_path, archivo_preguntas).toString();
-    
+
     try (BufferedWriter bw = new BufferedWriter(
         new FileWriter(new File(path)))) {
       bw.write(jsonString);

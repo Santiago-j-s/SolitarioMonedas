@@ -8,13 +8,11 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
-import javafx.scene.control.Cell;
 import vista.Recursos;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 
 /**
  * Clase que crea un panel inicial en la cual se elige como desea jugar (con o

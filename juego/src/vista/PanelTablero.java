@@ -8,7 +8,6 @@ import java.awt.Point;
 import java.util.List;
 
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import juego.Casilla;

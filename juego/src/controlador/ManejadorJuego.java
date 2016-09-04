@@ -31,9 +31,8 @@ public class ManejadorJuego {
    * Constructor único de la clase. Crea y muestra la ventana principal con el
    * tablero de juego.
    */
-  public ManejadorJuego(boolean conPreguntas, VentanaPrincipal ventana,
-      Recursos recursos) {
-    this.setRecursos(recursos);
+  public ManejadorJuego(boolean conPreguntas, VentanaPrincipal ventana) {
+    this.setRecursos(ventana.getRecursos());
     PanelAyuda panelAyuda;
 
     if (conPreguntas) {
