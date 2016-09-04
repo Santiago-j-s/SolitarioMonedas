@@ -18,10 +18,6 @@ class VentanaPregunta {
     frame.setVisible(true);
     frame.setAlwaysOnTop(true);
     frame.pack();
-    /**
-     * The size of the frame is setted manually. .pack() doesn't work because of
-     * a race condition between the Event Dispatch Thread and the JavaFx thread.
-     */
     Platform.runLater(() -> {
       SwingUtilities.invokeLater(() -> {
         frame.pack();

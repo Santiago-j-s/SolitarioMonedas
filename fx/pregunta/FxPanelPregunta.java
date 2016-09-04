@@ -37,7 +37,7 @@ public class FxPanelPregunta {
       modelo.setPregunta(pregunta);
     });
   }
-  
+
   @FXML
   public void onAction(ActionEvent e) {
     Button b = (Button) e.getSource();
@@ -50,10 +50,8 @@ public class FxPanelPregunta {
   }
 
   public void initialize() {
-    title.textProperty().bind(modelo.getPropertyPregunta());
-    opcion1Button.textProperty().bind(modelo.getPropertyOpcion1());
-    opcion2Button.textProperty().bind(modelo.getPropertyOpcion2());
-    opcion3Button.textProperty().bind(modelo.getPropertyOpcion3());
+    modelo.bind(title.textProperty(), opcion1Button.textProperty(),
+        opcion2Button.textProperty(), opcion3Button.textProperty());
   }
 
   private void initScene(String panelFXML) {

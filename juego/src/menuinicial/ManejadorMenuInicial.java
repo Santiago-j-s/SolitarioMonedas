@@ -5,7 +5,6 @@ import java.awt.event.ActionListener;
 
 
 import controlador.ManejadorJuego;
-import vista.Recursos;
 
 /**
  * Maneja la GUI del menú inicial del juego. El menú inicial permite lanzar 2
@@ -23,9 +22,7 @@ public class ManejadorMenuInicial {
    */
   public ManejadorMenuInicial(VentanaPrincipal ventanaPrincipal) {
     this.ventanaPrincipal = ventanaPrincipal;
-    this.ventanaPrincipal.construirMenuInicial(
-        new LanzarJuegoConPreguntas(),
-        new LanzarJuegoSinPreguntas());
+    this.ventanaPrincipal.construirMenuInicial();
   }
 
   /**
@@ -36,8 +33,7 @@ public class ManejadorMenuInicial {
    */
   private void LanzarJuego(boolean preguntas) {
     VentanaPrincipal ventana = this.ventanaPrincipal;
-    Recursos recursos = ventana.getRecursos();
-    new ManejadorJuego(preguntas, ventana, recursos);
+    new ManejadorJuego(preguntas, ventana);
   }
 
   /**

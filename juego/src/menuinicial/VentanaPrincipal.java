@@ -9,7 +9,10 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.SwingUtilities;
 
+import javafx.application.Platform;
+import javafx.embed.swing.JFXPanel;
 import vista.PanelPantallaPrincipal;
 import vista.Recursos;
 
@@ -66,15 +69,16 @@ public class VentanaPrincipal extends JFrame {
     salir.addActionListener(new SalirListener());
   }
 
-  public void construirMenuInicial(ActionListener jugarConPreguntas,
-      ActionListener jugarSinPreguntas) {
-    PanelMenuInicio panel = new PanelMenuInicio(
-        recursos, 
-        jugarConPreguntas,
-        jugarSinPreguntas);
-    this.add(panel);
-    this.validate();
-    this.repaint();
+  public void construirMenuInicial() {
+    JFXPanel panel = new FxPanelInicio().start();
+    this.setContentPane(panel);
+    Platform.runLater(() -> {
+      SwingUtilities.invokeLater(() -> {
+        this.validate();
+        this.repaint();
+        this.pack();
+      });
+    });
   }
   
   public void construirJuego(PanelPantallaPrincipal panel) {

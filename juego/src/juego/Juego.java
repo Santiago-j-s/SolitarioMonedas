@@ -1,7 +1,6 @@
 package juego;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * La clase Tablero permite instanciar un objeto tablero Un objeto tablero puede
