@@ -1,7 +1,6 @@
 package controlador;
 
 import menuinicial.AccionesAplicacion;
-import menuinicial.ManejadorMenuInicial;
 import menuinicial.VentanaPrincipal;
 import vista.Recursos;
 
@@ -14,16 +13,7 @@ public class Lanzador implements AccionesAplicacion {
    */
   private Lanzador() {
     this.ventana = new VentanaPrincipal(recursos);
-    reset();
-  }
-
-  /**
-   * Resetea la aplicacion
-   */
-  private void reset() {
-    VentanaPrincipal ventana = this.ventana;
-    ventana.reset(this);
-    new ManejadorMenuInicial(ventana);
+    nuevoJuego();
   }
 
   @Override
@@ -33,7 +23,8 @@ public class Lanzador implements AccionesAplicacion {
 
   @Override
   public void nuevoJuego() {
-    reset();
+    ventana.reset(this);
+    System.out.println("Nuevo Juego.");
   }
   
   /**

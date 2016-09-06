@@ -17,7 +17,6 @@ class VentanaPregunta {
     frame.setResizable(true);
     frame.setVisible(true);
     frame.setAlwaysOnTop(true);
-    frame.pack();
     Platform.runLater(() -> {
       SwingUtilities.invokeLater(() -> {
         frame.pack();

@@ -15,18 +15,22 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 
 public class FxPanelInicio {
-  private final JFXPanel fxPanel = new JFXPanel();
+  private JFXPanel fxPanel;
 
   @FXML
   private Button categoria;
   @FXML
   private Button juego;
 
-  public JFXPanel start() {
+  private void start() {
     Platform.runLater(() -> {
       initScene("panelInicio.fxml");
     });
-
+  }
+  
+  public JFXPanel getPanel() {
+    this.fxPanel = new JFXPanel();
+    start();
     return fxPanel;
   }
 
@@ -38,7 +42,7 @@ public class FxPanelInicio {
 
   public void comenzarJuego(ActionEvent e) {
     SwingUtilities.invokeLater(() -> {
-      new ManejadorJuego(false,
+      new ManejadorJuego(true,
           (VentanaPrincipal) fxPanel.getTopLevelAncestor());
     });
   }

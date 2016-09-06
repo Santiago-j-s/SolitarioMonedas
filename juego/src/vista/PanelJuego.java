@@ -10,14 +10,14 @@ import javax.swing.JPanel;
  * @author Pablo
  *
  */
-public class PanelPantallaPrincipal extends JPanel {
+public class PanelJuego extends JPanel {
 	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public PanelPantallaPrincipal(JPanel panelTablero, PanelAyuda panelAyuda) {
+	public PanelJuego(JPanel panelTablero, PanelAyuda panelAyuda) {
 		this.setLayout(new GridBagLayout());
 		this.add(new Pantallas(panelTablero, panelAyuda));
 		
