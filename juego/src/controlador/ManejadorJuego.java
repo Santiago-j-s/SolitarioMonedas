@@ -10,7 +10,7 @@ import vista.PanelAyudaPreguntas;
 import vista.PanelAyudaSinPreguntas;
 import vista.PanelTablero;
 import vista.Recursos;
-import vista.PanelPantallaPrincipal;
+import vista.PanelJuego;
 
 /**
  * Clase que relaciona los diferentes elementos de la GUI con la lógica del
@@ -24,7 +24,7 @@ public class ManejadorJuego {
   private Juego juego;
   private PanelTablero panelTablero;
   private JFrame ventanaPrincipal;
-  private PanelPantallaPrincipal panelPantallaPrincipal;
+  private PanelJuego panelJuego;
   private Recursos recursos;
 
   /**
@@ -43,16 +43,16 @@ public class ManejadorJuego {
       panelAyuda = new PanelAyudaSinPreguntas();
     }
 
-    this.panelPantallaPrincipal = new PanelPantallaPrincipal(this.panelTablero,
+    this.panelJuego = new PanelJuego(this.panelTablero,
         panelAyuda);
 
     this.setVentanaPrincipal(ventana);
-    ventana.construirJuego(panelPantallaPrincipal);
+    ventana.mostrarJuego(panelJuego);
   }
 
-  protected void setPanelPantallaPrincipal(
-      PanelPantallaPrincipal panelPantallaPrincipal) {
-    this.panelPantallaPrincipal = panelPantallaPrincipal;
+  protected void setPanelJuego(
+      PanelJuego panelJuego) {
+    this.panelJuego = panelJuego;
   }
 
   /**

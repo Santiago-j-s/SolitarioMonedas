@@ -1,8 +1,6 @@
 package menuinicial;
 
 import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -13,7 +11,7 @@ import javax.swing.SwingUtilities;
 
 import javafx.application.Platform;
 import javafx.embed.swing.JFXPanel;
-import vista.PanelPantallaPrincipal;
+import vista.PanelJuego;
 import vista.Recursos;
 
 /**
@@ -27,11 +25,10 @@ public class VentanaPrincipal extends JFrame {
 
   private static final long serialVersionUID = 1L;
 
+  private final FxPanelInicio fxPanel = new FxPanelInicio();
   private JMenuItem nuevoJuego;
   private JMenuItem salir;
   private JMenuItem ayuda;
-
-  private AccionesAplicacion app;
 
   private ImageIcon icono;
 
@@ -63,42 +60,31 @@ public class VentanaPrincipal extends JFrame {
 
   public void reset(AccionesAplicacion app) {
     nuevoJuego.setEnabled(false);
-    this.getContentPane().removeAll();
-    this.app = app;
-    nuevoJuego.addActionListener(new NuevoJuegoListener());
-    salir.addActionListener(new SalirListener());
+    nuevoJuego.addActionListener(event -> {
+      app.nuevoJuego();
+    });
+    salir.addActionListener(event -> {
+      app.salir();
+    });
+    this.construirMenuInicial();
   }
 
   public void construirMenuInicial() {
-    JFXPanel panel = new FxPanelInicio().start();
+    JFXPanel panel = fxPanel.getPanel();
     this.setContentPane(panel);
+    this.revalidate();
+    this.repaint();
     Platform.runLater(() -> {
       SwingUtilities.invokeLater(() -> {
-        this.validate();
-        this.repaint();
         this.pack();
       });
     });
   }
   
-  public void construirJuego(PanelPantallaPrincipal panel) {
+  public void mostrarJuego(PanelJuego panel) {
     this.setContentPane(panel);
     this.nuevoJuego.setEnabled(true);
     this.pack();
-    panel.revalidate();
-    panel.repaint();
-  }
-
-  private class NuevoJuegoListener implements ActionListener {
-    public void actionPerformed(ActionEvent e) {
-      app.nuevoJuego();
-    }
-  }
-
-  private class SalirListener implements ActionListener {
-    public void actionPerformed(ActionEvent e) {
-      app.salir();
-    }
   }
 
   private JMenuBar crearMenu() {
