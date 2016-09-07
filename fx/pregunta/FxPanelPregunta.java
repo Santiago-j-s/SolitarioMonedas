@@ -1,15 +1,11 @@
 package pregunta;
 
-import java.io.IOException;
-
+import controlador.fxUtilities;
 import javafx.application.Platform;
 import javafx.embed.swing.JFXPanel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.DialogPane;
 import javafx.scene.control.Label;
 
 public class FxPanelPregunta {
@@ -27,7 +23,7 @@ public class FxPanelPregunta {
 
   public JFXPanel start() {
     Platform.runLater(() -> {
-      initScene("panelPregunta.fxml");
+      fxUtilities.initScene("panelPregunta.fxml", this, fxPanel);
     });
     return fxPanel;
   }
@@ -52,18 +48,5 @@ public class FxPanelPregunta {
   public void initialize() {
     modelo.bind(title.textProperty(), opcion1Button.textProperty(),
         opcion2Button.textProperty(), opcion3Button.textProperty());
-  }
-
-  private void initScene(String panelFXML) {
-    FXMLLoader loader = new FXMLLoader();
-    try {
-      loader.setController(this);
-      loader.setLocation(getClass().getResource(panelFXML));
-      DialogPane dialog = (DialogPane) loader.load();
-      Scene scene = new Scene(dialog);
-      fxPanel.setScene(scene);
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
   }
 }

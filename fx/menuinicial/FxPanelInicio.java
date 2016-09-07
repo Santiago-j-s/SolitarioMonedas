@@ -1,18 +1,14 @@
 package menuinicial;
 
-import java.io.IOException;
-
 import javax.swing.SwingUtilities;
 
 import controlador.ManejadorJuego;
+import controlador.fxUtilities;
 import javafx.application.Platform;
 import javafx.embed.swing.JFXPanel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.layout.AnchorPane;
 
 public class FxPanelInicio {
   private JFXPanel fxPanel;
@@ -23,11 +19,12 @@ public class FxPanelInicio {
   private Button juego;
 
   private void start() {
+    fxPanel = new JFXPanel();
     Platform.runLater(() -> {
-      initScene("panelInicio.fxml");
+      fxUtilities.initScene("panelInicio.fxml", this, fxPanel);
     });
   }
-  
+
   public JFXPanel getPanel() {
     this.fxPanel = new JFXPanel();
     start();
@@ -45,18 +42,5 @@ public class FxPanelInicio {
       new ManejadorJuego(true,
           (VentanaPrincipal) fxPanel.getTopLevelAncestor());
     });
-  }
-
-  private void initScene(String path) {
-    FXMLLoader loader = new FXMLLoader();
-    try {
-      loader.setController(this);
-      loader.setLocation(getClass().getResource(path));
-      AnchorPane anchor = (AnchorPane) loader.load();
-      Scene scene = new Scene(anchor);
-      fxPanel.setScene(scene);
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
   }
 }

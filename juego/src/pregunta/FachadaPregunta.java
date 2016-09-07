@@ -27,7 +27,7 @@ public class FachadaPregunta implements ActionListener {
    * Inicializa las preguntas
    */
   public FachadaPregunta() {
-    this.preguntas = new Preguntas("preguntas");
+    this.preguntas = new Preguntas("preguntas2");
     this.app = new FxPanelPregunta();
     panel = this.app.start();
   }
