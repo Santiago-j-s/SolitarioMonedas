@@ -2,6 +2,9 @@ package pregunta;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import javax.swing.JButton;
 
@@ -26,8 +29,8 @@ public class FachadaPregunta implements ActionListener {
   /**
    * Inicializa las preguntas
    */
-  public FachadaPregunta() {
-    this.preguntas = new Preguntas("preguntas2");
+  public FachadaPregunta(String filename) {
+    this.preguntas = new Preguntas(filename);
     this.app = new FxPanelPregunta();
     panel = this.app.start();
   }
@@ -57,12 +60,21 @@ public class FachadaPregunta implements ActionListener {
    *          'incorrecto' del observador
    */
   
-  public Pregunta lanzarPregunta()//ObservadorPregunta observador) {
-  {
+  public Pregunta lanzarPregunta() {
     this.preguntaActual = this.preguntas.sortearPregunta();
     this.app.setPregunta(preguntaActual);
     frame = new VentanaPregunta(panel);
     return this.preguntaActual;
+  }
+  
+  public static void lanzarSeleccion() {
+    Path path = Paths.get("juego", "src", "recursos", "preguntas");
+    try {
+      JFXPanel panel = new FxPanelSeleccion(path).start();
+      new VentanaSeleccion(panel);
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
  
 //  public String getPregunta

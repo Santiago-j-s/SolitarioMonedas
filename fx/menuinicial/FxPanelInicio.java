@@ -9,6 +9,7 @@ import javafx.embed.swing.JFXPanel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import pregunta.FachadaPregunta;
 
 public class FxPanelInicio {
   private JFXPanel fxPanel;
@@ -35,12 +36,12 @@ public class FxPanelInicio {
   }
 
   public void listCategorias(ActionEvent e) {
+    FachadaPregunta.lanzarSeleccion();
   }
 
   public void comenzarJuego(ActionEvent e) {
     SwingUtilities.invokeLater(() -> {
-      new ManejadorJuego(true,
-          (VentanaPrincipal) fxPanel.getTopLevelAncestor());
+      new ManejadorJuego((VentanaPrincipal) fxPanel.getTopLevelAncestor());
     });
   }
 }

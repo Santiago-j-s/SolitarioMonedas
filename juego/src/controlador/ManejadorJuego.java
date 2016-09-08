@@ -28,37 +28,38 @@ public class ManejadorJuego {
   private Recursos recursos;
 
   /**
-   * Constructor único de la clase. Crea y muestra la ventana principal con el
-   * tablero de juego.
+   * Crea y muestra la ventana principal con el tablero de juego.
    */
-  public ManejadorJuego(boolean conPreguntas, VentanaPrincipal ventana) {
-    this.setRecursos(ventana.getRecursos());
-    PanelAyuda panelAyuda;
+  public ManejadorJuego(String filename, VentanaPrincipal ventana) {
+    this.recursos = ventana.getRecursos();
+    this.inicializarPanelTablero(new BotonListenerPregunta(this, filename));
+    PanelAyuda panelAyuda = new PanelAyudaPreguntas();
+    iniciarJuego(ventana, panelAyuda);
+  }
 
-    if (conPreguntas) {
-      this.inicializarPanelTablero(new BotonListenerPregunta(this));
-      panelAyuda = new PanelAyudaPreguntas();
-    } else {
-      this.inicializarPanelTablero(new BotonListenerSinPregunta(this));
-      panelAyuda = new PanelAyudaSinPreguntas();
-    }
-
-    this.panelJuego = new PanelJuego(this.panelTablero,
-        panelAyuda);
-
-    this.setVentanaPrincipal(ventana);
+  public ManejadorJuego(VentanaPrincipal ventana) {
+    this.recursos = ventana.getRecursos();
+    this.inicializarPanelTablero(new BotonListenerSinPregunta(this));
+    PanelAyuda panelAyuda = new PanelAyudaSinPreguntas();
+    iniciarJuego(ventana, panelAyuda);
+  }
+  
+  private void iniciarJuego(VentanaPrincipal ventana, PanelAyuda panelAyuda) {
+    this.ventanaPrincipal = ventana;
+    this.panelJuego = new PanelJuego(this.panelTablero, panelAyuda);
     ventana.mostrarJuego(panelJuego);
   }
 
-  protected void setPanelJuego(
-      PanelJuego panelJuego) {
+  protected
+      void setPanelJuego(PanelJuego panelJuego) {
     this.panelJuego = panelJuego;
   }
 
   /**
    * @return the tablero
    */
-  protected Juego getJuego() {
+  protected
+      Juego getJuego() {
     return juego;
   }
 
@@ -66,14 +67,16 @@ public class ManejadorJuego {
    * @param juego
    *          the tablero to set
    */
-  protected void setJuego(Juego juego) {
+  protected
+      void setJuego(Juego juego) {
     this.juego = juego;
   }
 
   /**
    * @return the panelTablero
    */
-  protected PanelTablero getPanelTablero() {
+  protected
+      PanelTablero getPanelTablero() {
     return panelTablero;
   }
 
@@ -81,31 +84,17 @@ public class ManejadorJuego {
    * @param panelTablero
    *          the panelTablero to set
    */
-  protected void setPanelTablero(PanelTablero panelTablero) {
+  protected
+      void setPanelTablero(PanelTablero panelTablero) {
     this.panelTablero = panelTablero;
   }
 
   /**
    * @return the ventanaPrincipal
    */
-  protected JFrame getVentanaPrincipal() {
+  protected
+      JFrame getVentanaPrincipal() {
     return ventanaPrincipal;
-  }
-
-  private Recursos getRecursos() {
-    return recursos;
-  }
-
-  private void setRecursos(Recursos recursos) {
-    this.recursos = recursos;
-  }
-
-  /**
-   * @param ventanaPrincipal
-   *          the ventanaPrincipal to set
-   */
-  private void setVentanaPrincipal(VentanaPrincipal ventanaPrincipal) {
-    this.ventanaPrincipal = ventanaPrincipal;
   }
 
   /**
@@ -117,8 +106,9 @@ public class ManejadorJuego {
    * @param columna
    * @param escuchador
    */
-  private void inicializarBoton(int fila, int columna,
-      BotonListenerPadre escuchador) {
+  private
+      void
+      inicializarBoton(int fila, int columna, BotonListenerPadre escuchador) {
     PanelTablero panelTablero = this.getPanelTablero();
 
     panelTablero.add(panelTablero.getBoton(fila, columna));
@@ -128,14 +118,15 @@ public class ManejadorJuego {
   /**
    * Prepara el panel con la interfaz gráfica del tablero según el modelo
    */
-  private void inicializarPanelTablero(BotonListenerPadre escuchadorBoton) {
+  private
+      void inicializarPanelTablero(BotonListenerPadre escuchadorBoton) {
     this.setJuego(new Juego());
 
     Tablero tablero = this.getJuego().getTablero();
     int filas = tablero.getCantFilas();
     int cols = tablero.getCantColumnas();
 
-    PanelTablero panelTablero = new PanelTablero(tablero, this.getRecursos());
+    PanelTablero panelTablero = new PanelTablero(tablero, recursos);
 
     this.setPanelTablero(panelTablero);
 

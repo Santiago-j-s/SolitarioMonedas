@@ -22,9 +22,9 @@ public class BotonListenerPregunta extends BotonListenerPadre
 
   private FachadaPregunta hacerPregunta;
 
-  public BotonListenerPregunta(ManejadorJuego manejador) {
+  public BotonListenerPregunta(ManejadorJuego manejador, String filename) {
     super(manejador);
-    this.hacerPregunta = new FachadaPregunta();
+    this.hacerPregunta = new FachadaPregunta(filename);
   }
 
   /**
