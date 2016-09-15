@@ -1,6 +1,7 @@
 package controlador;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 import juego.Juego;
 import juego.Tablero;
@@ -43,23 +44,29 @@ public class ManejadorJuego {
     PanelAyuda panelAyuda = new PanelAyudaSinPreguntas();
     iniciarJuego(ventana, panelAyuda);
   }
-  
+
   private void iniciarJuego(VentanaPrincipal ventana, PanelAyuda panelAyuda) {
     this.ventanaPrincipal = ventana;
     this.panelJuego = new PanelJuego(this.panelTablero, panelAyuda);
     ventana.mostrarJuego(panelJuego);
   }
+  
+  public void verificarFinJuego() {
+    if(juego.victoria()) {
+      JOptionPane.showMessageDialog(ventanaPrincipal, "Felicidades, ha ganado.");
+    } else if(juego.derrota()) {
+      JOptionPane.showMessageDialog(ventanaPrincipal, "Ha perdido.");
+    }
+  }
 
-  protected
-      void setPanelJuego(PanelJuego panelJuego) {
+  protected void setPanelJuego(PanelJuego panelJuego) {
     this.panelJuego = panelJuego;
   }
 
   /**
    * @return the tablero
    */
-  protected
-      Juego getJuego() {
+  protected Juego getJuego() {
     return juego;
   }
 
@@ -67,16 +74,14 @@ public class ManejadorJuego {
    * @param juego
    *          the tablero to set
    */
-  protected
-      void setJuego(Juego juego) {
+  protected void setJuego(Juego juego) {
     this.juego = juego;
   }
 
   /**
    * @return the panelTablero
    */
-  protected
-      PanelTablero getPanelTablero() {
+  protected PanelTablero getPanelTablero() {
     return panelTablero;
   }
 
@@ -84,16 +89,14 @@ public class ManejadorJuego {
    * @param panelTablero
    *          the panelTablero to set
    */
-  protected
-      void setPanelTablero(PanelTablero panelTablero) {
+  protected void setPanelTablero(PanelTablero panelTablero) {
     this.panelTablero = panelTablero;
   }
 
   /**
    * @return the ventanaPrincipal
    */
-  protected
-      JFrame getVentanaPrincipal() {
+  protected JFrame getVentanaPrincipal() {
     return ventanaPrincipal;
   }
 
@@ -106,9 +109,8 @@ public class ManejadorJuego {
    * @param columna
    * @param escuchador
    */
-  private
-      void
-      inicializarBoton(int fila, int columna, BotonListenerPadre escuchador) {
+  private void inicializarBoton(int fila, int columna,
+      BotonListenerPadre escuchador) {
     PanelTablero panelTablero = this.getPanelTablero();
 
     panelTablero.add(panelTablero.getBoton(fila, columna));
@@ -118,8 +120,7 @@ public class ManejadorJuego {
   /**
    * Prepara el panel con la interfaz gráfica del tablero según el modelo
    */
-  private
-      void inicializarPanelTablero(BotonListenerPadre escuchadorBoton) {
+  private void inicializarPanelTablero(BotonListenerPadre escuchadorBoton) {
     this.setJuego(new Juego());
 
     Tablero tablero = this.getJuego().getTablero();

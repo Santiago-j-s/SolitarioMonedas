@@ -67,6 +67,9 @@ public class FachadaPregunta implements ActionListener {
     return this.preguntaActual;
   }
   
+  /**
+   * Lanza la ventana que permite seleccionar una pregunta.
+   */
   public static void lanzarSeleccion() {
     Path path = Paths.get("juego", "src", "recursos", "preguntas");
     try {

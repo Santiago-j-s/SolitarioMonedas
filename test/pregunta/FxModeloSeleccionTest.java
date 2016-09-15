@@ -24,6 +24,12 @@ public class FxModeloSeleccionTest {
   @Test
   public void testObtenerCategorias() throws IOException { 
     List<String> lista = modelo.obtenerCategorias(path);
-    assertEquals("preguntas2.json", lista.get(0));
+    assertEquals("preguntas2", lista.get(0));
+  }
+  
+  @Test(expected = IOException.class)
+  public void testObtenerCategorias2() throws IOException {
+    path = Paths.get("juego", "src", "recursos", "preguntas2");
+    modelo = new FxModeloSeleccion(path);
   }
 }

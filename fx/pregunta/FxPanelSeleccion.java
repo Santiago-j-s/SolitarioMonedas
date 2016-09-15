@@ -3,16 +3,12 @@ package pregunta;
 import java.io.IOException;
 import java.nio.file.Path;
 
-import javax.swing.SwingUtilities;
-
-import controlador.ManejadorJuego;
 import controlador.fxUtilities;
 import javafx.application.Platform;
 import javafx.embed.swing.JFXPanel;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
-import menuinicial.VentanaPrincipal;
 
 public class FxPanelSeleccion {
   private final JFXPanel fxPanel = new JFXPanel();
@@ -30,7 +26,7 @@ public class FxPanelSeleccion {
   /*
   @FXML
   public void comenzarJuego() {
-    SwingUtilities.invokeLater(() -> {
+    EventQueue.invokeLater(() -> {
       new ManejadorJuego(listView.getSelectionModel().getSelectedItem(),
           (VentanaPrincipal) fxPanel.getTopLevelAncestor());
     });

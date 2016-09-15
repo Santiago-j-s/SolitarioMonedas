@@ -7,9 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.SwingUtilities;
 
-import javafx.application.Platform;
 import javafx.embed.swing.JFXPanel;
 import vista.PanelJuego;
 import vista.Recursos;
@@ -25,7 +23,6 @@ public class VentanaPrincipal extends JFrame {
 
   private static final long serialVersionUID = 1L;
 
-  private final FxPanelInicio fxPanel = new FxPanelInicio();
   private JMenuItem nuevoJuego;
   private JMenuItem salir;
   private JMenuItem ayuda;
@@ -42,7 +39,7 @@ public class VentanaPrincipal extends JFrame {
   public VentanaPrincipal(Recursos r) {
     super("Solitario con Monedas");
 
-    this.setRecursos(r);
+    this.recursos = r;
 
     icono = r.getImgIcono();
     this.setIconImage(icono.getImage());
@@ -50,7 +47,6 @@ public class VentanaPrincipal extends JFrame {
     this.setMinimumSize(new Dimension(400, 400));
 
     this.setResizable(true);
-    this.pack();
     this.setLocationByPlatform(true);
 
     this.setVisible(true);
@@ -58,29 +54,25 @@ public class VentanaPrincipal extends JFrame {
     this.setJMenuBar(crearMenu());
   }
 
-  public void reset(AccionesAplicacion app) {
+  public void reset(AccionesAplicacion app, JFXPanel panel) {
     nuevoJuego.setEnabled(false);
+    ayuda.setEnabled(false);
     nuevoJuego.addActionListener(event -> {
       app.nuevoJuego();
     });
     salir.addActionListener(event -> {
       app.salir();
     });
-    this.construirMenuInicial();
+    this.añadirPanel(panel);
   }
 
-  public void construirMenuInicial() {
-    JFXPanel panel = fxPanel.getPanel();
+  private void añadirPanel(JFXPanel panel) {
     this.setContentPane(panel);
-    this.revalidate();
+    this.validate();
     this.repaint();
-    Platform.runLater(() -> {
-      SwingUtilities.invokeLater(() -> {
-        this.pack();
-      });
-    });
+    this.pack();
   }
-  
+
   public void mostrarJuego(PanelJuego panel) {
     this.setContentPane(panel);
     this.nuevoJuego.setEnabled(true);
@@ -89,18 +81,19 @@ public class VentanaPrincipal extends JFrame {
 
   private JMenuBar crearMenu() {
     JMenuBar barraMenu;
-    JMenu menuJuego, menuAyuda;
+    JMenu menuJuego;
+    JMenu menuAyuda;
 
-    this.setNuevoJuego(new JMenuItem("Nuevo juego"));
-    this.setSalir(new JMenuItem("Salir"));
-    this.setAyuda(new JMenuItem("Ver ayuda"));
+    this.nuevoJuego = new JMenuItem("Nuevo juego");
+    this.ayuda = new JMenuItem("Ver ayuda");
+    this.salir = new JMenuItem("Salir");
 
     menuJuego = new JMenu("Juego");
-    menuJuego.add(this.getNuevoJuego());
-    menuJuego.add(this.getSalir());
+    menuJuego.add(this.nuevoJuego);
+    menuJuego.add(this.salir);
 
     menuAyuda = new JMenu("Acerca de");
-    menuAyuda.add(this.getAyuda());
+    menuAyuda.add(this.ayuda);
 
     barraMenu = new JMenuBar();
 
@@ -110,37 +103,7 @@ public class VentanaPrincipal extends JFrame {
     return barraMenu;
   }
 
-  private JMenuItem getAyuda() {
-    return this.ayuda;
-  }
-
-  private void setAyuda(JMenuItem item) {
-    item.setEnabled(false);
-    this.ayuda = item;
-  }
-
-  private JMenuItem getSalir() {
-    return this.salir;
-  }
-
-  private void setSalir(JMenuItem item) {
-    this.salir = item;
-  }
-
-  private JMenuItem getNuevoJuego() {
-    return this.nuevoJuego;
-  }
-
-  private void setNuevoJuego(JMenuItem item) {
-    item.setEnabled(false);
-    this.nuevoJuego = item;
-  }
-
   public Recursos getRecursos() {
     return recursos;
-  }
-
-  private void setRecursos(Recursos recursos) {
-    this.recursos = recursos;
   }
 }
