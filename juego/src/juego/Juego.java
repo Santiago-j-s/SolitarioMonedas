@@ -18,7 +18,7 @@ public class Juego {
 
   private int cantSaltos;
   
-  private static final int SALTOS_PARA_PREGUNTA = 3;
+  private static final int SALTOS_PARA_PREGUNTA = 2;
 
   /**
    * Constructor. Inicializa un tablero de juego. La cantidad de monedas inicial
@@ -231,7 +231,7 @@ public class Juego {
   /**
    * @return true si queda una sola moneda, false en caso contrario
    */
-  private boolean victoria() {
+  public boolean victoria() {
 
     Tablero tablero = this.getTablero();
 
@@ -245,7 +245,7 @@ public class Juego {
    * @return true si ninguna moneda puede saltar en ninguna dirección. false si
    *         al menos una moneda puede saltar en alguna dirección.
    */
-  private boolean derrota() {
+  public boolean derrota() {
 
     Tablero tablero = this.getTablero();
 
@@ -260,18 +260,11 @@ public class Juego {
     return true;
   }
   
-  /**
-   * Retorna el estado actual del juego
-   * @return 
-   */
-  public EstadoJuego estadoJuego() {
-    EstadoJuego estado = EstadoJuego.EnProgreso;
-    if (victoria()) {
-      estado = EstadoJuego.Victoria;
-    } else if (derrota()) {
-      estado = EstadoJuego.Derrota;
+  public boolean fin() {
+    if(victoria() || derrota()) {
+      return true;
+    } else {
+      return false;
     }
-    
-    return estado;
   }
 }

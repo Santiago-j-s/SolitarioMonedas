@@ -26,26 +26,11 @@ import pregunta.ObservadorPregunta;
 public abstract class BotonListenerPadre
     implements ActionListener, ObservadorPregunta {
 
-  private ManejadorJuego manejadorPrincipal;
+  protected ManejadorJuego manejador;
   private CasillaButton casillaPresionada;
 
   protected BotonListenerPadre(ManejadorJuego manejador) {
-    this.setManejadorPrincipal(manejador);
-  }
-
-  /**
-   * @return the manejadorPrincipal
-   */
-  protected ManejadorJuego getManejadorPrincipal() {
-    return manejadorPrincipal;
-  }
-
-  /**
-   * @param manejadorPrincipal
-   *          the manejadorPrincipal to set
-   */
-  private void setManejadorPrincipal(ManejadorJuego manejadorPrincipal) {
-    this.manejadorPrincipal = manejadorPrincipal;
+    this.manejador = manejador;
   }
 
   /**
@@ -76,12 +61,10 @@ public abstract class BotonListenerPadre
     saltar(casilla);
   }
 
-  public void incorrecto() {
-
-  }
+  public void incorrecto() {}
 
   private void accionClicMoneda(CasillaButton casilla) {
-    ManejadorJuego manejador = this.getManejadorPrincipal();
+    ManejadorJuego manejador = this.manejador;
     Juego juego = manejador.getJuego();
     PanelTablero panel = manejador.getPanelTablero();
 
@@ -107,7 +90,7 @@ public abstract class BotonListenerPadre
    */
   private void colorearDireccionesSalto(CasillaButton casilla) {
 
-    ManejadorJuego manejador = this.getManejadorPrincipal();
+    ManejadorJuego manejador = this.manejador;
     Juego juego = manejador.getJuego();
     PanelTablero panel = manejador.getPanelTablero();
 
@@ -119,7 +102,7 @@ public abstract class BotonListenerPadre
   }
 
   private Direccion preguntarDireccion(int fila, int columna) {
-    ManejadorJuego manejador = this.getManejadorPrincipal();
+    ManejadorJuego manejador = this.manejador;
     Juego juego = manejador.getJuego();
     ArrayList<Direccion> direcciones = juego.direccionesSalto(fila, columna);
 
@@ -133,7 +116,7 @@ public abstract class BotonListenerPadre
    * @return una cadena con la dirección
    */
   private Direccion preguntarDireccion(ArrayList<Direccion> direcciones) {
-    ManejadorJuego manejador = this.getManejadorPrincipal();
+    ManejadorJuego manejador = this.manejador;
     JFrame ventanaPrincipal = manejador.getVentanaPrincipal();
 
     JDialog ventana = new JDialog(ventanaPrincipal, "Dirección");
@@ -154,7 +137,7 @@ public abstract class BotonListenerPadre
   }
 
   private void saltar(CasillaButton casilla) {
-    ManejadorJuego manejador = this.getManejadorPrincipal();
+    ManejadorJuego manejador = this.manejador;
     PanelTablero panel = manejador.getPanelTablero();
 
     colorearDireccionesSalto(casilla);
@@ -166,7 +149,7 @@ public abstract class BotonListenerPadre
   }
 
   private void saltar(int fila, int columna) {
-    ManejadorJuego manejador = this.getManejadorPrincipal();
+    ManejadorJuego manejador = this.manejador;
     PanelTablero panel = manejador.getPanelTablero();
     Juego juego = manejador.getJuego();
 
@@ -190,7 +173,7 @@ public abstract class BotonListenerPadre
     manejador.getVentanaPrincipal().setEnabled(true);
     manejador.getVentanaPrincipal().toFront();
     
-    this.verificarFinJuego();
+    this.manejador.verificarFinJuego();;
   }
 
   /**
@@ -205,30 +188,7 @@ public abstract class BotonListenerPadre
    *          - Dirección en la que saltará la moneda
    */
   private void saltar(int fila, int columna, Direccion d) {
-
-    ManejadorJuego manejador = this.getManejadorPrincipal();
-
     manejador.getJuego().saltar(fila, columna, d);
     manejador.getPanelTablero().actualizar();
-  }
-
-  /**
-   * Testea si el jugador ha ganado o perdido el juego y muestra un mensaje en
-   * consecuencia.
-   */
-  private void verificarFinJuego() {
-    ManejadorJuego manejador = this.getManejadorPrincipal();
-    Juego juego = manejador.getJuego();
-    JFrame ventana = manejador.getVentanaPrincipal();
-    EstadoJuego estado = juego.estadoJuego();
-    String mensaje;
-    
-    if (estado == EstadoJuego.Victoria) {
-      mensaje = "Ha ganado el juego";
-      JOptionPane.showMessageDialog(ventana, mensaje);
-    } else if (estado == EstadoJuego.Derrota) {
-      mensaje = "Ha perdido el juego";
-      JOptionPane.showMessageDialog(ventana, mensaje);
-    }
   }
 }

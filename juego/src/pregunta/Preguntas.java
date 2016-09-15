@@ -11,6 +11,7 @@ import java.lang.reflect.Type;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -23,7 +24,7 @@ import com.google.gson.reflect.TypeToken;
  *
  */
 class Preguntas {
-  ArrayList<Pregunta> historico_preguntas = new ArrayList<Pregunta>();
+  List<Pregunta> historico_preguntas = new ArrayList<Pregunta>();
   String archivo_preguntas;
   String recursos_path = Paths.get("juego", "src", "recursos", "preguntas")
       .toString();

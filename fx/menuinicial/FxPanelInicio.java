@@ -1,10 +1,9 @@
 package menuinicial;
 
-import javax.swing.SwingUtilities;
+import java.awt.Container;
 
 import controlador.ManejadorJuego;
 import controlador.fxUtilities;
-import javafx.application.Platform;
 import javafx.embed.swing.JFXPanel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,29 +18,27 @@ public class FxPanelInicio {
   @FXML
   private Button juego;
 
-  private void start() {
-    fxPanel = new JFXPanel();
-    Platform.runLater(() -> {
-      fxUtilities.initScene("panelInicio.fxml", this, fxPanel);
-    });
+  private void start(JFXPanel panel) {
+    fxUtilities.initScene("panelInicio.fxml", this, panel);
   }
 
   public JFXPanel getPanel() {
     this.fxPanel = new JFXPanel();
-    start();
+    start(this.fxPanel);
     return fxPanel;
   }
-
-  public void initialize() {
+  
+  private Container getVentana() {
+    return fxPanel.getTopLevelAncestor();
   }
 
+  @FXML
   public void listCategorias(ActionEvent e) {
     FachadaPregunta.lanzarSeleccion();
   }
 
+  @FXML
   public void comenzarJuego(ActionEvent e) {
-    SwingUtilities.invokeLater(() -> {
-      new ManejadorJuego((VentanaPrincipal) fxPanel.getTopLevelAncestor());
-    });
+    new ManejadorJuego((VentanaPrincipal) getVentana());
   }
 }
