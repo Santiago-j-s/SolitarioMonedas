@@ -6,14 +6,12 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.JDialog;
-import javax.swing.JOptionPane;
 import javax.swing.JFrame;
 
 import vista.CasillaButton;
 import vista.PanelIngresoDireccion;
 import vista.PanelTablero;
 import juego.Direccion;
-import juego.EstadoJuego;
 import juego.Juego;
 import pregunta.ObservadorPregunta;
 

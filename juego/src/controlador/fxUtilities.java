@@ -2,7 +2,6 @@ package controlador;
 
 import java.io.IOException;
 
-import javafx.application.Platform;
 import javafx.embed.swing.JFXPanel;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -23,9 +22,7 @@ public class fxUtilities {
   }
 
   public static void initScene(String path, Object controller, JFXPanel panel) {
-    Platform.runLater(() -> {
-      Scene scene = initScene(path, controller);
-      panel.setScene(scene);
-    });
+    Scene scene = initScene(path, controller);
+    panel.setScene(scene);
   }
 }
