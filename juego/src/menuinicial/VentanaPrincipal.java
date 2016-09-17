@@ -1,6 +1,8 @@
 package menuinicial;
 
 import java.awt.Dimension;
+import java.awt.EventQueue;
+import java.util.logging.Logger;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -8,7 +10,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
-import javafx.embed.swing.JFXPanel;
+import javafx.application.Platform;
 import vista.PanelJuego;
 import vista.Recursos;
 
@@ -22,6 +24,8 @@ import vista.Recursos;
 public class VentanaPrincipal extends JFrame {
 
   private static final long serialVersionUID = 1L;
+
+  private final Logger logger = Logger.getLogger(getClass().getName());
 
   private JMenuItem nuevoJuego;
   private JMenuItem salir;
@@ -39,6 +43,8 @@ public class VentanaPrincipal extends JFrame {
   public VentanaPrincipal(Recursos r) {
     super("Solitario con Monedas");
 
+    logger.info("Creando Ventana Principal");
+
     this.recursos = r;
 
     icono = r.getImgIcono();
@@ -54,23 +60,27 @@ public class VentanaPrincipal extends JFrame {
     this.setJMenuBar(crearMenu());
   }
 
-  public void reset(AccionesAplicacion app, JFXPanel panel) {
+  public void reset(AccionesAplicacion app) {
+    logger.info("reset");
+
     nuevoJuego.setEnabled(false);
     ayuda.setEnabled(false);
+
     nuevoJuego.addActionListener(event -> {
       app.nuevoJuego();
     });
     salir.addActionListener(event -> {
       app.salir();
     });
-    this.añadirPanel(panel);
-  }
 
-  private void añadirPanel(JFXPanel panel) {
-    this.setContentPane(panel);
-    this.validate();
+    this.revalidate();
     this.repaint();
-    this.pack();
+    Platform.runLater(() -> {
+      EventQueue.invokeLater(() -> {
+        this.pack();
+      });
+    });
+    logger.info("reset.pack");
   }
 
   public void mostrarJuego(PanelJuego panel) {
