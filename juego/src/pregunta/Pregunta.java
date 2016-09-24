@@ -96,11 +96,11 @@ class Pregunta {
   }
   
   void setOpciones(String opcion1, String opcion2, String opcion3) {
-    ArrayList<Opcion> opciones = new ArrayList<Opcion>();
-    opciones.add(new Opcion(opcion1, true));
-    opciones.add(new Opcion(opcion2, false));
-    opciones.add(new Opcion(opcion3, false));
-    this.setOpciones(opciones);
+    ArrayList<Opcion> nuevasOpciones = new ArrayList<Opcion>();
+    nuevasOpciones.add(new Opcion(opcion1, true));
+    nuevasOpciones.add(new Opcion(opcion2, false));
+    nuevasOpciones.add(new Opcion(opcion3, false));
+    this.setOpciones(nuevasOpciones);
   }
 
   /**

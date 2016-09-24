@@ -1,7 +1,5 @@
 package controlador;
 
-import vista.CasillaButton;
-
 /**
  * Escuchador para los botones cuando se juega sin preguntas
  * 
@@ -9,9 +7,6 @@ import vista.CasillaButton;
  *
  */
 public class BotonListenerSinPregunta extends BotonListenerPadre {
-
-  ManejadorJuego manejador;
-  CasillaButton casilla;
 
   /**
    * Constructor
@@ -22,8 +17,7 @@ public class BotonListenerSinPregunta extends BotonListenerPadre {
   public BotonListenerSinPregunta(ManejadorJuego manejador) {
     super(manejador);
   }
-  
-  public void llamarPregunta() {
-    correcto();
-  }
+
+  @Override
+  public void llamarPregunta() {}
 }

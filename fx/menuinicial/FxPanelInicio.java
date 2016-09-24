@@ -50,7 +50,7 @@ public class FxPanelInicio {
   public void comenzarJuego(ActionEvent e) {
     EventQueue.invokeLater(() -> {
       Container ventana = getVentana();
-      new ManejadorJuego((VentanaPrincipal) ventana);
+      new ManejadorJuego("preguntas", (VentanaPrincipal) ventana);
     });
   }
 }

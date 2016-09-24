@@ -111,9 +111,6 @@ public class Juego {
    *         contrario.
    */
   public boolean puedeSaltar(int fila, int columna, Direccion direccion) {
-
-    Tablero tablero = this.getTablero();
-
     switch (direccion) {
     case Arriba:
       return tablero.esMoneda(fila, columna)
@@ -169,7 +166,6 @@ public class Juego {
    * @return
    */
   public boolean tiempoPregunta() {
-    int cantSaltos = this.getCantSaltos();
     return (cantSaltos % SALTOS_PARA_PREGUNTA == 0);
   }
 
@@ -193,8 +189,6 @@ public class Juego {
    * @param cadenaDireccion
    */
   public void saltar(int fila, int columna, Direccion direccion) {
-    Tablero tablero = this.getTablero();
-
     if (puedeSaltar(fila, columna, direccion)) {
       tablero.setCantMonedas(tablero.getCantMonedas() - 1);
       tablero.setCantVacias(tablero.getCantVacias() + 1);
@@ -232,9 +226,6 @@ public class Juego {
    * @return true si queda una sola moneda, false en caso contrario
    */
   public boolean victoria() {
-
-    Tablero tablero = this.getTablero();
-
     if (tablero.getCantMonedas() == 1)
       return true;
     else
@@ -246,9 +237,6 @@ public class Juego {
    *         al menos una moneda puede saltar en alguna dirección.
    */
   public boolean derrota() {
-
-    Tablero tablero = this.getTablero();
-
     for (int fila = 0; fila < tablero.getCantFilas(); fila++) {
       for (int columna = 0; columna < tablero.getCantColumnas(); columna++) {
         if (this.puedeSaltar(fila, columna)) {

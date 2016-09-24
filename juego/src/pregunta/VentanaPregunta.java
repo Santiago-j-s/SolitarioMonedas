@@ -12,7 +12,7 @@ class VentanaPregunta {
 
   VentanaPregunta(JFXPanel panel) {
     frame = new JFrame("Pregunta");
-    frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+    //frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
     frame.add(panel);
     frame.setResizable(true);
     frame.setVisible(true);

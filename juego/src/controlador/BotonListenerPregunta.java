@@ -1,7 +1,9 @@
 package controlador;
 
+import javax.swing.SwingUtilities;
+
 import pregunta.FachadaPregunta;
-import pregunta.ObservadorPregunta;
+import pregunta.Observador;
 
 /**
  * Invocado cuando se presiona una casilla.
@@ -18,13 +20,13 @@ import pregunta.ObservadorPregunta;
  *
  */
 public class BotonListenerPregunta extends BotonListenerPadre
-    implements ObservadorPregunta {
+    implements Observador {
 
-  private FachadaPregunta hacerPregunta;
+  private final FachadaPregunta hacerPregunta;
 
   public BotonListenerPregunta(ManejadorJuego manejador, String filename) {
     super(manejador);
-    this.hacerPregunta = new FachadaPregunta(filename);
+    hacerPregunta = new FachadaPregunta(filename);
   }
 
   /**
@@ -33,23 +35,24 @@ public class BotonListenerPregunta extends BotonListenerPadre
    */
   @Override
   public void llamarPregunta() {
-    this.manejador.getVentanaPrincipal().setEnabled(false);
-    this.hacerPregunta.lanzarPregunta();
+    SwingUtilities.invokeLater(() -> {
+      manejador.getVentanaPrincipal().setEnabled(false);
+      hacerPregunta.removeAllObservadores();
+      hacerPregunta.addObservador(this);
+    });
+    hacerPregunta.lanzarPregunta();
   }
-
-  /**
-   * Permite continuar el juego
-   */
-  @Override
+  
   public void correcto() {
-    super.correcto();
+    SwingUtilities.invokeLater(() -> {
+      super.correcto();
+      hacerPregunta.cerrarPregunta();
+    });
   }
-
-  /**
-   * Salta otra pregunta
-   */
-  @Override
+  
   public void incorrecto() {
-    this.llamarPregunta();
+    SwingUtilities.invokeLater(() -> {
+      super.incorrecto();
+    });
   }
 }
