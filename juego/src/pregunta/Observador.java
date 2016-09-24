@@ -7,7 +7,7 @@ package pregunta;
  * 
  * @author Dibez, Santana
  */
-public interface ObservadorPregunta {
+public interface Observador {
 	
 	/**
 	 * Lanza una pregunta

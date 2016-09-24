@@ -1,12 +1,10 @@
 package pregunta;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-
-import javax.swing.JButton;
+import java.util.ArrayList;
+import java.util.List;
 
 import javafx.embed.swing.JFXPanel;
 
@@ -17,54 +15,59 @@ import javafx.embed.swing.JFXPanel;
  * @author Dibez, Santana
  *
  */
-public class FachadaPregunta implements ActionListener {
+public class FachadaPregunta {
 
-  private Preguntas preguntas;
+  private final Preguntas preguntas;
   private Pregunta preguntaActual;
-  private ObservadorPregunta observador;
-  private VentanaPregunta frame;
-  private FxPanelPregunta app;
-  private JFXPanel panel;
+  private final FxPanelPregunta app;
+  private final JFXPanel panel;
+  private final List<Observador> observadores = new ArrayList<Observador>();
+  private VentanaPregunta ventana;
 
   /**
    * Inicializa las preguntas
    */
   public FachadaPregunta(String filename) {
-    this.preguntas = new Preguntas(filename);
-    this.app = new FxPanelPregunta();
-    panel = this.app.start();
-  }
-
-  /**
-   * Al responder una pregunta se activa este método.
-   * 
-   * @param e
-   *          Evento que lanza el método
-   */
-  public void actionPerformed(ActionEvent e) {
-    String respuesta = ((JButton) e.getSource()).getText();
-    this.cerrarVentana();
-
-    if (preguntaActual.correcta(respuesta)) {
-      this.observador.correcto();
-    } else {
-      this.observador.incorrecto();
-    }
+    preguntas = new Preguntas(filename);
+    app = new FxPanelPregunta(this);
+    panel = app.start();
   }
 
   /**
    * Lanza una ventana con una pregunta
    * 
-   * @param observador
-   *          Al responder la pregunta se activará el método 'correcto' o
-   *          'incorrecto' del observador
+   * @param observador al responder la pregunta se activará 
+   *  el método 'correcto' o 'incorrecto' de los observadores
    */
-  
   public Pregunta lanzarPregunta() {
-    this.preguntaActual = this.preguntas.sortearPregunta();
-    this.app.setPregunta(preguntaActual);
-    frame = new VentanaPregunta(panel);
-    return this.preguntaActual;
+    preguntaActual = this.preguntas.sortearPregunta();
+    app.setPregunta(preguntaActual);
+    ventana = new VentanaPregunta(panel);
+    return preguntaActual;
+  }
+  
+  public void cerrarPregunta() {
+    ventana.cerrar();
+  }
+  
+  public void addObservador(Observador o) {
+    observadores.add(o);
+  }
+  
+  public void removeObservador(Observador o) {
+    observadores.remove(o);
+  }
+  
+  public void removeAllObservadores() {
+    observadores.clear();
+  }
+  
+  public void correcto() {
+    observadores.forEach(Observador::correcto);
+  }
+  
+  public void incorrecto() {
+    observadores.forEach(Observador::incorrecto);
   }
   
   /**
@@ -78,11 +81,5 @@ public class FachadaPregunta implements ActionListener {
     } catch (IOException e) {
       e.printStackTrace();
     }
-  }
- 
-//  public String getPregunta
-
-  private void cerrarVentana() {
-    this.frame.cerrar();
   }
 }

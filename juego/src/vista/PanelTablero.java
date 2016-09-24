@@ -4,12 +4,16 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.Point;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-import javax.swing.ImageIcon;
+import javax.swing.Icon;
 import javax.swing.JPanel;
 
+import controlador.BotonListenerPadre;
 import juego.Casilla;
 import juego.Direccion;
 import juego.Tablero;
@@ -23,49 +27,73 @@ import juego.Tablero;
 public class PanelTablero extends JPanel {
 
   private static final long serialVersionUID = 1L;
-  private static final int HEIGHT = 500;
-  private static final int WIDTH = HEIGHT;
-  private static final Dimension SIZE = new Dimension(WIDTH, HEIGHT);
 
-  private Recursos recursos;
+  // Largo y ancho del tablero
+  private static final Dimension SIZE = new Dimension(500, 500);
 
-  private Tablero tablero;
-  private ImageIcon fondoTablero;
+  // Imagen del fondo del panel del tablero
+  private Image fondoTablero;
 
-  private CasillaButton[][] tableroVista; // matriz de botones que contiene las
-  // casillas
+  // Imágenes de las casillas
+  private Map<String, Icon> imgsCasilla;
+
+  private final Tablero tablero; // Tablero de juego
+  private final int filas; // Cantidad de filas
+  private final int columnas; // Cantidad de columnas
+
+  // Los botones que representan las casillas del tablero
+  private final CasillaButton[][] casillas;
 
   /**
-   * Constructor de la clase.
-   * 
    * @param cantFilas
-   *          - cantidad total de filas
+   *          cantidad total de filas
    * @param cantColumnas
-   *          - cantidad total de columnas
+   *          cantidad total de columnas
    */
-  public PanelTablero(Tablero t, Recursos r) {
-    this.tablero = t;
-    this.setRecursos(r);
+  public PanelTablero(Tablero t, Recursos r, BotonListenerPadre accionBoton) {
+    this.fondoTablero = r.getImgFondo().getImage();
+    this.setImgsCasilla(r);
 
-    int filas = t.getCantFilas();
-    int cols = t.getCantColumnas();
+    tablero = t;
+    filas = t.getCantFilas();
+    columnas = t.getCantColumnas();
 
-    this.setLayout(new GridLayout(filas, cols));
-    tableroVista = new CasillaButton[filas][cols];
+    this.setLayout(new GridLayout(filas, columnas));
+    casillas = new CasillaButton[filas][columnas];
 
-    this.setOpaque(false);
     this.setPreferredSize(SIZE);
-    this.actualizar();
+
+    this.inicializar(accionBoton);
+  }
+  
+  public static final PanelTablero crearTablero(Tablero t, Recursos r, BotonListenerPadre accionBoton) {
+    return new PanelTablero(t, r, accionBoton);
+  }
+
+  /**
+   * Inyecta las imágenes para las casillas El HashMap imgsCasilla obtiene de r
+   * las imágenes para las casillas del tablero
+   * 
+   * @param r
+   */
+  private void setImgsCasilla(Recursos r) {
+    Icon imgMoneda = r.getImgMoneda();
+    Icon imgNula = r.getImgNula();
+    Icon imgVacia = r.getImgVacia();
+
+    this.imgsCasilla = new HashMap<String, Icon>();
+
+    imgsCasilla.put("Moneda", imgMoneda);
+    imgsCasilla.put("Nula", imgNula);
+    imgsCasilla.put("Vacia", imgVacia);
   }
 
   /**
    * Metodo que agrega una imagen de fondo al panel del tablero
    */
   public void paint(Graphics g) {
-    this.fondoTablero = getRecursos().getImgFondo();
-
-    g.drawImage(this.fondoTablero.getImage(), this.getX(), this.getY(),
-        this.getWidth(), this.getHeight(), null);
+    g.drawImage(fondoTablero, this.getX(), this.getY(), this.getWidth(),
+        this.getHeight(), null);
 
     this.paintComponents(g);
   }
@@ -81,30 +109,43 @@ public class PanelTablero extends JPanel {
   public CasillaButton getBoton(int fila, int columna)
       throws ArrayIndexOutOfBoundsException {
 
-    int filas = tablero.getCantFilas();
-    int cols = tablero.getCantColumnas();
-
-    if (fila < filas && columna < cols) {
-      return tableroVista[fila][columna];
+    if (fila < filas && columna < columnas) {
+      return casillas[fila][columna];
     } else {
       throw new ArrayIndexOutOfBoundsException();
     }
   }
 
   /**
-   * Metodo que establece un boton de tipoCasilla en el tablero ubicado en la
-   * fila y columna pasados como parametros
+   * Actualiza la imágen de la casilla que se encuentra en fila 'fila' y columna
+   * 'columna'
    * 
    * @param fila
+   *          la fila en que se encuentra el botón
    * @param columna
-   * @param tipoCasilla
+   *          la columna en que se encuentra el botón
+   * @param casilla
+   *          el tipo de casilla
    */
-  public void setBoton(int fila, int columna, Casilla casilla) {
-    if (getBoton(fila, columna) == null) {
-      tableroVista[fila][columna] = new CasillaButton(getRecursos(), casilla);
-    } else {
-      tableroVista[fila][columna].setTipoCasilla(casilla);
-    }
+  private void setBoton(int fila, int columna, Casilla casilla) {
+    getBoton(fila, columna).setTipoCasilla(casilla);
+  }
+
+  /**
+   * Crea la casilla y la pone en el tablero
+   * 
+   * @param fila
+   *          la fila en que se encuentra el botón
+   * @param columna
+   *          la columna en que se encuentra el botón
+   * @param casilla
+   *          el tipo de casilla
+   */
+  private void inicializarBoton(int fila, int columna, Casilla casilla, BotonListenerPadre accion) {
+    CasillaButton boton = new CasillaButton(casilla, imgsCasilla);
+    boton.addActionListener(accion);
+    casillas[fila][columna] = boton;
+    this.add(boton);
   }
 
   /**
@@ -115,7 +156,8 @@ public class PanelTablero extends JPanel {
   public int getFila(CasillaButton casilla) {
     Point punto = casilla.getLocation();
     int alturaCasilla = casilla.getSize().height;
-    return (int) ((punto.getY() + alturaCasilla / 2) / (alturaCasilla));
+    double mitad = alturaCasilla / 2;
+    return (int) ((punto.getY() + mitad) / alturaCasilla);
   }
 
   /**
@@ -125,27 +167,30 @@ public class PanelTablero extends JPanel {
    */
   public int getColumna(CasillaButton casilla) {
     Point punto = casilla.getLocation();
-    Dimension dimensiones = casilla.getSize();
-    return (int) ((punto.getX() + dimensiones.width / 2) / (dimensiones.width));
-  }
-
-  private Recursos getRecursos() {
-    return recursos;
-  }
-
-  private void setRecursos(Recursos recursos) {
-    this.recursos = recursos;
+    int anchoCasilla = casilla.getSize().width;
+    double mitad = anchoCasilla / 2;
+    return (int) ((punto.getX() + mitad) / anchoCasilla);
   }
 
   /**
-   * Dota a las casillas del tablero de una imagen según cual sea su valor
+   * Crea las casillas del tablero
+   * @param accion 
+   */
+  private void inicializar(BotonListenerPadre accion) {
+    for (int fila = 0; fila < filas; fila++) {
+      for (int columna = 0; columna < columnas; columna++) {
+        Casilla casilla = tablero.getCasilla(fila, columna);
+        this.inicializarBoton(fila, columna, casilla, accion);
+      }
+    }
+  }
+
+  /**
+   * Actualiza las imágenes de las casillas
    */
   public void actualizar() {
-    int filas = tablero.getCantFilas();
-    int cols = tablero.getCantColumnas();
-
     for (int fila = 0; fila < filas; fila++) {
-      for (int columna = 0; columna < cols; columna++) {
+      for (int columna = 0; columna < columnas; columna++) {
         Casilla casilla = tablero.getCasilla(fila, columna);
         this.setBoton(fila, columna, casilla);
       }
@@ -163,18 +208,10 @@ public class PanelTablero extends JPanel {
    *          - el color con que se pintará el fondo
    * @throws ArrayIndexOutOfBoundsException
    */
-  public void colorearBoton(int fila, int columna, Color color)
+  public void colorearBoton(CasillaButton casilla, Color color)
       throws ArrayIndexOutOfBoundsException {
 
-    int filas = tablero.getCantFilas();
-    int cols = tablero.getCantColumnas();
-
-    if (fila < filas && columna < cols) {
-      this.getBoton(fila, columna).setContentAreaFilled(true);
-      this.getBoton(fila, columna).setBackground(color);
-    } else {
-      throw new ArrayIndexOutOfBoundsException();
-    }
+    casilla.colorear(color);
   }
 
   /**
@@ -185,20 +222,27 @@ public class PanelTablero extends JPanel {
    */
   public void colorearDireccionesSalto(CasillaButton casilla,
       List<Direccion> direcciones) {
+    
     int fila = getFila(casilla);
     int columna = getColumna(casilla);
-    
+    CasillaButton blanco = null;
+
     if (direcciones.contains(Direccion.Derecha)) {
-      this.colorearBoton(fila, columna+2, Color.GREEN);
+      blanco = this.getBoton(fila, columna + 2);
     }
     if (direcciones.contains(Direccion.Izquierda)) {
-      this.colorearBoton(fila, columna-2, Color.GREEN);
+      blanco = this.getBoton(fila, columna - 2);
     }
     if (direcciones.contains(Direccion.Arriba)) {
-      this.colorearBoton(fila-2, columna, Color.GREEN);
+      blanco = this.getBoton(fila - 2, columna);
     }
     if (direcciones.contains(Direccion.Abajo)) {
-      this.colorearBoton(fila+2, columna, Color.GREEN);
+      blanco = this.getBoton(fila + 2, columna);
     }
+    if(blanco == null) {
+      throw new NullPointerException();
+    }
+    
+    blanco.colorear(Color.GREEN);
   }
 }

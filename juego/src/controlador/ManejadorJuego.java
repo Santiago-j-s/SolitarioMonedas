@@ -1,14 +1,22 @@
 package controlador;
 
+import java.awt.Color;
+import java.util.ArrayList;
+import java.util.logging.Logger;
+
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+import juego.Direccion;
 import juego.Juego;
 import juego.Tablero;
 import menuinicial.VentanaPrincipal;
+import pregunta.Observador;
+import vista.CasillaButton;
 import vista.PanelAyuda;
 import vista.PanelAyudaPreguntas;
 import vista.PanelAyudaSinPreguntas;
+import vista.PreguntaDireccion;
 import vista.PanelTablero;
 import vista.Recursos;
 import vista.PanelJuego;
@@ -25,29 +33,32 @@ public class ManejadorJuego {
   private Juego juego;
   private PanelTablero panelTablero;
   private JFrame ventanaPrincipal;
-  private PanelJuego panelJuego;
-  private Recursos recursos;
+  private final Logger logger = Logger.getLogger(getClass().getName());
 
   /**
    * Crea y muestra la ventana principal con el tablero de juego.
    */
   public ManejadorJuego(String filename, VentanaPrincipal ventana) {
-    this.recursos = ventana.getRecursos();
-    this.inicializarPanelTablero(new BotonListenerPregunta(this, filename));
+    BotonListenerPadre accionBoton = new BotonListenerPregunta(this, filename);
+    Recursos recursos = ventana.getRecursos();
+    
+    this.inicializarPanelTablero(accionBoton, recursos);
     PanelAyuda panelAyuda = new PanelAyudaPreguntas();
     iniciarJuego(ventana, panelAyuda);
   }
 
   public ManejadorJuego(VentanaPrincipal ventana) {
-    this.recursos = ventana.getRecursos();
-    this.inicializarPanelTablero(new BotonListenerSinPregunta(this));
+    BotonListenerPadre accionBoton = new BotonListenerSinPregunta(this);
+    Recursos recursos = ventana.getRecursos();
+    
+    this.inicializarPanelTablero(accionBoton, recursos);
     PanelAyuda panelAyuda = new PanelAyudaSinPreguntas();
     iniciarJuego(ventana, panelAyuda);
   }
 
   private void iniciarJuego(VentanaPrincipal ventana, PanelAyuda panelAyuda) {
     this.ventanaPrincipal = ventana;
-    this.panelJuego = new PanelJuego(this.panelTablero, panelAyuda);
+    PanelJuego panelJuego = new PanelJuego(this.panelTablero, panelAyuda);
     ventana.mostrarJuego(panelJuego);
   }
   
@@ -58,85 +69,79 @@ public class ManejadorJuego {
       JOptionPane.showMessageDialog(ventanaPrincipal, "Ha perdido.");
     }
   }
-
-  protected void setPanelJuego(PanelJuego panelJuego) {
-    this.panelJuego = panelJuego;
+  
+  public Direccion preguntarDireccion(int fila, int columna) {
+    ArrayList<Direccion> direcciones = juego.direccionesSalto(fila, columna);
+    logger.warning(direcciones.toString());
+    panelTablero.colorearDireccionesSalto(panelTablero.getBoton(fila, columna), direcciones);
+    PreguntaDireccion dialog = new PreguntaDireccion(direcciones);
+    return dialog.getDireccion();
   }
-
+  
+  public void accionClicMoneda(CasillaButton casilla, Observador o) {
+    int fila = panelTablero.getFila(casilla);
+    int columna = panelTablero.getColumna(casilla);
+    
+    int direcciones = juego.cantDireccionesSalto(fila, columna);
+    
+    if(direcciones > 0) {
+      if(juego.tiempoPregunta()) {
+        o.llamarPregunta();
+      } else {
+        this.accionCasilla(casilla);
+      }
+    }
+  }
+  
+  public void accionCasilla(CasillaButton casilla) {
+    int fila = panelTablero.getFila(casilla);
+    int columna = panelTablero.getColumna(casilla);
+    
+    panelTablero.colorearBoton(casilla, Color.MAGENTA);
+    int direcciones = juego.cantDireccionesSalto(fila, columna);
+    if(direcciones == 1) {
+      Direccion d = juego.direccionesSalto(fila, columna).get(0);
+      saltar(fila, columna, d);
+    } else if(direcciones > 1) {
+      try {
+        Direccion d = preguntarDireccion(fila, columna);
+        this.saltar(fila, columna, d);
+      } catch (NullPointerException e) {
+        e.printStackTrace();
+      }
+    }
+    
+    ventanaPrincipal.setEnabled(true);
+    ventanaPrincipal.toFront();
+    this.verificarFinJuego();
+  }
+  
   /**
-   * @return the tablero
+   * Realiza el salto de una moneda
+   * @param fila
+   * @param columna
+   * @param d
    */
-  protected Juego getJuego() {
-    return juego;
+  public void saltar(int fila, int columna, Direccion d) {
+    this.juego.saltar(fila, columna, d);
+    this.panelTablero.actualizar();
   }
-
-  /**
-   * @param juego
-   *          the tablero to set
-   */
-  protected void setJuego(Juego juego) {
-    this.juego = juego;
-  }
-
-  /**
-   * @return the panelTablero
-   */
-  protected PanelTablero getPanelTablero() {
-    return panelTablero;
-  }
-
-  /**
-   * @param panelTablero
-   *          the panelTablero to set
-   */
-  protected void setPanelTablero(PanelTablero panelTablero) {
-    this.panelTablero = panelTablero;
-  }
-
+  
   /**
    * @return the ventanaPrincipal
    */
   protected JFrame getVentanaPrincipal() {
     return ventanaPrincipal;
   }
-
-  /**
-   * Le da al botón señalado por 'fila' y 'columna' el valor correspondiente a
-   * la misma casilla del tablero correspondiente al modelo y le añade el
-   * escuchador pasado como parámetro
-   *
-   * @param fila
-   * @param columna
-   * @param escuchador
-   */
-  private void inicializarBoton(int fila, int columna,
-      BotonListenerPadre escuchador) {
-    PanelTablero panelTablero = this.getPanelTablero();
-
-    panelTablero.add(panelTablero.getBoton(fila, columna));
-    panelTablero.getBoton(fila, columna).addActionListener(escuchador);
-  }
-
+  
   /**
    * Prepara el panel con la interfaz gráfica del tablero según el modelo
    */
-  private void inicializarPanelTablero(BotonListenerPadre escuchadorBoton) {
-    this.setJuego(new Juego());
-
-    Tablero tablero = this.getJuego().getTablero();
-    int filas = tablero.getCantFilas();
-    int cols = tablero.getCantColumnas();
-
-    PanelTablero panelTablero = new PanelTablero(tablero, recursos);
-
-    this.setPanelTablero(panelTablero);
-
-    for (int fila = 0; fila < filas; fila++) {
-      for (int columna = 0; columna < cols; columna++) {
-        inicializarBoton(fila, columna, escuchadorBoton);
-      }
-    }
-
-    this.getPanelTablero().setVisible(true);
+private void inicializarPanelTablero(BotonListenerPadre escuchadorBoton, Recursos recursos) {
+    juego = new Juego();
+    Tablero tablero = juego.getTablero();
+    this.panelTablero = PanelTablero.crearTablero(tablero, recursos, escuchadorBoton);
+    
+    panelTablero.setVisible(true);
   }
 }

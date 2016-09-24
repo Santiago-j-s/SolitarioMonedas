@@ -1,5 +1,7 @@
 package pregunta;
 
+import javax.swing.JFrame;
+
 import controlador.fxUtilities;
 import javafx.application.Platform;
 import javafx.embed.swing.JFXPanel;
@@ -11,6 +13,7 @@ import javafx.scene.control.Label;
 public class FxPanelPregunta {
   private final JFXPanel fxPanel = new JFXPanel();
   private final FxModeloPregunta modelo = new FxModeloPregunta();
+  private final FachadaPregunta controlador;
 
   @FXML
   private Label title;
@@ -20,6 +23,10 @@ public class FxPanelPregunta {
   private Button opcion2Button;
   @FXML
   private Button opcion3Button;
+  
+  public FxPanelPregunta(FachadaPregunta controlador) {
+    this.controlador = controlador;
+  }
 
   public JFXPanel start() {
     Platform.runLater(() -> {
@@ -33,15 +40,15 @@ public class FxPanelPregunta {
       modelo.setPregunta(pregunta);
     });
   }
-
+  
   @FXML
   public void onAction(ActionEvent e) {
     Button b = (Button) e.getSource();
     boolean correcta = modelo.correcta(b.getText());
-    if (correcta) {
-      modelo.setPregunta("correcta");
+    if(correcta) {
+      controlador.correcto();
     } else {
-      modelo.setPregunta("incorrecta");
+      controlador.incorrecto();
     }
   }
 
