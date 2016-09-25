@@ -5,7 +5,7 @@ import java.awt.EventQueue;
 import java.util.logging.Logger;
 
 import controlador.ManejadorJuego;
-import controlador.fxUtilities;
+import controlador.FxUtilities;
 import javafx.application.Platform;
 import javafx.embed.swing.JFXPanel;
 import javafx.event.ActionEvent;
@@ -26,7 +26,7 @@ public class FxPanelInicio {
     logger.info("Nuevo Panel Inicio");
     Platform.runLater(() -> {
       logger.info("start.runlater");
-      fxUtilities.initScene("panelInicio.fxml", this, fxPanel);
+      FxUtilities.initScene("panelInicio.fxml", this, fxPanel);
     });
   }
   

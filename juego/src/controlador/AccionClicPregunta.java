@@ -19,12 +19,12 @@ import pregunta.Observador;
  * @author Dibez, Santana
  *
  */
-public class BotonListenerPregunta extends BotonListenerPadre
+public class AccionClicPregunta extends AccionClicAbstract
     implements Observador {
 
   private final FachadaPregunta hacerPregunta;
 
-  public BotonListenerPregunta(ManejadorJuego manejador, String filename) {
+  public AccionClicPregunta(ManejadorJuego manejador, String filename) {
     super(manejador);
     hacerPregunta = new FachadaPregunta(filename);
   }

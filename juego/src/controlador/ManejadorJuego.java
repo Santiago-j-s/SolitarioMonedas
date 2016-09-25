@@ -39,7 +39,7 @@ public class ManejadorJuego {
    * Crea y muestra la ventana principal con el tablero de juego.
    */
   public ManejadorJuego(String filename, VentanaPrincipal ventana) {
-    BotonListenerPadre accionBoton = new BotonListenerPregunta(this, filename);
+    AccionClicAbstract accionBoton = new AccionClicPregunta(this, filename);
     Recursos recursos = ventana.getRecursos();
     
     this.inicializarPanelTablero(accionBoton, recursos);
@@ -48,7 +48,7 @@ public class ManejadorJuego {
   }
 
   public ManejadorJuego(VentanaPrincipal ventana) {
-    BotonListenerPadre accionBoton = new BotonListenerSinPregunta(this);
+    AccionClicAbstract accionBoton = new AccionClic(this);
     Recursos recursos = ventana.getRecursos();
     
     this.inicializarPanelTablero(accionBoton, recursos);
@@ -137,7 +137,7 @@ public class ManejadorJuego {
   /**
    * Prepara el panel con la interfaz gráfica del tablero según el modelo
    */
-private void inicializarPanelTablero(BotonListenerPadre escuchadorBoton, Recursos recursos) {
+private void inicializarPanelTablero(AccionClicAbstract escuchadorBoton, Recursos recursos) {
     juego = new Juego();
     Tablero tablero = juego.getTablero();
     this.panelTablero = PanelTablero.crearTablero(tablero, recursos, escuchadorBoton);

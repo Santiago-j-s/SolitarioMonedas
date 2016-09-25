@@ -5,6 +5,6 @@
 	<classpathentry kind="src" path="test"/>
 	<classpathentry kind="src" path="fx"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
-	<classpathentry kind="lib" path="Avances_Juego_5/lib/gson-2.7.jar"/>
+	<classpathentry kind="lib" path="/home/santiago/git/SolitarioMonedas/lib/gson-2.7.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

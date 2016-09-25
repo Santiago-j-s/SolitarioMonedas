@@ -1,8 +1,6 @@
 package pregunta;
 
-import javax.swing.JFrame;
-
-import controlador.fxUtilities;
+import controlador.FxUtilities;
 import javafx.application.Platform;
 import javafx.embed.swing.JFXPanel;
 import javafx.event.ActionEvent;
@@ -30,7 +28,7 @@ public class FxPanelPregunta {
 
   public JFXPanel start() {
     Platform.runLater(() -> {
-      fxUtilities.initScene("panelPregunta.fxml", this, fxPanel);
+      FxUtilities.initScene("panelPregunta.fxml", this, fxPanel);
     });
     return fxPanel;
   }

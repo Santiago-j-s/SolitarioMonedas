@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 
 import controlador.ManejadorJuego;
-import controlador.fxUtilities;
+import controlador.FxUtilities;
 import javafx.application.Platform;
 import javafx.embed.swing.JFXPanel;
 import javafx.fxml.FXML;
@@ -36,7 +36,7 @@ public class FxPanelSeleccion {
 
   public JFXPanel start() {
     Platform.runLater(() -> {
-      fxUtilities.initScene("panelSeleccion.fxml", this, fxPanel);
+      FxUtilities.initScene("panelSeleccion.fxml", this, fxPanel);
     });
     return fxPanel;
   }
