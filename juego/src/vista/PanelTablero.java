@@ -13,7 +13,7 @@ import java.util.Map;
 import javax.swing.Icon;
 import javax.swing.JPanel;
 
-import controlador.BotonListenerPadre;
+import controlador.AccionClicAbstract;
 import juego.Casilla;
 import juego.Direccion;
 import juego.Tablero;
@@ -50,7 +50,7 @@ public class PanelTablero extends JPanel {
    * @param cantColumnas
    *          cantidad total de columnas
    */
-  public PanelTablero(Tablero t, Recursos r, BotonListenerPadre accionBoton) {
+  public PanelTablero(Tablero t, Recursos r, AccionClicAbstract accionBoton) {
     this.fondoTablero = r.getImgFondo().getImage();
     this.setImgsCasilla(r);
 
@@ -66,7 +66,7 @@ public class PanelTablero extends JPanel {
     this.inicializar(accionBoton);
   }
   
-  public static final PanelTablero crearTablero(Tablero t, Recursos r, BotonListenerPadre accionBoton) {
+  public static final PanelTablero crearTablero(Tablero t, Recursos r, AccionClicAbstract accionBoton) {
     return new PanelTablero(t, r, accionBoton);
   }
 
@@ -141,7 +141,7 @@ public class PanelTablero extends JPanel {
    * @param casilla
    *          el tipo de casilla
    */
-  private void inicializarBoton(int fila, int columna, Casilla casilla, BotonListenerPadre accion) {
+  private void inicializarBoton(int fila, int columna, Casilla casilla, AccionClicAbstract accion) {
     CasillaButton boton = new CasillaButton(casilla, imgsCasilla);
     boton.addActionListener(accion);
     casillas[fila][columna] = boton;
@@ -176,7 +176,7 @@ public class PanelTablero extends JPanel {
    * Crea las casillas del tablero
    * @param accion 
    */
-  private void inicializar(BotonListenerPadre accion) {
+  private void inicializar(AccionClicAbstract accion) {
     for (int fila = 0; fila < filas; fila++) {
       for (int columna = 0; columna < columnas; columna++) {
         Casilla casilla = tablero.getCasilla(fila, columna);

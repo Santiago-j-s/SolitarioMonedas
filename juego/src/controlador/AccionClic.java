@@ -6,7 +6,7 @@ package controlador;
  * @author Dibez, Santana
  *
  */
-public class BotonListenerSinPregunta extends BotonListenerPadre {
+public class AccionClic extends AccionClicAbstract {
 
   /**
    * Constructor
@@ -14,7 +14,7 @@ public class BotonListenerSinPregunta extends BotonListenerPadre {
    * @param manejador
    * 
    */
-  public BotonListenerSinPregunta(ManejadorJuego manejador) {
+  public AccionClic(ManejadorJuego manejador) {
     super(manejador);
   }
 

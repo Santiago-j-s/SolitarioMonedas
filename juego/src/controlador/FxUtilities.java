@@ -6,7 +6,7 @@ import javafx.embed.swing.JFXPanel;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 
-public class fxUtilities {
+public class FxUtilities {
   public static Scene initScene(String path, Object controller) {
     FXMLLoader loader = new FXMLLoader();
     loader.setController(controller);

@@ -12,13 +12,13 @@ import pregunta.Observador;
  * 
  * @author Dibez, Santana
  */
-public abstract class BotonListenerPadre
+public abstract class AccionClicAbstract
     implements ActionListener, Observador {
 
   protected ManejadorJuego manejador;
   private CasillaButton casillaPresionada;
 
-  protected BotonListenerPadre(ManejadorJuego manejador) {
+  protected AccionClicAbstract(ManejadorJuego manejador) {
     this.manejador = manejador;
   }
 
