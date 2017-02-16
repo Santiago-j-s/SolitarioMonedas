@@ -44,9 +44,9 @@ public class FxPanelPregunta {
     Button b = (Button) e.getSource();
     boolean correcta = modelo.correcta(b.getText());
     if(correcta) {
-      controlador.correcto();
+      controlador.notifyCorrecto();
     } else {
-      controlador.incorrecto();
+      controlador.notifyIncorrecto();
     }
   }
 

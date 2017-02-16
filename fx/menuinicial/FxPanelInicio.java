@@ -11,16 +11,18 @@ import javafx.embed.swing.JFXPanel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import pregunta.Categorizable;
 import pregunta.FachadaPregunta;
 
-public class FxPanelInicio {
+public class FxPanelInicio implements Categorizable {
   private JFXPanel fxPanel = new JFXPanel();
   private final Logger logger = Logger.getLogger(getClass().getName());
+  private String categoria = "preguntas";
 
   @FXML
-  private Button categoria;
+  private Button categoriaButton;
   @FXML
-  private Button juego;
+  private Button juegoButton;
 
   public FxPanelInicio() {
     logger.info("Nuevo Panel Inicio");
@@ -35,14 +37,14 @@ public class FxPanelInicio {
     return fxPanel;
   }
 
-  private Container getVentana() {
+  public Container getVentana() {
     return fxPanel.getTopLevelAncestor();
   }
 
   @FXML
   public void listCategorias(ActionEvent e) {
     EventQueue.invokeLater(() -> {
-      FachadaPregunta.lanzarSeleccion();
+      FachadaPregunta.lanzarSeleccion(this);
     });
   }
 
@@ -50,7 +52,17 @@ public class FxPanelInicio {
   public void comenzarJuego(ActionEvent e) {
     EventQueue.invokeLater(() -> {
       Container ventana = getVentana();
-      new ManejadorJuego("preguntas", (VentanaPrincipal) ventana);
+      new ManejadorJuego(this.getCategoria(), (VentanaPrincipal) ventana);
     });
+  }
+
+  @Override
+  public void setCategoria(String categoria) {
+    this.categoria = categoria;
+  }
+
+  @Override
+  public String getCategoria() {
+    return this.categoria;
   }
 }

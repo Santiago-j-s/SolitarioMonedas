@@ -229,20 +229,23 @@ public class PanelTablero extends JPanel {
 
     if (direcciones.contains(Direccion.Derecha)) {
       blanco = this.getBoton(fila, columna + 2);
+      blanco.colorear(Color.GREEN);
     }
     if (direcciones.contains(Direccion.Izquierda)) {
       blanco = this.getBoton(fila, columna - 2);
+      blanco.colorear(Color.GREEN);
     }
     if (direcciones.contains(Direccion.Arriba)) {
       blanco = this.getBoton(fila - 2, columna);
+      blanco.colorear(Color.GREEN);
     }
     if (direcciones.contains(Direccion.Abajo)) {
       blanco = this.getBoton(fila + 2, columna);
+      blanco.colorear(Color.GREEN);
     }
     if(blanco == null) {
       throw new NullPointerException();
     }
-    
-    blanco.colorear(Color.GREEN);
+    this.repaint();
   }
 }

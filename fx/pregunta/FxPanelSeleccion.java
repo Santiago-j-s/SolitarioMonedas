@@ -4,44 +4,55 @@ import java.awt.EventQueue;
 import java.io.IOException;
 import java.nio.file.Path;
 
-import controlador.ManejadorJuego;
+import javax.swing.JFrame;
+
 import controlador.FxUtilities;
 import javafx.application.Platform;
 import javafx.embed.swing.JFXPanel;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
-import menuinicial.VentanaPrincipal;
 
 public class FxPanelSeleccion {
   private final JFXPanel fxPanel = new JFXPanel();
-  private final FxModeloSeleccion modelo;
+  private ModeloSeleccion modelo;
+  private final Categorizable categorizable;
 
   @FXML
   private ListView<String> listView;
   @FXML
   private Button iniciarJuego;
 
-  public FxPanelSeleccion(Path ruta) throws IOException {
-    modelo = new FxModeloSeleccion(ruta);
+  public FxPanelSeleccion(Path ruta, Categorizable categorizable) throws IOException {
+    this.start(ruta);
+    this.categorizable = categorizable;
   }
   
   @FXML
-  public void comenzarJuego() {
+  public void setCategoria() {
     EventQueue.invokeLater(() -> {
-      new ManejadorJuego(listView.getSelectionModel().getSelectedItem(),
-          (VentanaPrincipal) fxPanel.getTopLevelAncestor());
+      this.categorizable.setCategoria(this.getCategoria());
+      ((JFrame) fxPanel.getTopLevelAncestor()).dispose();
     });
   }
+  
+  public String getCategoria() {
+    return this.modelo.getSelected();
+  }
 
-  public JFXPanel start() {
+  public void start(Path ruta) {
     Platform.runLater(() -> {
       FxUtilities.initScene("panelSeleccion.fxml", this, fxPanel);
+      try {
+        this.modelo = new ModeloSeleccion(listView, ruta);
+      } catch (IOException e) {
+        System.exit(1);
+        e.printStackTrace();
+      }
     });
-    return fxPanel;
   }
-
-  public void initialize() {
-    modelo.bind(listView);
+  
+  public JFXPanel getPanel() {
+    return fxPanel;
   }
 }

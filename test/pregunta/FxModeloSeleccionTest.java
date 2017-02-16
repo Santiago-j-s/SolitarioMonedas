@@ -10,15 +10,18 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
+import javafx.scene.control.ListView;
+
 public class FxModeloSeleccionTest {
   
   private FxModeloSeleccion modelo;
+  private ListView<String> listView = new ListView<String>();
   Path path;
   
   @Before
   public void setUp() throws IOException {
     path = Paths.get("juego", "src", "recursos", "preguntas");
-    modelo = new FxModeloSeleccion(path);
+    modelo = new FxModeloSeleccion(this.listView, path);
   }
   
   @Test
@@ -30,6 +33,6 @@ public class FxModeloSeleccionTest {
   @Test(expected = IOException.class)
   public void testObtenerCategorias2() throws IOException {
     path = Paths.get("juego", "src", "recursos", "preguntas2");
-    modelo = new FxModeloSeleccion(path);
+    modelo = new FxModeloSeleccion(this.listView, path);
   }
 }

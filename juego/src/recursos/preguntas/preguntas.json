@@ -1,6 +1,6 @@
 [
 	{
-		"pregunta": "¿Quién creo la WWW?",
+		"enunciado": "¿Quién creo la WWW?",
 		"opciones": [
 			{
 				"tituloOpcion": "Tim Berners Lee",
@@ -17,7 +17,7 @@
 		]
 	},
 	{
-		"pregunta": "¿Cuántos bits contiene una dirección IP?",
+		"enunciado": "¿Cuántos bits contiene una dirección IP?",
 		"opciones": [
 			{
 				"tituloOpcion": "32 bits",
@@ -34,7 +34,7 @@
 		]
 	},
 	{
-		"pregunta": "¿Cuántas capas considera el modelo OSI/ISO?",
+		"enunciado": "¿Cuántas capas considera el modelo OSI/ISO?",
 		"opciones": [
 			{
 				"tituloOpcion": "7 capas",
@@ -51,7 +51,7 @@
 		]
 	},
 	{
-		"pregunta": "¿Quien es considerado/a el/la primer/a programador/a de la historia?",
+		"enunciado": "¿Quien es considerado/a el/la primer/a programador/a de la historia?",
 		"opciones": [
 			{
 				"tituloOpcion": "Ada Lovelace",
@@ -68,7 +68,7 @@
 		]
 	},
 	{
-		"pregunta": "¿Cuál de las siguientes NO es una topología de red?",
+		"enunciado": "¿Cuál de las siguientes NO es una topología de red?",
 		"opciones": [
 			{
 				"tituloOpcion": "Prisma",
@@ -85,7 +85,7 @@
 		]
 	},
 	{
-		"pregunta": "¿Cómo se llama el protocolo destinado a reemplazar IPV4?",
+		"enunciado": "¿Cómo se llama el protocolo destinado a reemplazar IPV4?",
 		"opciones": [
 			{
 				"tituloOpcion": "IPv6",
@@ -102,7 +102,7 @@
 		]
 	},
 	{
-		"pregunta": "¿Qué protocolos de transporte contempla el modelo TCP/IP?",
+		"enunciado": "¿Qué protocolos de transporte contempla el modelo TCP/IP?",
 		"opciones": [
 			{
 				"tituloOpcion": "TCP - IP",
@@ -119,7 +119,7 @@
 		]
 	},
 	{
-		"pregunta": "¿Qué componente de una PC ejecuta las instrucciones?",
+		"enunciado": "¿Qué componente de una PC ejecuta las instrucciones?",
 		"opciones": [
 			{
 				"tituloOpcion": "Procesador",
@@ -136,7 +136,7 @@
 		]
 	},
 	{
-		"pregunta": "¿Qué condiciones tienen que cumplir las bases de datos?",
+		"enunciado": "¿Qué condiciones tienen que cumplir las bases de datos?",
 		"opciones": [
 			{
 				"tituloOpcion": "ACID",
@@ -153,7 +153,7 @@
 		]
 	},
 	{
-		"pregunta": "¿A cuántos bits equivale un byte?",
+		"enunciado": "¿A cuántos bits equivale un byte?",
 		"opciones": [
 			{
 				"tituloOpcion": "8",
@@ -170,7 +170,7 @@
 		]
 	},
 	{
-		"pregunta": "¿Cuántas direcciones de memoria va a tener una PC con un bus de direcciones de 32 bits?",
+		"enunciado": "¿Cuántas direcciones de memoria va a tener una PC con un bus de direcciones de 32 bits?",
 		"opciones": [
 			{
 				"tituloOpcion": "4 MB",
@@ -187,7 +187,7 @@
 		]
 	},
 	{
-		"pregunta": "¿Cuántos bytes tiene un carácter ASCII?",
+		"enunciado": "¿Cuántos bytes tiene un carácter ASCII?",
 		"opciones": [
 			{
 				"tituloOpcion": "1",
@@ -204,7 +204,7 @@
 		]
 	},
 	{
-		"pregunta": "¿Qué significan las siglas ASCII?",
+		"enunciado": "¿Qué significan las siglas ASCII?",
 		"opciones": [
 			{
 				"tituloOpcion": "American Standard Code for Information Interchange",
@@ -221,7 +221,7 @@
 		]
 	},
 	{
-		"pregunta": "Un sistema numérico de base 4 ¿qué numerales contiene?",
+		"enunciado": "Un sistema numérico de base 4 ¿qué numerales contiene?",
 		"opciones": [
 			{
 				"tituloOpcion": "0, 1, 2, 3",
@@ -238,7 +238,7 @@
 		]
 	},
 	{
-		"pregunta": "¿Cuál de los siguientes tipos de tecnología es volátil?",
+		"enunciado": "¿Cuál de los siguientes tipos de tecnología es volátil?",
 		"opciones": [
 			{
 				"tituloOpcion": "RAM",
@@ -255,7 +255,7 @@
 		]
 	},
 	{
-		"pregunta": "El número binario 1000 ¿qué número es en formato decimal?",
+		"enunciado": "El número binario 1000 ¿qué número es en formato decimal?",
 		"opciones": [
 			{
 				"tituloOpcion": "8",
@@ -272,7 +272,7 @@
 		]
 	},
 	{
-		"pregunta": "¿Cuál de las siguientes NO es una capa del modelo OSI/ISO?",
+		"enunciado": "¿Cuál de las siguientes NO es una capa del modelo OSI/ISO?",
 		"opciones": [
 			{
 				"tituloOpcion": "Host",
@@ -289,7 +289,7 @@
 		]
 	},
 	{
-		"pregunta": "¿Cuál de los siguientes  tipos de red es una red de área local?",
+		"enunciado": "¿Cuál de los siguientes  tipos de red es una red de área local?",
 		"opciones": [
 			{
 				"tituloOpcion": "LAN",
@@ -306,7 +306,7 @@
 		]
 	},
 	{
-		"pregunta": "¿Cuál fue la idea más importante detrás de la arquitectura de Von Neumann?",
+		"enunciado": "¿Cuál fue la idea más importante detrás de la arquitectura de Von Neumann?",
 		"opciones": [
 			{
 				"tituloOpcion": "Programa almacenado en memoria",
@@ -323,7 +323,7 @@
 		]
 	},
 	{
-		"pregunta": "¿Cómo se denomina al formato usado actualmente para representar números enteros?",
+		"enunciado": "¿Cómo se denomina al formato usado actualmente para representar números enteros?",
 		"opciones": [
 			{
 				"tituloOpcion": "Complemento a dos",
