@@ -10,7 +10,7 @@ import java.util.List;
  *
  */
 class Pregunta {
-  private String pregunta;
+  private String enunciado;
   private ArrayList<Opcion> opciones = new ArrayList<Opcion>();
 
   /**
@@ -37,7 +37,7 @@ class Pregunta {
    * @return una cadena con la pregunta
    */
   String getPregunta() {
-    return pregunta;
+    return enunciado;
   }
 
   /*
@@ -92,7 +92,7 @@ class Pregunta {
    *          - la cadena con la pregunta
    */
   void setPregunta(String pregunta) {
-    this.pregunta = pregunta;
+    this.enunciado = pregunta;
   }
   
   void setOpciones(String opcion1, String opcion2, String opcion3) {

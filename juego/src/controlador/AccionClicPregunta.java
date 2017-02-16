@@ -24,9 +24,14 @@ public class AccionClicPregunta extends AccionClicAbstract
 
   private final FachadaPregunta hacerPregunta;
 
-  public AccionClicPregunta(ManejadorJuego manejador, String filename) {
+  public AccionClicPregunta(ManejadorJuego manejador, String categoria) {
     super(manejador);
-    hacerPregunta = new FachadaPregunta(filename);
+    hacerPregunta = new FachadaPregunta();
+    hacerPregunta.setCategoria(categoria);
+  }
+  
+  public void setCategoria(String categoria) {
+    this.hacerPregunta.setCategoria(categoria);
   }
 
   /**

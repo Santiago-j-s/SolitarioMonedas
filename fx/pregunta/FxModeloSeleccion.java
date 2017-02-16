@@ -12,10 +12,21 @@ import javafx.collections.FXCollections;
 import javafx.scene.control.ListView;
 
 public class FxModeloSeleccion {
-  private final ListProperty<String> listaCategorias;
+  private final ListProperty<String> listaCategorias = new SimpleListProperty<String>();
+  private final ListView<String> listView;
   
-  public FxModeloSeleccion(Path ruta) throws IOException {
-    listaCategorias = new SimpleListProperty<String>();
+  
+  public FxModeloSeleccion(ListView<String> list, Path ruta) throws IOException {
+    this.listView = list;
+    this.setCategorias(ruta);
+    this.bind();
+  }
+  
+  public String getSelected() {
+    return this.listView.getSelectionModel().getSelectedItem();
+  }
+
+  private void setCategorias(Path ruta) throws IOException {
     List<String> categorias = obtenerCategorias(ruta);
     listaCategorias.set(FXCollections.observableArrayList(categorias));
   }
@@ -28,7 +39,7 @@ public class FxModeloSeleccion {
     return categorias;
   }
   
-  public void bind(ListView<String> list) {
-    list.setItems(listaCategorias);
+  private void bind() {
+    this.listView.setItems(listaCategorias);
   }
 }

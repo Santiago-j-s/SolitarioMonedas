@@ -12,6 +12,7 @@ public class FxUtilities {
     loader.setController(controller);
     loader.setLocation(controller.getClass().getResource(path));
     Scene scene = null;
+    
     try {
       scene = new Scene(loader.load());
     } catch (IOException e) {

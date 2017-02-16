@@ -34,12 +34,13 @@ public class ManejadorJuego {
   private PanelTablero panelTablero;
   private JFrame ventanaPrincipal;
   private final Logger logger = Logger.getLogger(getClass().getName());
+  private final AccionClicAbstract accionBoton;
 
   /**
    * Crea y muestra la ventana principal con el tablero de juego.
    */
-  public ManejadorJuego(String filename, VentanaPrincipal ventana) {
-    AccionClicAbstract accionBoton = new AccionClicPregunta(this, filename);
+  public ManejadorJuego(String categoria, VentanaPrincipal ventana) {
+    this.accionBoton = new AccionClicPregunta(this, categoria);
     Recursos recursos = ventana.getRecursos();
     
     this.inicializarPanelTablero(accionBoton, recursos);
@@ -48,7 +49,7 @@ public class ManejadorJuego {
   }
 
   public ManejadorJuego(VentanaPrincipal ventana) {
-    AccionClicAbstract accionBoton = new AccionClic(this);
+    accionBoton = new AccionClic(this);
     Recursos recursos = ventana.getRecursos();
     
     this.inicializarPanelTablero(accionBoton, recursos);
@@ -62,7 +63,7 @@ public class ManejadorJuego {
     ventana.mostrarJuego(panelJuego);
   }
   
-  public void verificarFinJuego() {
+  private void verificarFinJuego() {
     if(juego.victoria()) {
       JOptionPane.showMessageDialog(ventanaPrincipal, "Felicidades, ha ganado.");
     } else if(juego.derrota()) {
@@ -70,7 +71,7 @@ public class ManejadorJuego {
     }
   }
   
-  public Direccion preguntarDireccion(int fila, int columna) {
+  private Direccion preguntarDireccion(int fila, int columna) {
     ArrayList<Direccion> direcciones = juego.direccionesSalto(fila, columna);
     logger.warning(direcciones.toString());
     panelTablero.colorearDireccionesSalto(panelTablero.getBoton(fila, columna), direcciones);
@@ -122,7 +123,7 @@ public class ManejadorJuego {
    * @param columna
    * @param d
    */
-  public void saltar(int fila, int columna, Direccion d) {
+  private void saltar(int fila, int columna, Direccion d) {
     this.juego.saltar(fila, columna, d);
     this.panelTablero.actualizar();
   }
@@ -137,11 +138,15 @@ public class ManejadorJuego {
   /**
    * Prepara el panel con la interfaz gráfica del tablero según el modelo
    */
-private void inicializarPanelTablero(AccionClicAbstract escuchadorBoton, Recursos recursos) {
+  private void inicializarPanelTablero(AccionClicAbstract escuchadorBoton, Recursos recursos) {
     juego = new Juego();
     Tablero tablero = juego.getTablero();
     this.panelTablero = PanelTablero.crearTablero(tablero, recursos, escuchadorBoton);
     
     panelTablero.setVisible(true);
+  }
+  
+  public void setCategoria(String categoria) throws Exception {
+    ((AccionClicPregunta) this.accionBoton).setCategoria(categoria);
   }
 }

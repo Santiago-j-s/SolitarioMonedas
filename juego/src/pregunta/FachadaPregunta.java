@@ -17,18 +17,18 @@ import javafx.embed.swing.JFXPanel;
  */
 public class FachadaPregunta {
 
-  private final Preguntas preguntas;
+  private final Preguntas preguntas = new Preguntas();
   private Pregunta preguntaActual;
   private final FxPanelPregunta app;
   private final JFXPanel panel;
   private final List<Observador> observadores = new ArrayList<Observador>();
+  private String categoria;
   private VentanaPregunta ventana;
 
   /**
    * Inicializa las preguntas
    */
-  public FachadaPregunta(String filename) {
-    preguntas = new Preguntas(filename);
+  public FachadaPregunta() {
     app = new FxPanelPregunta(this);
     panel = app.start();
   }
@@ -62,24 +62,34 @@ public class FachadaPregunta {
     observadores.clear();
   }
   
-  public void correcto() {
+  public void notifyCorrecto() {
     observadores.forEach(Observador::correcto);
   }
   
-  public void incorrecto() {
+  public void notifyIncorrecto() {
     observadores.forEach(Observador::incorrecto);
   }
   
   /**
    * Lanza la ventana que permite seleccionar una pregunta.
    */
-  public static void lanzarSeleccion() {
+  public static void lanzarSeleccion(Categorizable categorizable) {
     Path path = Paths.get("juego", "src", "recursos", "preguntas");
     try {
-      JFXPanel panel = new FxPanelSeleccion(path).start();
+      FxPanelSeleccion controllerSeleccion= new FxPanelSeleccion(path, categorizable);
+      JFXPanel panel = controllerSeleccion.getPanel();
       new VentanaSeleccion(panel);
     } catch (IOException e) {
       e.printStackTrace();
     }
+  }
+  
+  public String getCategoria() {
+    return categoria;
+  }
+
+  public void setCategoria(String categoria) {
+    this.categoria = categoria;
+    preguntas.setCategoria(categoria);
   }
 }

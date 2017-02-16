@@ -1,6 +1,6 @@
 [
 	{
-		"pregunta": "prueba1",
+		"enunciado": "prueba1",
 		"opciones": [
 			{
 				"tituloOpcion": "Tim Berners Lee",
@@ -17,7 +17,7 @@
 		]
 	},
 	{
-		"pregunta": "prueba2",
+		"enunciado": "prueba2",
 		"opciones": [
 			{
 				"tituloOpcion": "32 bits",
@@ -34,7 +34,7 @@
 		]
 	},
 	{
-		"pregunta": "prueba3",
+		"enunciado": "prueba3",
 		"opciones": [
 			{
 				"tituloOpcion": "7 capas",
@@ -51,7 +51,7 @@
 		]
 	},
 	{
-		"pregunta": "prueba4",
+		"enunciado": "prueba4",
 		"opciones": [
 			{
 				"tituloOpcion": "Ada Lovelace",
@@ -68,7 +68,7 @@
 		]
 	},
 	{
-		"pregunta": "prueba5",
+		"enunciado": "prueba5",
 		"opciones": [
 			{
 				"tituloOpcion": "Prisma",
@@ -85,7 +85,7 @@
 		]
 	},
 	{
-		"pregunta": "prueba6",
+		"enunciado": "prueba6",
 		"opciones": [
 			{
 				"tituloOpcion": "IPv6",
@@ -102,7 +102,7 @@
 		]
 	},
 	{
-		"pregunta": "prueba7",
+		"enunciado": "prueba7",
 		"opciones": [
 			{
 				"tituloOpcion": "TCP - IP",
@@ -119,7 +119,7 @@
 		]
 	},
 	{
-		"pregunta": "prueba8",
+		"enunciado": "prueba8",
 		"opciones": [
 			{
 				"tituloOpcion": "Procesador",
@@ -136,7 +136,7 @@
 		]
 	},
 	{
-		"pregunta": "prueba9",
+		"enunciado": "prueba9",
 		"opciones": [
 			{
 				"tituloOpcion": "ACID",
@@ -153,7 +153,7 @@
 		]
 	},
 	{
-		"pregunta": "prueba10",
+		"enunciado": "prueba10",
 		"opciones": [
 			{
 				"tituloOpcion": "8",
@@ -170,7 +170,7 @@
 		]
 	},
 	{
-		"pregunta": "prueba11",
+		"enunciado": "prueba11",
 		"opciones": [
 			{
 				"tituloOpcion": "4 MB",
@@ -187,7 +187,7 @@
 		]
 	},
 	{
-		"pregunta": "prueba12",
+		"enunciado": "prueba12",
 		"opciones": [
 			{
 				"tituloOpcion": "1",
@@ -204,7 +204,7 @@
 		]
 	},
 	{
-		"pregunta": "prueba13",
+		"enunciado": "prueba13",
 		"opciones": [
 			{
 				"tituloOpcion": "American Standard Code for Information Interchange",
@@ -221,7 +221,7 @@
 		]
 	},
 	{
-		"pregunta": "Un sistema numérico de base 4 ¿qué numerales contiene?",
+		"enunciado": "Un sistema numérico de base 4 ¿qué numerales contiene?",
 		"opciones": [
 			{
 				"tituloOpcion": "0, 1, 2, 3",
@@ -238,7 +238,7 @@
 		]
 	},
 	{
-		"pregunta": "¿Cuál de los siguientes tipos de tecnología es volátil?",
+		"enunciado": "¿Cuál de los siguientes tipos de tecnología es volátil?",
 		"opciones": [
 			{
 				"tituloOpcion": "RAM",
@@ -255,7 +255,7 @@
 		]
 	},
 	{
-		"pregunta": "El número binario 1000 ¿qué número es en formato decimal?",
+		"enunciado": "El número binario 1000 ¿qué número es en formato decimal?",
 		"opciones": [
 			{
 				"tituloOpcion": "8",
@@ -272,7 +272,7 @@
 		]
 	},
 	{
-		"pregunta": "¿Cuál de las siguientes NO es una capa del modelo OSI/ISO?",
+		"enunciado": "¿Cuál de las siguientes NO es una capa del modelo OSI/ISO?",
 		"opciones": [
 			{
 				"tituloOpcion": "Host",
@@ -289,7 +289,7 @@
 		]
 	},
 	{
-		"pregunta": "¿Cuál de los siguientes  tipos de red es una red de área local?",
+		"enunciado": "¿Cuál de los siguientes  tipos de red es una red de área local?",
 		"opciones": [
 			{
 				"tituloOpcion": "LAN",
@@ -306,7 +306,7 @@
 		]
 	},
 	{
-		"pregunta": "¿Cuál fue la idea más importante detrás de la arquitectura de Von Neumann?",
+		"enunciado": "¿Cuál fue la idea más importante detrás de la arquitectura de Von Neumann?",
 		"opciones": [
 			{
 				"tituloOpcion": "Programa almacenado en memoria",
@@ -323,7 +323,7 @@
 		]
 	},
 	{
-		"pregunta": "¿Cómo se denomina al formato usado actualmente para representar números enteros?",
+		"enunciado": "¿Cómo se denomina al formato usado actualmente para representar números enteros?",
 		"opciones": [
 			{
 				"tituloOpcion": "Complemento a dos",

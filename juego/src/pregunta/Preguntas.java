@@ -23,25 +23,17 @@ import com.google.gson.reflect.TypeToken;
  * @author Dibez, Santana
  *
  */
-class Preguntas {
+class Preguntas implements Categorizable {
   List<Pregunta> historico_preguntas = new ArrayList<Pregunta>();
-  String archivo_preguntas;
+  String categoria;
   String recursos_path = Paths.get("juego", "src", "recursos", "preguntas")
       .toString();
-
-  /**
-   * Inicializa las preguntas
-   */
-  Preguntas(String filename) {
-    this.archivo_preguntas = filename.concat(".json");
-    this.inicializarPreguntas();
-  }
 
   /**
    * Obtiene las preguntas desde un archivo json
    */
   private void inicializarPreguntas() {
-    String path = Paths.get(recursos_path, archivo_preguntas).toString();
+    String path = Paths.get(recursos_path, categoria.concat(".json")).toString();
     File f = new File(path);
     try {
       BufferedReader br = new BufferedReader(new FileReader(f));
@@ -74,7 +66,7 @@ class Preguntas {
   @SuppressWarnings("unused")
   private void serialize(String filename) {
     String jsonString = new Gson().toJson(historico_preguntas);
-    String path = Paths.get(recursos_path, archivo_preguntas).toString();
+    String path = Paths.get(recursos_path, categoria.concat(".json")).toString();
 
     try (BufferedWriter bw = new BufferedWriter(
         new FileWriter(new File(path)))) {
@@ -82,5 +74,16 @@ class Preguntas {
     } catch (IOException e) {
       e.printStackTrace();
     }
+  }
+
+  @Override
+  public void setCategoria(String categoria) {
+    this.categoria = categoria;
+    this.inicializarPreguntas();
+  }
+  
+  @Override
+  public String getCategoria() {
+    return categoria;
   }
 }
