@@ -26,60 +26,24 @@ public class FxModeloPregunta {
     this.setPregunta(pregunta.getPregunta());
     List<Opcion> list = new ArrayList<Opcion>(pregunta.getOpciones());
     Collections.shuffle(list);
-    this.setOpcion1(list.get(0).toString());
-    this.setOpcion2(list.get(1).toString());
-    this.setOpcion3(list.get(2).toString());
+    this.opcion1.set(list.get(0).toString());
+    this.opcion2.set(list.get(1).toString());
+    this.opcion3.set(list.get(2).toString());
   }
 
+  public void bind(StringProperty otraPregunta, StringProperty otraOpcion1, StringProperty otraOpcion2,
+      StringProperty otraOpcion3) {
+    otraPregunta.bind(this.pregunta);
+    otraOpcion1.bind(this.opcion1);
+    otraOpcion2.bind(this.opcion2);
+    otraOpcion3.bind(this.opcion3);
+  }
+  
   public boolean correcta(String respuesta) {
     return this.modeloPregunta.correcta(respuesta);
   }
 
-  public String getPregunta() {
-    return pregunta.get();
-  }
-
-  public StringProperty getPropertyPregunta() {
-    return pregunta;
-  }
-
   public final void setPregunta(String pregunta) {
     this.pregunta.set(pregunta);
-  }
-
-  public final String getOpcion1() {
-    return opcion1.get();
-  }
-
-  public StringProperty getPropertyOpcion1() {
-    return opcion1;
-  }
-
-  public void setOpcion1(String opcion) {
-    this.opcion1.set(opcion);
-  }
-
-  public String getOpcion2() {
-    return opcion2.get();
-  }
-
-  public StringProperty getPropertyOpcion2() {
-    return opcion2;
-  }
-
-  public void setOpcion2(String opcion) {
-    this.opcion2.set(opcion);
-  }
-
-  public String getOpcion3() {
-    return opcion3.get();
-  }
-
-  public StringProperty getPropertyOpcion3() {
-    return opcion3;
-  }
-
-  public void setOpcion3(String opcion) {
-    this.opcion3.set(opcion);
   }
 }

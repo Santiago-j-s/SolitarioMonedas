@@ -1,0 +1,342 @@
+[
+	{
+		"enunciado": "prueba1",
+		"opciones": [
+			{
+				"tituloOpcion": "Tim Berners Lee",
+				"esCorrecta": true
+			},
+			{
+				"tituloOpcion": "Bill Gates",
+				"esCorrecta": false
+			},
+			{
+				"tituloOpcion": "Steve Jobs",
+				"esCorrecta": false
+			}
+		]
+	},
+	{
+		"enunciado": "prueba2",
+		"opciones": [
+			{
+				"tituloOpcion": "32 bits",
+				"esCorrecta": true
+			},
+			{
+				"tituloOpcion": "16 bits",
+				"esCorrecta": false
+			},
+			{
+				"tituloOpcion": "8 bits",
+				"esCorrecta": false
+			}
+		]
+	},
+	{
+		"enunciado": "prueba3",
+		"opciones": [
+			{
+				"tituloOpcion": "7 capas",
+				"esCorrecta": true
+			},
+			{
+				"tituloOpcion": "5 capas",
+				"esCorrecta": false
+			},
+			{
+				"tituloOpcion": "4 capas",
+				"esCorrecta": false
+			}
+		]
+	},
+	{
+		"enunciado": "prueba4",
+		"opciones": [
+			{
+				"tituloOpcion": "Ada Lovelace",
+				"esCorrecta": true
+			},
+			{
+				"tituloOpcion": "Charles Babbage",
+				"esCorrecta": false
+			},
+			{
+				"tituloOpcion": "Alan Turing",
+				"esCorrecta": false
+			}
+		]
+	},
+	{
+		"enunciado": "prueba5",
+		"opciones": [
+			{
+				"tituloOpcion": "Prisma",
+				"esCorrecta": true
+			},
+			{
+				"tituloOpcion": "Estrella",
+				"esCorrecta": false
+			},
+			{
+				"tituloOpcion": "Anillo",
+				"esCorrecta": false
+			}
+		]
+	},
+	{
+		"enunciado": "prueba6",
+		"opciones": [
+			{
+				"tituloOpcion": "IPv6",
+				"esCorrecta": true
+			},
+			{
+				"tituloOpcion": "IPv5",
+				"esCorrecta": false
+			},
+			{
+				"tituloOpcion": "IPv7",
+				"esCorrecta": false
+			}
+		]
+	},
+	{
+		"enunciado": "prueba7",
+		"opciones": [
+			{
+				"tituloOpcion": "TCP - IP",
+				"esCorrecta": true
+			},
+			{
+				"tituloOpcion": "TCP - UDP",
+				"esCorrecta": false
+			},
+			{
+				"tituloOpcion": "TCP - DDP",
+				"esCorrecta": false
+			}
+		]
+	},
+	{
+		"enunciado": "prueba8",
+		"opciones": [
+			{
+				"tituloOpcion": "Procesador",
+				"esCorrecta": true
+			},
+			{
+				"tituloOpcion": "Memoria",
+				"esCorrecta": false
+			},
+			{
+				"tituloOpcion": "Unidad E/S",
+				"esCorrecta": false
+			}
+		]
+	},
+	{
+		"enunciado": "prueba9",
+		"opciones": [
+			{
+				"tituloOpcion": "ACID",
+				"esCorrecta": true
+			},
+			{
+				"tituloOpcion": "BASIC",
+				"esCorrecta": false
+			},
+			{
+				"tituloOpcion": "SOLID",
+				"esCorrecta": false
+			}
+		]
+	},
+	{
+		"enunciado": "prueba10",
+		"opciones": [
+			{
+				"tituloOpcion": "8",
+				"esCorrecta": true
+			},
+			{
+				"tituloOpcion": "4",
+				"esCorrecta": false
+			},
+			{
+				"tituloOpcion": "16",
+				"esCorrecta": false
+			}
+		]
+	},
+	{
+		"enunciado": "prueba11",
+		"opciones": [
+			{
+				"tituloOpcion": "4 MB",
+				"esCorrecta": true
+			},
+			{
+				"tituloOpcion": "1 MB",
+				"esCorrecta": false
+			},
+			{
+				"tituloOpcion": "2 MB",
+				"esCorrecta": false
+			}
+		]
+	},
+	{
+		"enunciado": "prueba12",
+		"opciones": [
+			{
+				"tituloOpcion": "1",
+				"esCorrecta": true
+			},
+			{
+				"tituloOpcion": "2",
+				"esCorrecta": false
+			},
+			{
+				"tituloOpcion": "4",
+				"esCorrecta": false
+			}
+		]
+	},
+	{
+		"enunciado": "prueba13",
+		"opciones": [
+			{
+				"tituloOpcion": "American Standard Code for Information Interchange",
+				"esCorrecta": true
+			},
+			{
+				"tituloOpcion": "Asociation Standard Code for Information Interchange",
+				"esCorrecta": false
+			},
+			{
+				"tituloOpcion": "ANSI Standard Code for Information Interchange",
+				"esCorrecta": false
+			}
+		]
+	},
+	{
+		"enunciado": "Un sistema numérico de base 4 ¿qué numerales contiene?",
+		"opciones": [
+			{
+				"tituloOpcion": "0, 1, 2, 3",
+				"esCorrecta": true
+			},
+			{
+				"tituloOpcion": "1, 2, 3, 4",
+				"esCorrecta": false
+			},
+			{
+				"tituloOpcion": "1, 5, 9, 13",
+				"esCorrecta": false
+			}
+		]
+	},
+	{
+		"enunciado": "¿Cuál de los siguientes tipos de tecnología es volátil?",
+		"opciones": [
+			{
+				"tituloOpcion": "RAM",
+				"esCorrecta": true
+			},
+			{
+				"tituloOpcion": "ROM",
+				"esCorrecta": false
+			},
+			{
+				"tituloOpcion": "EPROM",
+				"esCorrecta": false
+			}
+		]
+	},
+	{
+		"enunciado": "El número binario 1000 ¿qué número es en formato decimal?",
+		"opciones": [
+			{
+				"tituloOpcion": "8",
+				"esCorrecta": true
+			},
+			{
+				"tituloOpcion": "10",
+				"esCorrecta": false
+			},
+			{
+				"tituloOpcion": "12",
+				"esCorrecta": false
+			}
+		]
+	},
+	{
+		"enunciado": "¿Cuál de las siguientes NO es una capa del modelo OSI/ISO?",
+		"opciones": [
+			{
+				"tituloOpcion": "Host",
+				"esCorrecta": true
+			},
+			{
+				"tituloOpcion": "Transporte",
+				"esCorrecta": false
+			},
+			{
+				"tituloOpcion": "Red",
+				"esCorrecta": false
+			}
+		]
+	},
+	{
+		"enunciado": "¿Cuál de los siguientes  tipos de red es una red de área local?",
+		"opciones": [
+			{
+				"tituloOpcion": "LAN",
+				"esCorrecta": true
+			},
+			{
+				"tituloOpcion": "WAN",
+				"esCorrecta": false
+			},
+			{
+				"tituloOpcion": "MAN",
+				"esCorrecta": false
+			}
+		]
+	},
+	{
+		"enunciado": "¿Cuál fue la idea más importante detrás de la arquitectura de Von Neumann?",
+		"opciones": [
+			{
+				"tituloOpcion": "Programa almacenado en memoria",
+				"esCorrecta": true
+			},
+			{
+				"tituloOpcion": "Instrucciones secuenciales",
+				"esCorrecta": false
+			},
+			{
+				"tituloOpcion": "Computadora programable",
+				"esCorrecta": false
+			}
+		]
+	},
+	{
+		"enunciado": "¿Cómo se denomina al formato usado actualmente para representar números enteros?",
+		"opciones": [
+			{
+				"tituloOpcion": "Complemento a dos",
+				"esCorrecta": true
+			},
+			{
+				"tituloOpcion": "Complemento a uno",
+				"esCorrecta": false
+			},
+			{
+				"tituloOpcion": "Magnitud y signo",
+				"esCorrecta": false
+			}
+		]
+	}
+]

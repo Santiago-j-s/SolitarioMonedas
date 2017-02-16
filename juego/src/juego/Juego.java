@@ -1,7 +1,6 @@
 package juego;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * La clase Tablero permite instanciar un objeto tablero Un objeto tablero puede
@@ -19,7 +18,7 @@ public class Juego {
 
   private int cantSaltos;
   
-  private static final int SALTOS_PARA_PREGUNTA = 3;
+  private static final int SALTOS_PARA_PREGUNTA = 2;
 
   /**
    * Constructor. Inicializa un tablero de juego. La cantidad de monedas inicial
@@ -112,9 +111,6 @@ public class Juego {
    *         contrario.
    */
   public boolean puedeSaltar(int fila, int columna, Direccion direccion) {
-
-    Tablero tablero = this.getTablero();
-
     switch (direccion) {
     case Arriba:
       return tablero.esMoneda(fila, columna)
@@ -170,7 +166,6 @@ public class Juego {
    * @return
    */
   public boolean tiempoPregunta() {
-    int cantSaltos = this.getCantSaltos();
     return (cantSaltos % SALTOS_PARA_PREGUNTA == 0);
   }
 
@@ -194,8 +189,6 @@ public class Juego {
    * @param cadenaDireccion
    */
   public void saltar(int fila, int columna, Direccion direccion) {
-    Tablero tablero = this.getTablero();
-
     if (puedeSaltar(fila, columna, direccion)) {
       tablero.setCantMonedas(tablero.getCantMonedas() - 1);
       tablero.setCantVacias(tablero.getCantVacias() + 1);
@@ -232,10 +225,7 @@ public class Juego {
   /**
    * @return true si queda una sola moneda, false en caso contrario
    */
-  private boolean victoria() {
-
-    Tablero tablero = this.getTablero();
-
+  public boolean victoria() {
     if (tablero.getCantMonedas() == 1)
       return true;
     else
@@ -246,10 +236,7 @@ public class Juego {
    * @return true si ninguna moneda puede saltar en ninguna dirección. false si
    *         al menos una moneda puede saltar en alguna dirección.
    */
-  private boolean derrota() {
-
-    Tablero tablero = this.getTablero();
-
+  public boolean derrota() {
     for (int fila = 0; fila < tablero.getCantFilas(); fila++) {
       for (int columna = 0; columna < tablero.getCantColumnas(); columna++) {
         if (this.puedeSaltar(fila, columna)) {
@@ -261,18 +248,11 @@ public class Juego {
     return true;
   }
   
-  /**
-   * Retorna el estado actual del juego
-   * @return 
-   */
-  public EstadoJuego estadoJuego() {
-    EstadoJuego estado = EstadoJuego.EnProgreso;
-    if (victoria()) {
-      estado = EstadoJuego.Victoria;
-    } else if (derrota()) {
-      estado = EstadoJuego.Derrota;
+  public boolean fin() {
+    if(victoria() || derrota()) {
+      return true;
+    } else {
+      return false;
     }
-    
-    return estado;
   }
 }

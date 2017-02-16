@@ -6,15 +6,12 @@ import javax.swing.SwingUtilities;
 import javafx.application.Platform;
 import javafx.embed.swing.JFXPanel;
 
-class VentanaPregunta {
-
+public class VentanaSeleccion {
   private JFrame frame;
-
-  VentanaPregunta(JFXPanel panel) {
-    frame = new JFrame("Pregunta");
-    //frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+  
+  public VentanaSeleccion(JFXPanel panel) {
+    frame = new JFrame("Seleccionar Categoría");
     frame.add(panel);
-    frame.setResizable(true);
     frame.setVisible(true);
     frame.setAlwaysOnTop(true);
     Platform.runLater(() -> {
@@ -22,9 +19,5 @@ class VentanaPregunta {
         frame.pack();
       });
     });
-  }
-
-  void cerrar() {
-    this.frame.dispose();
   }
 }
