@@ -1,12 +1,9 @@
 package pregunta;
 
 import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.List;
 
-import javafx.embed.swing.JFXPanel;
+import vista.Recursos;
 
 /**
  * Clase que muestra una pregunta en pantalla y las opciones disponibles para
@@ -16,21 +13,14 @@ import javafx.embed.swing.JFXPanel;
  *
  */
 public class FachadaPregunta {
-
-  private final Preguntas preguntas = new Preguntas();
-  private Pregunta preguntaActual;
-  private final FxPanelPregunta app;
-  private final JFXPanel panel;
-  private final List<Observador> observadores = new ArrayList<Observador>();
-  private String categoria;
-  private VentanaPregunta ventana;
+  private ObservadoresPregunta observadoresPregunta = new ObservadoresPregunta(new ArrayList<Observador>());
+  private final FxPanelPregunta panelPregunta;
 
   /**
    * Inicializa las preguntas
    */
   public FachadaPregunta() {
-    app = new FxPanelPregunta(this);
-    panel = app.start();
+    panelPregunta = new FxPanelPregunta(this);
   }
 
   /**
@@ -40,56 +30,34 @@ public class FachadaPregunta {
    *  el método 'correcto' o 'incorrecto' de los observadores
    */
   public Pregunta lanzarPregunta() {
-    preguntaActual = this.preguntas.sortearPregunta();
-    app.setPregunta(preguntaActual);
-    ventana = new VentanaPregunta(panel);
-    return preguntaActual;
+    return panelPregunta.lanzarPregunta();
   }
   
   public void cerrarPregunta() {
-    ventana.cerrar();
-  }
-  
-  public void addObservador(Observador o) {
-    observadores.add(o);
-  }
-  
-  public void removeObservador(Observador o) {
-    observadores.remove(o);
-  }
-  
-  public void removeAllObservadores() {
-    observadores.clear();
-  }
-  
-  public void notifyCorrecto() {
-    observadores.forEach(Observador::correcto);
-  }
-  
-  public void notifyIncorrecto() {
-    observadores.forEach(Observador::incorrecto);
+    panelPregunta.cerrarPregunta();
   }
   
   /**
    * Lanza la ventana que permite seleccionar una pregunta.
    */
-  public static void lanzarSeleccion(Categorizable categorizable) {
-    Path path = Paths.get("juego", "src", "recursos", "preguntas");
+  public static void lanzarVentanaSeleccion(Categorizable categorizable) {
     try {
-      FxPanelSeleccion controllerSeleccion= new FxPanelSeleccion(path, categorizable);
-      JFXPanel panel = controllerSeleccion.getPanel();
-      new VentanaSeleccion(panel);
+      FxPanelSeleccion controllerSeleccion = new FxPanelSeleccion(categorizable);
+      controllerSeleccion.lanzarVentanaSeleccion();
     } catch (IOException e) {
       e.printStackTrace();
     }
   }
   
   public String getCategoria() {
-    return categoria;
+    return panelPregunta.getCategoria();
   }
 
   public void setCategoria(String categoria) {
-    this.categoria = categoria;
-    preguntas.setCategoria(categoria);
+    panelPregunta.setCategoria(categoria);
+  }
+
+  public ObservadoresPregunta getObservadoresPregunta() {
+    return observadoresPregunta;
   }
 }

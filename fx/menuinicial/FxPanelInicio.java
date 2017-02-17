@@ -44,7 +44,7 @@ public class FxPanelInicio implements Categorizable {
   @FXML
   public void listCategorias(ActionEvent e) {
     EventQueue.invokeLater(() -> {
-      FachadaPregunta.lanzarSeleccion(this);
+      FachadaPregunta.lanzarVentanaSeleccion(this);
     });
   }
 

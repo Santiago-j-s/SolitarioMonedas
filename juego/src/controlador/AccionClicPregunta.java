@@ -42,8 +42,8 @@ public class AccionClicPregunta extends AccionClicAbstract
   public void llamarPregunta() {
     SwingUtilities.invokeLater(() -> {
       manejador.getVentanaPrincipal().setEnabled(false);
-      hacerPregunta.removeAllObservadores();
-      hacerPregunta.addObservador(this);
+      hacerPregunta.getObservadoresPregunta().removeAllObservadores();
+      hacerPregunta.getObservadoresPregunta().addObservador(this);
     });
     hacerPregunta.lanzarPregunta();
   }

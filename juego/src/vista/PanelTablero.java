@@ -50,9 +50,9 @@ public class PanelTablero extends JPanel {
    * @param cantColumnas
    *          cantidad total de columnas
    */
-  public PanelTablero(Tablero t, Recursos r, AccionClicAbstract accionBoton) {
-    this.fondoTablero = r.getImgFondo().getImage();
-    this.setImgsCasilla(r);
+  public PanelTablero(Tablero t, AccionClicAbstract accionBoton) {
+    this.fondoTablero = Recursos.IMG_FONDO.getImage();
+    this.setImgsCasilla();
 
     tablero = t;
     filas = t.getCantFilas();
@@ -66,8 +66,8 @@ public class PanelTablero extends JPanel {
     this.inicializar(accionBoton);
   }
   
-  public static final PanelTablero crearTablero(Tablero t, Recursos r, AccionClicAbstract accionBoton) {
-    return new PanelTablero(t, r, accionBoton);
+  public static final PanelTablero crearTablero(Tablero t, AccionClicAbstract accionBoton) {
+    return new PanelTablero(t, accionBoton);
   }
 
   /**
@@ -76,16 +76,12 @@ public class PanelTablero extends JPanel {
    * 
    * @param r
    */
-  private void setImgsCasilla(Recursos r) {
-    Icon imgMoneda = r.getImgMoneda();
-    Icon imgNula = r.getImgNula();
-    Icon imgVacia = r.getImgVacia();
-
+  private void setImgsCasilla() {
     this.imgsCasilla = new HashMap<String, Icon>();
 
-    imgsCasilla.put("Moneda", imgMoneda);
-    imgsCasilla.put("Nula", imgNula);
-    imgsCasilla.put("Vacia", imgVacia);
+    imgsCasilla.put("Moneda", Recursos.IMG_MONEDA);
+    imgsCasilla.put("Nula", Recursos.IMG_NULA);
+    imgsCasilla.put("Vacia", Recursos.IMG_VACIA);
   }
 
   /**

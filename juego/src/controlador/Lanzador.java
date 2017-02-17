@@ -8,11 +8,9 @@ import javafx.embed.swing.JFXPanel;
 import menuinicial.AccionesAplicacion;
 import menuinicial.FxPanelInicio;
 import menuinicial.VentanaPrincipal;
-import vista.Recursos;
 
 public class Lanzador implements AccionesAplicacion {
   private VentanaPrincipal ventana;
-  private final Recursos recursos = new Recursos();
   private final FxPanelInicio fxPanel = new FxPanelInicio();
   private final Logger logger = Logger.getLogger(getClass().getName());
   private JFXPanel panel;
@@ -23,7 +21,7 @@ public class Lanzador implements AccionesAplicacion {
   private Lanzador() {
     logger.info("Inicializando Lanzador");
     EventQueue.invokeLater(() -> {
-      this.ventana = new VentanaPrincipal(recursos);
+      this.ventana = new VentanaPrincipal();
     });
     nuevoJuego();
   }

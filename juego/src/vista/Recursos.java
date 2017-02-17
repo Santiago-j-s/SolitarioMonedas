@@ -1,5 +1,8 @@
 package vista;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 import javax.swing.ImageIcon;
 
 public class Recursos {
@@ -10,68 +13,17 @@ public class Recursos {
   private static final String FONDO_PATH = "/fondoTablero.png";
   private static final String MENU_FONDO = "/pantallaMenuInicialConLogo.png";
   private static final String ICONO = "/logoJuego2.png";
-
-  private ImageIcon imgMoneda, imgVacia, imgNula, imgFondo, imgMenu, imgIcono;
   
-  public Recursos() {
-    this.setImgMoneda(MONEDA_PATH);
-    this.setImgVacia(VACIA_PATH);
-    this.setImgNula(NULA_PATH);
-    this.setImgFondo(FONDO_PATH);
-    this.setImgMenu(MENU_FONDO);
-    this.setImgIcono(ICONO);
-  }
+  public static final Path PREGUNTAS_PATH = Paths.get("juego", "src", "recursos", "preguntas");
+  public static final ImageIcon IMG_MONEDA = obtenerImagen(MONEDA_PATH);
+  public static final ImageIcon IMG_VACIA = obtenerImagen(VACIA_PATH);
+  public static final ImageIcon IMG_NULA = obtenerImagen(NULA_PATH);
+  public static final ImageIcon IMG_FONDO = obtenerImagen(FONDO_PATH);
+  public static final ImageIcon IMG_MENU = obtenerImagen(MENU_FONDO);
+  public static final ImageIcon IMG_ICONO = obtenerImagen(ICONO);
 
-  private ImageIcon obtenerImagen(String imgPath) {
+  private static ImageIcon obtenerImagen(String imgPath) {
     String path = RECURSOS_PATH + imgPath;
-    return new ImageIcon(getClass().getResource(path));
-  }
-
-  public ImageIcon getImgMoneda() {
-    return imgMoneda;
-  }
-
-  public ImageIcon getImgVacia() {
-    return imgVacia;
-  }
-
-  public ImageIcon getImgNula() {
-    return imgNula;
-  }
-
-  public ImageIcon getImgFondo() {
-    return imgFondo;
-  }
-  
-  public ImageIcon getImgMenu() {
-    return imgMenu;
-  }
-  
-  public ImageIcon getImgIcono() {
-    return imgIcono;
-  }
-
-  private void setImgVacia(String imgVacia) {
-    this.imgVacia = obtenerImagen(imgVacia);
-  }
-  
-  private void setImgNula(String imgNula) {
-    this.imgNula = obtenerImagen(imgNula);
-  }
-  
-  private void setImgMoneda(String imgMoneda) {
-    this.imgMoneda = obtenerImagen(imgMoneda);
-  }
-
-  private void setImgFondo(String imgFondo) {
-    this.imgFondo = obtenerImagen(imgFondo);
-  }
-
-  private void setImgMenu(String imgMenu) {
-    this.imgMenu = obtenerImagen(imgMenu);
-  }
-
-  private void setImgIcono(String imgIcono) {
-    this.imgIcono = obtenerImagen(imgIcono);
+    return new ImageIcon(Recursos.class.getResource(path));
   }
 }

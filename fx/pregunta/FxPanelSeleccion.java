@@ -2,7 +2,6 @@ package pregunta;
 
 import java.awt.EventQueue;
 import java.io.IOException;
-import java.nio.file.Path;
 
 import javax.swing.JFrame;
 
@@ -23,8 +22,8 @@ public class FxPanelSeleccion {
   @FXML
   private Button iniciarJuego;
 
-  public FxPanelSeleccion(Path ruta, Categorizable categorizable) throws IOException {
-    this.start(ruta);
+  public FxPanelSeleccion(Categorizable categorizable) throws IOException {
+    this.start();
     this.categorizable = categorizable;
   }
   
@@ -40,11 +39,11 @@ public class FxPanelSeleccion {
     return this.modelo.getSelected();
   }
 
-  public void start(Path ruta) {
+  public void start() {
     Platform.runLater(() -> {
       FxUtilities.initScene("panelSeleccion.fxml", this, fxPanel);
       try {
-        this.modelo = new ModeloSeleccion(listView, ruta);
+        this.modelo = new ModeloSeleccion(listView);
       } catch (IOException e) {
         System.exit(1);
         e.printStackTrace();
@@ -54,5 +53,9 @@ public class FxPanelSeleccion {
   
   public JFXPanel getPanel() {
     return fxPanel;
+  }
+  
+  public void lanzarVentanaSeleccion() {
+    new VentanaSeleccion(this.fxPanel);
   }
 }

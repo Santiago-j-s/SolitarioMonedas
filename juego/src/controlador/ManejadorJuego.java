@@ -18,7 +18,6 @@ import vista.PanelAyudaPreguntas;
 import vista.PanelAyudaSinPreguntas;
 import vista.PreguntaDireccion;
 import vista.PanelTablero;
-import vista.Recursos;
 import vista.PanelJuego;
 
 /**
@@ -41,18 +40,16 @@ public class ManejadorJuego {
    */
   public ManejadorJuego(String categoria, VentanaPrincipal ventana) {
     this.accionBoton = new AccionClicPregunta(this, categoria);
-    Recursos recursos = ventana.getRecursos();
     
-    this.inicializarPanelTablero(accionBoton, recursos);
+    this.inicializarPanelTablero(accionBoton);
     PanelAyuda panelAyuda = new PanelAyudaPreguntas();
     iniciarJuego(ventana, panelAyuda);
   }
 
   public ManejadorJuego(VentanaPrincipal ventana) {
     accionBoton = new AccionClic(this);
-    Recursos recursos = ventana.getRecursos();
     
-    this.inicializarPanelTablero(accionBoton, recursos);
+    this.inicializarPanelTablero(accionBoton);
     PanelAyuda panelAyuda = new PanelAyudaSinPreguntas();
     iniciarJuego(ventana, panelAyuda);
   }
@@ -138,10 +135,10 @@ public class ManejadorJuego {
   /**
    * Prepara el panel con la interfaz gráfica del tablero según el modelo
    */
-  private void inicializarPanelTablero(AccionClicAbstract escuchadorBoton, Recursos recursos) {
+  private void inicializarPanelTablero(AccionClicAbstract escuchadorBoton) {
     juego = new Juego();
     Tablero tablero = juego.getTablero();
-    this.panelTablero = PanelTablero.crearTablero(tablero, recursos, escuchadorBoton);
+    this.panelTablero = PanelTablero.crearTablero(tablero, escuchadorBoton);
     
     panelTablero.setVisible(true);
   }

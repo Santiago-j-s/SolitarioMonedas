@@ -12,6 +12,8 @@ public class FxPanelPregunta {
   private final JFXPanel fxPanel = new JFXPanel();
   private final FxModeloPregunta modelo = new FxModeloPregunta();
   private final FachadaPregunta controlador;
+  private final Preguntas preguntas = new Preguntas();
+  private VentanaPregunta ventana;
 
   @FXML
   private Label title;
@@ -24,13 +26,13 @@ public class FxPanelPregunta {
   
   public FxPanelPregunta(FachadaPregunta controlador) {
     this.controlador = controlador;
+    this.start();
   }
 
-  public JFXPanel start() {
+  public void start() {
     Platform.runLater(() -> {
       FxUtilities.initScene("panelPregunta.fxml", this, fxPanel);
     });
-    return fxPanel;
   }
 
   public void setPregunta(Pregunta pregunta) {
@@ -39,14 +41,33 @@ public class FxPanelPregunta {
     });
   }
   
+  public Pregunta lanzarPregunta() {
+    Pregunta preguntaActual = this.preguntas.sortearPregunta();
+    this.setPregunta(preguntaActual);
+    ventana = new VentanaPregunta(fxPanel);
+    return preguntaActual;
+  }
+  
+  public void cerrarPregunta() {
+    ventana.cerrar();
+  }
+  
+  public String getCategoria() {
+    return this.preguntas.getCategoria();
+  }
+  
+  public void setCategoria(String categoria) {
+    this.preguntas.setCategoria(categoria);
+  }
+  
   @FXML
   public void onAction(ActionEvent e) {
     Button b = (Button) e.getSource();
     boolean correcta = modelo.correcta(b.getText());
     if(correcta) {
-      controlador.notifyCorrecto();
+      controlador.getObservadoresPregunta().notifyCorrecto();
     } else {
-      controlador.notifyIncorrecto();
+      controlador.getObservadoresPregunta().notifyIncorrecto();
     }
   }
 
