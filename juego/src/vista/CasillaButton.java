@@ -6,7 +6,7 @@ import java.util.Map;
 import javax.swing.Icon;
 import javax.swing.JButton;
 
-import juego.Casilla;
+import juego.TipoCasilla;
 
 /**
  * Casilla del tablero de juego.
@@ -19,7 +19,7 @@ public class CasillaButton extends JButton {
  
   private Map<String, Icon> imgs;
   
-  public CasillaButton(Casilla casilla, Map<String, Icon> imgs) {
+  public CasillaButton(TipoCasilla casilla, Map<String, Icon> imgs) {
     this.imgs = imgs;
     this.setTipoCasilla(casilla);
   }
@@ -28,7 +28,7 @@ public class CasillaButton extends JButton {
    * Actualiza la imágen de la casilla
    * @param tipoCasilla la casilla del modelo
    */
-  public void setTipoCasilla(Casilla tipoCasilla) {
+  public void setTipoCasilla(TipoCasilla tipoCasilla) {
     this.setContentAreaFilled(false);
     String tipo = tipoCasilla.name();
     this.setIcon(imgs.get(tipo));

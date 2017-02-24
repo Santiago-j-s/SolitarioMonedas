@@ -1,13 +1,10 @@
 package pregunta;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ObservadoresPregunta {
-  public List<Observador> observadores;
-
-  public ObservadoresPregunta(List<Observador> observadores) {
-    this.observadores = observadores;
-  }
+  public List<Observador> observadores = new ArrayList<Observador>();
 
   public void addObservador(Observador o) {
     observadores.add(o);
@@ -19,6 +16,11 @@ public class ObservadoresPregunta {
 
   public void removeAllObservadores() {
     observadores.clear();
+  }
+  
+  public void setObservador(Observador o) {
+    this.removeAllObservadores();
+    this.addObservador(o);
   }
 
   public void notifyCorrecto() {

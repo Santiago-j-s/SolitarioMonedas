@@ -14,7 +14,7 @@ import javax.swing.Icon;
 import javax.swing.JPanel;
 
 import controlador.AccionClicAbstract;
-import juego.Casilla;
+import juego.TipoCasilla;
 import juego.Direccion;
 import juego.Tablero;
 
@@ -123,7 +123,7 @@ public class PanelTablero extends JPanel {
    * @param casilla
    *          el tipo de casilla
    */
-  private void setBoton(int fila, int columna, Casilla casilla) {
+  private void setBoton(int fila, int columna, TipoCasilla casilla) {
     getBoton(fila, columna).setTipoCasilla(casilla);
   }
 
@@ -137,7 +137,7 @@ public class PanelTablero extends JPanel {
    * @param casilla
    *          el tipo de casilla
    */
-  private void inicializarBoton(int fila, int columna, Casilla casilla, AccionClicAbstract accion) {
+  private void inicializarBoton(int fila, int columna, TipoCasilla casilla, AccionClicAbstract accion) {
     CasillaButton boton = new CasillaButton(casilla, imgsCasilla);
     boton.addActionListener(accion);
     casillas[fila][columna] = boton;
@@ -175,7 +175,7 @@ public class PanelTablero extends JPanel {
   private void inicializar(AccionClicAbstract accion) {
     for (int fila = 0; fila < filas; fila++) {
       for (int columna = 0; columna < columnas; columna++) {
-        Casilla casilla = tablero.getCasilla(fila, columna);
+        TipoCasilla casilla = tablero.getCasilla(fila, columna).getTipoCasilla();
         this.inicializarBoton(fila, columna, casilla, accion);
       }
     }
@@ -187,7 +187,7 @@ public class PanelTablero extends JPanel {
   public void actualizar() {
     for (int fila = 0; fila < filas; fila++) {
       for (int columna = 0; columna < columnas; columna++) {
-        Casilla casilla = tablero.getCasilla(fila, columna);
+        TipoCasilla casilla = tablero.getCasilla(fila, columna).getTipoCasilla();
         this.setBoton(fila, columna, casilla);
       }
     }

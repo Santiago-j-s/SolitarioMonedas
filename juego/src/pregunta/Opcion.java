@@ -73,8 +73,7 @@ class Opcion {
 
   @Override
   public boolean equals(Object obj) {
-    if (!(obj instanceof Opcion))
-      return false;
+    if (!(obj instanceof Opcion)) return false;
     Opcion opcion = (Opcion) obj;
     return opcion.getTituloOpcion().equals(this.getTituloOpcion())
         && opcion.esCorrecta() == this.esCorrecta();

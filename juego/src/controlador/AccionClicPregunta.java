@@ -19,21 +19,15 @@ import pregunta.Observador;
  * @author Dibez, Santana
  *
  */
-public class AccionClicPregunta extends AccionClicAbstract
-    implements Observador {
+public class AccionClicPregunta extends AccionClicAbstract implements Observador {
 
-  private final FachadaPregunta hacerPregunta;
+  private final FachadaPregunta controladorPregunta;
 
   public AccionClicPregunta(ManejadorJuego manejador, String categoria) {
     super(manejador);
-    hacerPregunta = new FachadaPregunta();
-    hacerPregunta.setCategoria(categoria);
+    controladorPregunta = new FachadaPregunta(categoria);
   }
   
-  public void setCategoria(String categoria) {
-    this.hacerPregunta.setCategoria(categoria);
-  }
-
   /**
    * Crea una ventana con una pregunta, lanza el método 'corecto' o 'incorrecto'
    * según el resultado de la respuesta a la pregunta.
@@ -41,17 +35,15 @@ public class AccionClicPregunta extends AccionClicAbstract
   @Override
   public void llamarPregunta() {
     SwingUtilities.invokeLater(() -> {
-      manejador.getVentanaPrincipal().setEnabled(false);
-      hacerPregunta.getObservadoresPregunta().removeAllObservadores();
-      hacerPregunta.getObservadoresPregunta().addObservador(this);
+      controladorPregunta.getObservadoresPregunta().setObservador(this);
     });
-    hacerPregunta.lanzarPregunta();
+    controladorPregunta.lanzarPregunta();
   }
   
   public void correcto() {
     SwingUtilities.invokeLater(() -> {
       super.correcto();
-      hacerPregunta.cerrarPregunta();
+      controladorPregunta.cerrarPregunta();
     });
   }
   

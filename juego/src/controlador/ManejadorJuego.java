@@ -8,7 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import juego.Direccion;
-import juego.Juego;
+import juego.ControladorTablero;
 import juego.Tablero;
 import menuinicial.VentanaPrincipal;
 import pregunta.Observador;
@@ -29,7 +29,7 @@ import vista.PanelJuego;
  */
 public class ManejadorJuego {
 
-  private Juego juego;
+  private ControladorTablero juego;
   private PanelTablero panelTablero;
   private JFrame ventanaPrincipal;
   private final Logger logger = Logger.getLogger(getClass().getName());
@@ -79,11 +79,13 @@ public class ManejadorJuego {
   public void accionClicMoneda(CasillaButton casilla, Observador o) {
     int fila = panelTablero.getFila(casilla);
     int columna = panelTablero.getColumna(casilla);
+    logger.info(String.format("Click en: (%d, %d)", fila, columna));
     
     int direcciones = juego.cantDireccionesSalto(fila, columna);
     
     if(direcciones > 0) {
       if(juego.tiempoPregunta()) {
+        ventanaPrincipal.setEnabled(false);
         o.llamarPregunta();
       } else {
         this.accionCasilla(casilla);
@@ -114,36 +116,19 @@ public class ManejadorJuego {
     this.verificarFinJuego();
   }
   
-  /**
-   * Realiza el salto de una moneda
-   * @param fila
-   * @param columna
-   * @param d
-   */
   private void saltar(int fila, int columna, Direccion d) {
     this.juego.saltar(fila, columna, d);
     this.panelTablero.actualizar();
   }
   
   /**
-   * @return the ventanaPrincipal
-   */
-  protected JFrame getVentanaPrincipal() {
-    return ventanaPrincipal;
-  }
-  
-  /**
    * Prepara el panel con la interfaz gráfica del tablero según el modelo
    */
   private void inicializarPanelTablero(AccionClicAbstract escuchadorBoton) {
-    juego = new Juego();
+    juego = new ControladorTablero();
     Tablero tablero = juego.getTablero();
     this.panelTablero = PanelTablero.crearTablero(tablero, escuchadorBoton);
     
     panelTablero.setVisible(true);
-  }
-  
-  public void setCategoria(String categoria) throws Exception {
-    ((AccionClicPregunta) this.accionBoton).setCategoria(categoria);
   }
 }
