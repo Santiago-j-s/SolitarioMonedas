@@ -11,7 +11,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
 import javafx.application.Platform;
-import vista.PanelJuego;
+import vista.PanelTablero;
 import vista.Recursos;
 
 /**
@@ -41,16 +41,12 @@ public class VentanaPrincipal extends JFrame {
   public VentanaPrincipal() {
     super("Solitario con Monedas");
 
-    logger.info("Creando Ventana Principal");
-
     icono = Recursos.IMG_ICONO;
     this.setIconImage(icono.getImage());
 
     this.setMinimumSize(new Dimension(400, 400));
 
-    this.setResizable(true);
     this.setLocationByPlatform(true);
-
     this.setVisible(true);
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     this.setJMenuBar(crearMenu());
@@ -76,10 +72,9 @@ public class VentanaPrincipal extends JFrame {
         this.pack();
       });
     });
-    logger.info("reset.pack");
   }
 
-  public void mostrarJuego(PanelJuego panel) {
+  public void setearPanelTablero(PanelTablero panel) {
     this.setContentPane(panel);
     this.nuevoJuego.setEnabled(true);
     this.pack();

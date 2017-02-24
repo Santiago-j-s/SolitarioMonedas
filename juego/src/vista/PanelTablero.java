@@ -64,6 +64,7 @@ public class PanelTablero extends JPanel {
     this.setPreferredSize(SIZE);
 
     this.inicializar(accionBoton);
+    this.setVisible(true);
   }
   
   public static final PanelTablero crearTablero(Tablero t, AccionClicAbstract accionBoton) {

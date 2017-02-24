@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.logging.Logger;
 
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import juego.Direccion;
@@ -13,12 +12,8 @@ import juego.Tablero;
 import menuinicial.VentanaPrincipal;
 import pregunta.Observador;
 import vista.CasillaButton;
-import vista.PanelAyuda;
-import vista.PanelAyudaPreguntas;
-import vista.PanelAyudaSinPreguntas;
 import vista.PreguntaDireccion;
 import vista.PanelTablero;
-import vista.PanelJuego;
 
 /**
  * Clase que relaciona los diferentes elementos de la GUI con la lógica del
@@ -31,7 +26,7 @@ public class ManejadorJuego {
 
   private ControladorTablero juego;
   private PanelTablero panelTablero;
-  private JFrame ventanaPrincipal;
+  private VentanaPrincipal ventanaPrincipal;
   private final Logger logger = Logger.getLogger(getClass().getName());
   private final AccionClicAbstract accionBoton;
 
@@ -40,31 +35,23 @@ public class ManejadorJuego {
    */
   public ManejadorJuego(String categoria, VentanaPrincipal ventana) {
     this.accionBoton = new AccionClicPregunta(this, categoria);
-    
-    this.inicializarPanelTablero(accionBoton);
-    PanelAyuda panelAyuda = new PanelAyudaPreguntas();
-    iniciarJuego(ventana, panelAyuda);
+    iniciarJuego(ventana);
   }
 
   public ManejadorJuego(VentanaPrincipal ventana) {
-    accionBoton = new AccionClic(this);
-    
-    this.inicializarPanelTablero(accionBoton);
-    PanelAyuda panelAyuda = new PanelAyudaSinPreguntas();
-    iniciarJuego(ventana, panelAyuda);
+    this.accionBoton = new AccionClic(this);
+    iniciarJuego(ventana);
   }
 
-  private void iniciarJuego(VentanaPrincipal ventana, PanelAyuda panelAyuda) {
+  private void iniciarJuego(VentanaPrincipal ventana) {
     this.ventanaPrincipal = ventana;
-    PanelJuego panelJuego = new PanelJuego(this.panelTablero, panelAyuda);
-    ventana.mostrarJuego(panelJuego);
+    this.inicializarPanelTablero(this.accionBoton);
   }
   
-  private void verificarFinJuego() {
-    if(juego.victoria()) {
-      JOptionPane.showMessageDialog(ventanaPrincipal, "Felicidades, ha ganado.");
-    } else if(juego.derrota()) {
-      JOptionPane.showMessageDialog(ventanaPrincipal, "Ha perdido.");
+  private void mensajeFinJuego() {
+    if(juego.fin()) {
+      String mensaje = juego.victoria() ? "Felicidades, ha ganado" : "Ha perdido";
+      JOptionPane.showMessageDialog(ventanaPrincipal, mensaje);
     }
   }
   
@@ -113,7 +100,7 @@ public class ManejadorJuego {
     
     ventanaPrincipal.setEnabled(true);
     ventanaPrincipal.toFront();
-    this.verificarFinJuego();
+    this.mensajeFinJuego();
   }
   
   private void saltar(int fila, int columna, Direccion d) {
@@ -128,7 +115,6 @@ public class ManejadorJuego {
     juego = new ControladorTablero();
     Tablero tablero = juego.getTablero();
     this.panelTablero = PanelTablero.crearTablero(tablero, escuchadorBoton);
-    
-    panelTablero.setVisible(true);
+    this.ventanaPrincipal.setearPanelTablero(this.panelTablero);
   }
 }
