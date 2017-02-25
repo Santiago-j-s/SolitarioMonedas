@@ -2,7 +2,6 @@ package menuinicial;
 
 import java.awt.Dimension;
 import java.awt.EventQueue;
-import java.util.logging.Logger;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -24,8 +23,6 @@ import vista.Recursos;
 public class VentanaPrincipal extends JFrame {
 
   private static final long serialVersionUID = 1L;
-
-  private final Logger logger = Logger.getLogger(getClass().getName());
 
   private JMenuItem nuevoJuego;
   private JMenuItem salir;
@@ -53,8 +50,6 @@ public class VentanaPrincipal extends JFrame {
   }
 
   public void reset(AccionesAplicacion app) {
-    logger.info("reset");
-
     nuevoJuego.setEnabled(false);
     ayuda.setEnabled(false);
 

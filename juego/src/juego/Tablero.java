@@ -17,4 +17,6 @@ public interface Tablero {
 	public int getCantMonedas();
   public boolean esMoneda(int fila, int columna);
   public boolean esVacia(int fila, int columna);
+  public boolean estaEnTablero(int fila, int columna);
+  public Iterable<Casilla> getIterable();
 }

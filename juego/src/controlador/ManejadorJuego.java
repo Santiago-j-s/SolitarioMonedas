@@ -57,7 +57,7 @@ public class ManejadorJuego {
   
   private Direccion preguntarDireccion(int fila, int columna) {
     ArrayList<Direccion> direcciones = juego.direccionesSalto(fila, columna);
-    logger.warning(direcciones.toString());
+    logger.info(String.format("Direcciones Posibles: %s", direcciones.toString()));
     panelTablero.colorearDireccionesSalto(panelTablero.getBoton(fila, columna), direcciones);
     PreguntaDireccion dialog = new PreguntaDireccion(direcciones);
     return dialog.getDireccion();
@@ -114,7 +114,7 @@ public class ManejadorJuego {
   private void inicializarPanelTablero(AccionClicAbstract escuchadorBoton) {
     juego = new ControladorTablero();
     Tablero tablero = juego.getTablero();
-    this.panelTablero = PanelTablero.crearTablero(tablero, escuchadorBoton);
+    this.panelTablero = new PanelTablero(tablero, escuchadorBoton);
     this.ventanaPrincipal.setearPanelTablero(this.panelTablero);
   }
 }

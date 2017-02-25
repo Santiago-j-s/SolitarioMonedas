@@ -111,14 +111,17 @@ public class Tablero5x5 implements Tablero {
 	  return esTipoCasilla(fila, columna, TipoCasilla.Vacia);
 	}
 
-  private boolean estaEnTablero(int fila, int columna) {
-    boolean filaEnTablero = (fila >= 0 && fila < this.filas);
-    boolean columnaEnTablero = (columna >= 0 && columna < this.columnas);
-    return (filaEnTablero && columnaEnTablero) ? true : false;
+  public boolean estaEnTablero(int fila, int columna) {
+    return casillas.estaEnTablero(fila, columna);
   }
   
   @Override
   public void quitarMoneda() {
     this.cantMonedas -= 1;
+  }
+
+  @Override
+  public Iterable<Casilla> getIterable() {
+    return casillas.getIterable();
   }
 }

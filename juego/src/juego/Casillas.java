@@ -7,7 +7,7 @@ public class Casillas {
   private final int filas;
   private final int columnas;
   private final int cantCasillas;
-  private final Iterable<Casilla> iterator;
+  private final Iterable<Casilla> iterable;
 
   public Casillas(int filas, int columnas) {
     this.filas = filas;
@@ -16,7 +16,7 @@ public class Casillas {
     
     tablero = new Casilla[cantCasillas];
     this.rellenarConMonedas();
-    this.iterator = Arrays.asList(tablero);
+    this.iterable = Arrays.asList(tablero);
   }
   
   int getIndex(int fila, int columna) {
@@ -51,6 +51,6 @@ public class Casillas {
   }
   
   public Iterable<Casilla> getIterable() {
-    return iterator;
+    return iterable;
   }
 }

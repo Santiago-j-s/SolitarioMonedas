@@ -15,6 +15,14 @@ public class Casilla {
     this.casillas = casillas;
   }
   
+  public int getFila() {
+    return fila;
+  }
+  
+  public int getColumna() {
+    return columna;
+  }
+  
   public TipoCasilla getTipoCasilla() {
     return tipoCasilla;
   }

@@ -2,7 +2,6 @@ package menuinicial;
 
 import java.awt.Container;
 import java.awt.EventQueue;
-import java.util.logging.Logger;
 
 import controlador.ManejadorJuego;
 import controlador.FxUtilities;
@@ -16,7 +15,6 @@ import pregunta.FachadaPregunta;
 
 public class FxPanelInicio implements Categorizable {
   private JFXPanel fxPanel = new JFXPanel();
-  private final Logger logger = Logger.getLogger(getClass().getName());
   private String categoria = "preguntas";
 
   @FXML
@@ -25,15 +23,12 @@ public class FxPanelInicio implements Categorizable {
   private Button juegoButton;
 
   public FxPanelInicio() {
-    logger.info("Nuevo Panel Inicio");
     Platform.runLater(() -> {
-      logger.info("start.runlater");
       FxUtilities.initScene("panelInicio.fxml", this, fxPanel);
     });
   }
   
   public JFXPanel getPanel() {
-    logger.info("getPanel");
     return fxPanel;
   }
 

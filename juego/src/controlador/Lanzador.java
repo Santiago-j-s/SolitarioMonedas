@@ -1,7 +1,6 @@
 package controlador;
 
 import java.awt.EventQueue;
-import java.util.logging.Logger;
 
 import javafx.application.Platform;
 import javafx.embed.swing.JFXPanel;
@@ -12,14 +11,12 @@ import menuinicial.VentanaPrincipal;
 public class Lanzador implements AccionesAplicacion {
   private VentanaPrincipal ventana;
   private final FxPanelInicio fxPanel = new FxPanelInicio();
-  private final Logger logger = Logger.getLogger(getClass().getName());
   private JFXPanel panel;
 
   /**
    * Setea la ventana principal e inicia el programa
    */
   private Lanzador() {
-    logger.info("Inicializando Lanzador");
     EventQueue.invokeLater(() -> {
       this.ventana = new VentanaPrincipal();
     });
@@ -33,7 +30,6 @@ public class Lanzador implements AccionesAplicacion {
 
   @Override
   public void nuevoJuego() {
-    logger.info("Inicializando Nuevo Juego");
     panel = fxPanel.getPanel();
     EventQueue.invokeLater(() -> {
       ventana.setContentPane(panel);
