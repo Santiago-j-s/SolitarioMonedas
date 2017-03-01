@@ -1,6 +1,7 @@
 package juego;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Casilla {
   private TipoCasilla tipoCasilla;
@@ -103,14 +104,37 @@ public class Casilla {
     }
   }
   
-  public ArrayList<Direccion> direccionesSalto() {
-    ArrayList<Direccion> direcciones = new ArrayList<Direccion>();
+  public List<Direccion> direccionesSalto() {
+    List<Direccion> direcciones = new ArrayList<Direccion>();
     for (Direccion direccion : Direccion.values()) {
       if (puedeSaltar(direccion)) {
         direcciones.add(direccion);
       }
     }
     return direcciones;
+  }
+  
+  public List<Casilla> casillasSalto() {
+    List<Direccion> direcciones = direccionesSalto();
+    List<Casilla> casillasSalto = new ArrayList<Casilla>();
+
+    if (direcciones.contains(Direccion.Derecha)) {
+      casillasSalto.add(casillas.getCasilla(fila, columna+2));
+    }
+    
+    if (direcciones.contains(Direccion.Izquierda)) {
+      casillasSalto.add(casillas.getCasilla(fila, columna-2));
+    }
+    
+    if (direcciones.contains(Direccion.Arriba)) {
+      casillasSalto.add(casillas.getCasilla(fila-2, columna));
+    }
+    
+    if (direcciones.contains(Direccion.Abajo)) {
+      casillasSalto.add(casillas.getCasilla(fila+2, columna));
+    }
+    
+    return casillasSalto;
   }
   
   public int cantDireccionesSalto() {

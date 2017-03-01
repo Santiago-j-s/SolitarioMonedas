@@ -5,7 +5,6 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Point;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,7 +15,6 @@ import javax.swing.JPanel;
 
 import controlador.AccionClicAbstract;
 import juego.Casilla;
-import juego.Direccion;
 import juego.Tablero;
 
 public class PanelTablero extends JPanel {
@@ -57,6 +55,7 @@ public class PanelTablero extends JPanel {
   /**
    * @Override
    */
+  @Override
   public void paint(Graphics g) {
     g.drawImage(
         fondoTablero.getImage(),
@@ -78,7 +77,7 @@ public class PanelTablero extends JPanel {
   }
 
   private void setBoton(Casilla casilla) {
-    getBoton(casilla).setTipoCasilla(casilla);
+    getBoton(casilla).setCasilla(casilla);
   }
 
   private CasillaButton getBoton(Casilla casilla) {
@@ -97,7 +96,7 @@ public class PanelTablero extends JPanel {
    * @param casilla
    * @return la fila correspondiente al botón pasado como parámetro.
    */
-  public int getFila(CasillaButton casilla) {
+  private int getFila(CasillaButton casilla) {
     Point punto = casilla.getLocation();
     int alturaCasilla = casilla.getSize().height;
     double mitad = alturaCasilla / 2;
@@ -109,52 +108,34 @@ public class PanelTablero extends JPanel {
    * @param casilla
    * @return la columna correspondiente al botón pasado como parámetro.
    */
-  public int getColumna(CasillaButton casilla) {
+  private int getColumna(CasillaButton casilla) {
     Point punto = casilla.getLocation();
     int anchoCasilla = casilla.getSize().width;
     double mitad = anchoCasilla / 2;
     return (int) ((punto.getX() + mitad) / anchoCasilla);
   }
+  
+  public Casilla getCasilla(CasillaButton casilla) {
+    return tablero.getCasilla(getFila(casilla), getColumna(casilla));
+  }
 
   private void inicializar(AccionClicAbstract accion) {
-    tablero.getIterable().forEach((casilla) -> {
+    tablero.getCasillas().forEach((casilla) -> {
       this.inicializarBoton(casilla, accion);
     }); 
   }
 
   public void actualizar() {
-    tablero.getIterable().forEach((casilla) -> {
+    tablero.getCasillas().forEach((casilla) -> {
       this.setBoton(casilla);
     });
   }
 
-  public void colorearBoton(CasillaButton casilla, Color color) {
-    casilla.colorear(color);
+  public void colorearCasilla(Casilla casilla, Color color) {
+    getBoton(casilla).colorear(color);
   }
-
-  public void colorearDireccionesSalto(CasillaButton casilla, List<Direccion> direcciones) {
-    int fila = getFila(casilla);
-    int columna = getColumna(casilla);
-
-    List<CasillaButton> blancos = new ArrayList<CasillaButton>();
-
-    if (direcciones.contains(Direccion.Derecha)) {
-      blancos.add(this.getBoton(fila, columna+2));
-    }
-    
-    if (direcciones.contains(Direccion.Izquierda)) {
-      blancos.add(this.getBoton(fila, columna-2));
-    }
-    
-    if (direcciones.contains(Direccion.Arriba)) {
-      blancos.add(this.getBoton(fila-2, columna));
-    }
-    
-    if (direcciones.contains(Direccion.Abajo)) {
-      blancos.add(getBoton(fila+2, columna));
-    }
-    
-    blancos.forEach((blanco) -> blanco.colorear(Color.GREEN));
-    this.repaint();
+  
+  public void colorearCasillas(List<Casilla> casillasAColorear, Color color) {
+    casillasAColorear.forEach(casilla -> colorearCasilla(casilla, color));
   }
 }

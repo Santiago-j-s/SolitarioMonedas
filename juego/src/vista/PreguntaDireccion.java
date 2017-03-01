@@ -1,6 +1,6 @@
 package vista;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
@@ -16,19 +16,11 @@ public class PreguntaDireccion extends JDialog {
 	
 	private Direccion direccion;
 	
-	/**
-	 * Devuelve una cadena con la dirección seleccionada por el usuario.
-	 * 
-	 * @return String direccion
-	 */
 	public Direccion getDireccion() {
 		return direccion;
 	}
 	
-	/**
-	 * @param direcciones las direcciones que muestra el diálogo
-	 */
-	public PreguntaDireccion(ArrayList<Direccion> direcciones) {
+	public PreguntaDireccion(List<Direccion> direcciones) {
 		Direccion valor = (Direccion) JOptionPane.showInputDialog(this,
 				"Seleccione la dirección en que desea saltar", 
 				"Dirección", 

@@ -7,6 +7,7 @@ import javax.swing.Icon;
 import javax.swing.JButton;
 
 import juego.Casilla;
+import juego.TipoCasilla;
 
 /**
  * Casilla del tablero de juego.
@@ -19,17 +20,21 @@ public class CasillaButton extends JButton {
   
   public CasillaButton(Casilla casilla, Map<String, Icon> imgs) {
     this.imgs = imgs;
-    this.setTipoCasilla(casilla);
+    this.setCasilla(casilla);
   }
   
-  public void setTipoCasilla(Casilla casilla) {
+  private void setTipoCasilla(TipoCasilla tipoCasilla) {
     this.setContentAreaFilled(false);
-    String tipo = casilla.getTipoCasilla().name();
+    String tipo = tipoCasilla.name();
     this.setIcon(imgs.get(tipo));
+  }
+  
+  public void setCasilla(Casilla casilla) {
+    this.setTipoCasilla(casilla.getTipoCasilla());
   }
   
   public void colorear(Color color) {
     this.setContentAreaFilled(true);
     this.setBackground(color);
   }
-}
+  }

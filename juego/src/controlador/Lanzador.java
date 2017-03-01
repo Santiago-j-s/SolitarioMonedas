@@ -12,14 +12,10 @@ public class Lanzador implements AccionesAplicacion {
   private VentanaPrincipal ventana;
   private final FxPanelInicio fxPanel = new FxPanelInicio();
   private JFXPanel panel;
+  
 
-  /**
-   * Setea la ventana principal e inicia el programa
-   */
   private Lanzador() {
-    EventQueue.invokeLater(() -> {
-      this.ventana = new VentanaPrincipal();
-    });
+    lanzarVentanaPrincipal();
     nuevoJuego();
   }
 
@@ -28,6 +24,12 @@ public class Lanzador implements AccionesAplicacion {
     System.exit(0);
   }
 
+  private void lanzarVentanaPrincipal() {
+    EventQueue.invokeLater(() -> {
+      this.ventana = new VentanaPrincipal();
+    });
+  }
+  
   @Override
   public void nuevoJuego() {
     panel = fxPanel.getPanel();
@@ -37,9 +39,6 @@ public class Lanzador implements AccionesAplicacion {
     });
   }
 
-  /**
-   * Lanza el programa
-   */
   public static void main(String[] args) {
     Platform.setImplicitExit(false); // Evita que se cierre el thread de JavaFx
     new Lanzador();

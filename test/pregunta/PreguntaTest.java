@@ -28,13 +28,13 @@ public class PreguntaTest {
   private boolean compararOpciones(ArrayList<Pregunta> preguntas,
       ArrayList<List<Opcion>> opciones, int nroOpcion) {
     // Obtiene la primer opción de cada pregunta
-    List<Opcion> opcionesPrueba = (ArrayList<Opcion>) this.pruebasPregunta
+    List<Opcion> opcionesPrueba = this.pruebasPregunta
         .stream()
         .map(p -> p.getOpcion(nroOpcion))
         .collect(Collectors.toList());
 
     // Obtiene el primer item de cada array de opciones
-    List<Opcion> opcionesTest = (ArrayList<Opcion>) this.opciones
+    List<Opcion> opcionesTest = this.opciones
         .stream()
         .map(o -> o.get(nroOpcion-1))
         .collect(Collectors.toList());
@@ -82,7 +82,7 @@ public class PreguntaTest {
   @Test
   public void testGetPregunta() {
     // Retorna los enunciados de las preguntas
-    List<String> preguntas2 = (ArrayList<String>) this.pruebasPregunta.stream()
+    List<String> preguntas2 = this.pruebasPregunta.stream()
         .map(p -> p.getPregunta()).collect(Collectors.toList());
 
     assertEquals(this.preguntas, preguntas2);

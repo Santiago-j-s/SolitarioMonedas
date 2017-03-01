@@ -2,6 +2,7 @@ package menuinicial;
 
 import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -39,57 +40,69 @@ public class VentanaPrincipal extends JFrame {
     super("Solitario con Monedas");
 
     icono = Recursos.IMG_ICONO;
-    this.setIconImage(icono.getImage());
+    setIconImage(icono.getImage());
 
-    this.setMinimumSize(new Dimension(400, 400));
+    setMinimumSize(new Dimension(400, 400));
 
-    this.setLocationByPlatform(true);
-    this.setVisible(true);
-    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    this.setJMenuBar(crearMenu());
+    setLocationByPlatform(true);
+    setVisible(true);
+    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    setJMenuBar(crearMenu());
+  }
+  
+  public void setNuevoJuegoListener(ActionListener listener) {
+    nuevoJuego.addActionListener(listener);
+  }
+  
+  public void setSalirListener(ActionListener listener) {
+    salir.addActionListener(listener);
   }
 
   public void reset(AccionesAplicacion app) {
     nuevoJuego.setEnabled(false);
     ayuda.setEnabled(false);
 
-    nuevoJuego.addActionListener(event -> {
-      app.nuevoJuego();
-    });
-    salir.addActionListener(event -> {
-      app.salir();
-    });
+    setNuevoJuegoListener(event -> app.nuevoJuego());
+    setSalirListener(event -> app.salir());
 
-    this.revalidate();
-    this.repaint();
-    Platform.runLater(() -> {
-      EventQueue.invokeLater(() -> {
-        this.pack();
-      });
-    });
+    revalidate();
+    repaint();
+    Platform.runLater(()
+        -> EventQueue.invokeLater(()
+            -> pack()));
   }
 
   public void setearPanelTablero(PanelTablero panel) {
-    this.setContentPane(panel);
-    this.nuevoJuego.setEnabled(true);
-    this.pack();
+    setContentPane(panel);
+    nuevoJuego.setEnabled(true);
+    pack();
+  }
+  
+  private JMenu crearMenuJuego() {
+    JMenu menuJuego = new JMenu("Juego");
+
+    nuevoJuego = new JMenuItem("Nuevo juego");
+    menuJuego.add(nuevoJuego);
+    
+    salir = new JMenuItem("Salir");
+    menuJuego.add(salir);
+    
+    return menuJuego;
+  }
+  
+  private JMenu crearMenuAyuda() {
+    JMenu menuAyuda = new JMenu("Acerca de");
+   
+    ayuda = new JMenuItem("Ver ayuda");
+    menuAyuda.add(this.ayuda);
+    
+    return menuAyuda;
   }
 
   private JMenuBar crearMenu() {
     JMenuBar barraMenu;
-    JMenu menuJuego;
-    JMenu menuAyuda;
-
-    this.nuevoJuego = new JMenuItem("Nuevo juego");
-    this.ayuda = new JMenuItem("Ver ayuda");
-    this.salir = new JMenuItem("Salir");
-
-    menuJuego = new JMenu("Juego");
-    menuJuego.add(this.nuevoJuego);
-    menuJuego.add(this.salir);
-
-    menuAyuda = new JMenu("Acerca de");
-    menuAyuda.add(this.ayuda);
+    JMenu menuJuego = crearMenuJuego();
+    JMenu menuAyuda = crearMenuAyuda();
 
     barraMenu = new JMenuBar();
 

@@ -1,13 +1,14 @@
 package controlador;
 
 import java.awt.Color;
-import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
 
 import javax.swing.JOptionPane;
 
 import juego.Direccion;
-import juego.ControladorTablero;
+import juego.Casilla;
+import juego.Juego;
 import juego.Tablero;
 import menuinicial.VentanaPrincipal;
 import pregunta.Observador;
@@ -23,98 +24,102 @@ import vista.PanelTablero;
  *
  */
 public class ManejadorJuego {
-
-  private ControladorTablero juego;
+  private Juego juego;
   private PanelTablero panelTablero;
   private VentanaPrincipal ventanaPrincipal;
   private final Logger logger = Logger.getLogger(getClass().getName());
-  private final AccionClicAbstract accionBoton;
+  
+  private void iniciarPanelTablero(AccionClicAbstract accionBoton) {
+    juego = new Juego();
+    Tablero tablero = juego.getTablero();
+    panelTablero = new PanelTablero(tablero, accionBoton);
+  }
+  
+  private void iniciarVentanaPrincipal(AccionClicAbstract accionBoton, VentanaPrincipal ventana) {
+    ventanaPrincipal = ventana;
+    iniciarPanelTablero(accionBoton);
+    ventanaPrincipal.setearPanelTablero(panelTablero);
+  }
 
   /**
    * Crea y muestra la ventana principal con el tablero de juego.
    */
   public ManejadorJuego(String categoria, VentanaPrincipal ventana) {
-    this.accionBoton = new AccionClicPregunta(this, categoria);
-    iniciarJuego(ventana);
+    AccionClicAbstract accionBoton = new AccionClicPregunta(this, categoria);
+    iniciarVentanaPrincipal(accionBoton, ventana);
   }
 
   public ManejadorJuego(VentanaPrincipal ventana) {
-    this.accionBoton = new AccionClic(this);
-    iniciarJuego(ventana);
-  }
-
-  private void iniciarJuego(VentanaPrincipal ventana) {
-    this.ventanaPrincipal = ventana;
-    this.inicializarPanelTablero(this.accionBoton);
+    AccionClicAbstract accionBoton = new AccionClic(this);
+    iniciarVentanaPrincipal(accionBoton, ventana);
   }
   
-  private void mensajeFinJuego() {
-    if(juego.fin()) {
-      String mensaje = juego.victoria() ? "Felicidades, ha ganado" : "Ha perdido";
-      JOptionPane.showMessageDialog(ventanaPrincipal, mensaje);
-    }
+  private void colorearCasillasSalto(Casilla casilla) {
+    List<Casilla> casillas = casilla.casillasSalto();
+    panelTablero.colorearCasillas(casillas, Color.GREEN);
   }
   
-  private Direccion preguntarDireccion(int fila, int columna) {
-    ArrayList<Direccion> direcciones = juego.direccionesSalto(fila, columna);
-    logger.info(String.format("Direcciones Posibles: %s", direcciones.toString()));
-    panelTablero.colorearDireccionesSalto(panelTablero.getBoton(fila, columna), direcciones);
+  private Direccion preguntarDireccion(List<Direccion> direcciones) {
     PreguntaDireccion dialog = new PreguntaDireccion(direcciones);
     return dialog.getDireccion();
   }
   
-  public void accionClicMoneda(CasillaButton casilla, Observador o) {
-    int fila = panelTablero.getFila(casilla);
-    int columna = panelTablero.getColumna(casilla);
-    logger.info(String.format("Click en: (%d, %d)", fila, columna));
-    
-    int direcciones = juego.cantDireccionesSalto(fila, columna);
-    
-    if(direcciones > 0) {
-      if(juego.tiempoPregunta()) {
-        ventanaPrincipal.setEnabled(false);
-        o.llamarPregunta();
-      } else {
-        this.accionCasilla(casilla);
-      }
+  private Direccion obtenerDireccion(List<Direccion> direcciones) {
+    if (direcciones.size() == 1) {
+      return direcciones.get(0);
     }
+    Direccion direccion = preguntarDireccion(direcciones);
+    return direccion;
   }
   
-  public void accionCasilla(CasillaButton casilla) {
-    int fila = panelTablero.getFila(casilla);
-    int columna = panelTablero.getColumna(casilla);
-    
-    panelTablero.colorearBoton(casilla, Color.MAGENTA);
-    int direcciones = juego.cantDireccionesSalto(fila, columna);
-    if(direcciones == 1) {
-      Direccion d = juego.direccionesSalto(fila, columna).get(0);
-      saltar(fila, columna, d);
-    } else if(direcciones > 1) {
-      try {
-        Direccion d = preguntarDireccion(fila, columna);
-        this.saltar(fila, columna, d);
-      } catch (NullPointerException e) {
-        e.printStackTrace();
-      }
-    }
-    
+  private void deshabilitarVentanaPrincipal() {
+    ventanaPrincipal.setEnabled(false);
+  }
+  
+  private void habilitarVentanaPrincipal() {
+    panelTablero.actualizar();
     ventanaPrincipal.setEnabled(true);
     ventanaPrincipal.toFront();
-    this.mensajeFinJuego();
+  }
+ 
+  private void mensajeFinJuego() {
+    String mensaje = juego.victoria() ? "Felicidades, ha ganado" : "Ha perdido";
+    JOptionPane.showMessageDialog(ventanaPrincipal, mensaje);
   }
   
-  private void saltar(int fila, int columna, Direccion d) {
-    this.juego.saltar(fila, columna, d);
-    this.panelTablero.actualizar();
+  private void saltoMoneda(Casilla casilla) {
+    colorearCasillasSalto(casilla);
+    List<Direccion> direcciones = juego.direccionesSalto(casilla);
+    logger.info(String.format("Direcciones Posibles Salto: %s", direcciones.toString()));
+    Direccion direccion = obtenerDireccion(direcciones);
+    juego.saltar(casilla, direccion);
+    if(juego.fin()) {
+      mensajeFinJuego();
+    }
+    habilitarVentanaPrincipal();
   }
   
-  /**
-   * Prepara el panel con la interfaz gráfica del tablero según el modelo
-   */
-  private void inicializarPanelTablero(AccionClicAbstract escuchadorBoton) {
-    juego = new ControladorTablero();
-    Tablero tablero = juego.getTablero();
-    this.panelTablero = new PanelTablero(tablero, escuchadorBoton);
-    this.ventanaPrincipal.setearPanelTablero(this.panelTablero);
+  private void accionClicCasilla(Casilla casilla, Observador o) {
+    logger.info(String.format("Click en: (%d, %d)", casilla.getFila(), casilla.getColumna()));
+    if(!casilla.puedeSaltar()) {
+      return;
+    }
+    
+    if(juego.tiempoPregunta()) {
+      deshabilitarVentanaPrincipal();
+      o.llamarPregunta();
+      return;
+    }
+    
+    saltoMoneda(casilla);
+  }
+  
+  public void saltoMoneda(CasillaButton casilla) {
+    saltoMoneda(panelTablero.getCasilla(casilla));
+  }
+
+  public void accionClicCasilla(CasillaButton casilla, Observador o) {
+    casilla.colorear(Color.MAGENTA);
+    accionClicCasilla(panelTablero.getCasilla(casilla), o);
   }
 }

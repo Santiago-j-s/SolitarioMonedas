@@ -26,14 +26,17 @@ public abstract class AccionClicAbstract
   public void actionPerformed(ActionEvent e) {
     CasillaButton casilla = (CasillaButton) e.getSource();
     casillaPresionada = casilla;
-    manejador.accionClicMoneda(casilla, this);
+    manejador.accionClicCasilla(casilla, this);
   }
 
+  @Override
   public abstract void llamarPregunta();
 
+  @Override
   public void correcto() {
-    manejador.accionCasilla(casillaPresionada);
+    manejador.saltoMoneda(casillaPresionada);
   }
 
+  @Override
   public void incorrecto() {}
 }

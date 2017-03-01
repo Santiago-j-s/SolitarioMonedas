@@ -3,6 +3,7 @@ package juego;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Random;
 import java.util.logging.Logger;
 
@@ -31,22 +32,25 @@ public class Tablero5x5 implements Tablero {
 		completaTableroDesdeArchivo();
 	}
 
-	public int getCantFilas() {
+	@Override
+  public int getCantFilas() {
 		return filas;
 	}
 
-	public int getCantColumnas() {
+	@Override
+  public int getCantColumnas() {
 		return columnas;
 	}
 
-	public int getCantMonedas() {
+	@Override
+  public int getCantMonedas() {
 		return cantMonedas;
 	}
 
 	@Override
 	public Casilla getCasilla(int fila, int columna) {
 	  if(!estaEnTablero(fila, columna)) {
-	    return null;
+	    throw new IndexOutOfBoundsException();
 	  }
 		return casillas.getCasilla(fila, columna);
 	}
@@ -102,15 +106,28 @@ public class Tablero5x5 implements Tablero {
 	private boolean esTipoCasilla(int fila, int columna, TipoCasilla tipoCasilla) {
 	  return estaEnTablero(fila, columna) && getCasilla(fila, columna).esTipoCasilla(tipoCasilla);
 	}
+	@Override
+	public boolean hayCasillasConSaltos() {
+	  Iterator<Casilla> casillasIterator = getCasillas().iterator();
+    while(casillasIterator.hasNext()) {
+      if(casillasIterator.next().puedeSaltar()) {
+        return false;
+      }
+    }
+    return true;
+	}
 	
-	public boolean esMoneda(int fila, int columna) {
+	@Override
+  public boolean esMoneda(int fila, int columna) {
 		return esTipoCasilla(fila, columna, TipoCasilla.Moneda);
 	}
 	
-	public boolean esVacia(int fila, int columna) {
+	@Override
+  public boolean esVacia(int fila, int columna) {
 	  return esTipoCasilla(fila, columna, TipoCasilla.Vacia);
 	}
 
+  @Override
   public boolean estaEnTablero(int fila, int columna) {
     return casillas.estaEnTablero(fila, columna);
   }
@@ -121,7 +138,7 @@ public class Tablero5x5 implements Tablero {
   }
 
   @Override
-  public Iterable<Casilla> getIterable() {
+  public Iterable<Casilla> getCasillas() {
     return casillas.getIterable();
   }
 }

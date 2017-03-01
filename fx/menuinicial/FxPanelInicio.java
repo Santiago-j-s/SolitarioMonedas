@@ -1,6 +1,5 @@
 package menuinicial;
 
-import java.awt.Container;
 import java.awt.EventQueue;
 
 import controlador.ManejadorJuego;
@@ -32,8 +31,8 @@ public class FxPanelInicio implements Categorizable {
     return fxPanel;
   }
 
-  public Container getVentana() {
-    return fxPanel.getTopLevelAncestor();
+  public VentanaPrincipal getVentana() {
+    return (VentanaPrincipal) fxPanel.getTopLevelAncestor();
   }
 
   @FXML
@@ -46,8 +45,7 @@ public class FxPanelInicio implements Categorizable {
   @FXML
   public void comenzarJuego(ActionEvent e) {
     EventQueue.invokeLater(() -> {
-      Container ventana = getVentana();
-      new ManejadorJuego(this.getCategoria(), (VentanaPrincipal) ventana);
+      new ManejadorJuego(this.getCategoria(), getVentana());
     });
   }
 

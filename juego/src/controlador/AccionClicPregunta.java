@@ -40,6 +40,7 @@ public class AccionClicPregunta extends AccionClicAbstract implements Observador
     controladorPregunta.lanzarPregunta();
   }
   
+  @Override
   public void correcto() {
     SwingUtilities.invokeLater(() -> {
       super.correcto();
@@ -47,6 +48,7 @@ public class AccionClicPregunta extends AccionClicAbstract implements Observador
     });
   }
   
+  @Override
   public void incorrecto() {
     SwingUtilities.invokeLater(() -> {
       super.incorrecto();

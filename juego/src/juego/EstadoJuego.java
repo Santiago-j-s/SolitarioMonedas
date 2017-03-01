@@ -1,10 +1,13 @@
 package juego;
 
-/**
- * Hay 3 estados posibles, Victoria, Derrota y EnProgreso
- * @author santiago
- *
- */
-public enum EstadoJuego {
-  Victoria, Derrota, EnProgreso
+public class EstadoJuego {
+  private int cantSaltos = 1;
+
+  public int getCantSaltos() {
+    return cantSaltos;
+  }
+  
+  public void add1Salto() {
+    cantSaltos += 1;
+  }
 }
