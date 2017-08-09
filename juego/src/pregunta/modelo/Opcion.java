@@ -1,4 +1,4 @@
-package pregunta;
+package pregunta.modelo;
 
 /**
  * Una opción que contiene un título y un valor de verdad
@@ -6,7 +6,7 @@ package pregunta;
  * @author Dibez, Santana
  *
  */
-class Opcion {
+public class Opcion {
   String tituloOpcion;
   boolean esCorrecta;
 
@@ -18,7 +18,7 @@ class Opcion {
    * @param valorOpcion
    *          - El valor booleano que tendrá la opción
    */
-  Opcion(String titulo, boolean valorOpcion) {
+  public Opcion(String titulo, boolean valorOpcion) {
     this.setTituloOpcion(titulo);
     this.setEsCorrecta(valorOpcion);
   }

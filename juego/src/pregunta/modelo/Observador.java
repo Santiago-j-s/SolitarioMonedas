@@ -1,4 +1,4 @@
-package pregunta;
+package pregunta.modelo;
 
 /**
  * Las clases que implementen esta interfaz permitiran lanzar una pregunta.

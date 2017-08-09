@@ -1,4 +1,4 @@
-package pregunta;
+package pregunta.modelo;
 
 public interface Categorizable {
   public void setCategoria(String categoria);

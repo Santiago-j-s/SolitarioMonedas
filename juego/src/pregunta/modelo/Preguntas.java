@@ -1,4 +1,4 @@
-package pregunta;
+package pregunta.modelo;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -23,7 +23,7 @@ import com.google.gson.reflect.TypeToken;
  * @author Dibez, Santana
  *
  */
-class Preguntas implements Categorizable {
+public class Preguntas implements Categorizable {
   List<Pregunta> historico_preguntas = new ArrayList<Pregunta>();
   String categoria;
   String recursos_path = Paths.get("juego", "src", "recursos", "preguntas")
@@ -53,7 +53,7 @@ class Preguntas implements Categorizable {
    * 
    * @return la pregunta sorteada
    */
-  Pregunta sortearPregunta() {
+  public Pregunta sortearPregunta() {
     if (historico_preguntas.isEmpty()) {
       this.inicializarPreguntas();
     }
