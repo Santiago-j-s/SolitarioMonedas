@@ -9,7 +9,7 @@ import javafx.embed.swing.JFXPanel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import pregunta.Categorizable;
+import pregunta.modelo.Categorizable;
 import pregunta.FachadaPregunta;
 
 public class FxPanelInicio implements Categorizable {

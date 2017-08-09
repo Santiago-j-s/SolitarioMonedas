@@ -2,6 +2,10 @@ package pregunta;
 
 import java.io.IOException;
 
+import pregunta.modelo.Categorizable;
+import pregunta.modelo.ObservadoresPregunta;
+import pregunta.modelo.Pregunta;
+
 /**
  * Clase que muestra una pregunta en pantalla y las opciones disponibles para
  * responderla.

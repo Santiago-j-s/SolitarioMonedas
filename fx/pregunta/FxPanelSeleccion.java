@@ -11,6 +11,7 @@ import javafx.embed.swing.JFXPanel;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import pregunta.modelo.Categorizable;
 
 public class FxPanelSeleccion {
   private final JFXPanel fxPanel = new JFXPanel();

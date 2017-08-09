@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import vista.CasillaButton;
-import pregunta.Observador;
+import pregunta.modelo.Observador;
 
 /**
  * Clase padre de todas las clases que implementan escuchadores para las

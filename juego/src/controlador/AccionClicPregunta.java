@@ -3,7 +3,7 @@ package controlador;
 import javax.swing.SwingUtilities;
 
 import pregunta.FachadaPregunta;
-import pregunta.Observador;
+import pregunta.modelo.Observador;
 
 /**
  * Invocado cuando se presiona una casilla.
