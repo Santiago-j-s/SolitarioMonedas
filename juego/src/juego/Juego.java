@@ -46,7 +46,7 @@ public class Juego {
   }
 
   public boolean derrota() {
-    return tablero.hayCasillasConSaltos();
+    return !tablero.hayCasillasConSaltos();
   }
   
   public boolean fin() {

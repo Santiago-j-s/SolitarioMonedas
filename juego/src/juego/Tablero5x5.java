@@ -111,10 +111,10 @@ public class Tablero5x5 implements Tablero {
 	  Iterator<Casilla> casillasIterator = getCasillas().iterator();
     while(casillasIterator.hasNext()) {
       if(casillasIterator.next().puedeSaltar()) {
-        return false;
+        return true;
       }
     }
-    return true;
+    return false;
 	}
 	
 	@Override
