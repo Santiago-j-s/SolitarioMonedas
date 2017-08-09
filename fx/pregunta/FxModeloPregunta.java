@@ -6,6 +6,8 @@ import java.util.List;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import pregunta.modelo.Opcion;
+import pregunta.modelo.Pregunta;
 
 public class FxModeloPregunta {
   private Pregunta modeloPregunta;
@@ -20,15 +22,21 @@ public class FxModeloPregunta {
     this.opcion2 = new SimpleStringProperty();
     this.opcion3 = new SimpleStringProperty();
   }
-
-  public void setPregunta(Pregunta pregunta) {
-    this.modeloPregunta = pregunta;
-    this.setPregunta(pregunta.getPregunta());
-    List<Opcion> list = new ArrayList<Opcion>(pregunta.getOpciones());
+  
+  private List<Opcion> mezclarOpciones(List<Opcion> opciones) {
+    List<Opcion> list = new ArrayList<Opcion>(opciones);
     Collections.shuffle(list);
-    this.opcion1.set(list.get(0).toString());
-    this.opcion2.set(list.get(1).toString());
-    this.opcion3.set(list.get(2).toString());
+    return list;
+  }
+  
+  public void setProperties(Pregunta pregunta) {
+    this.modeloPregunta = pregunta;
+    List<Opcion> opciones = this.mezclarOpciones(pregunta.opciones);
+    
+    this.pregunta.set(pregunta.enunciado);
+    this.opcion1.set(opciones.get(0).toString());
+    this.opcion2.set(opciones.get(1).toString());
+    this.opcion3.set(opciones.get(2).toString());
   }
 
   public void bind(StringProperty otraPregunta, StringProperty otraOpcion1, StringProperty otraOpcion2,
@@ -41,9 +49,5 @@ public class FxModeloPregunta {
   
   public boolean correcta(String respuesta) {
     return this.modeloPregunta.correcta(respuesta);
-  }
-
-  public final void setPregunta(String pregunta) {
-    this.pregunta.set(pregunta);
   }
 }
