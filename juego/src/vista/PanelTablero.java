@@ -23,14 +23,12 @@ public class PanelTablero extends JPanel {
 
   private static final Dimension SIZE = new Dimension(500, 500);
   private ImageIcon fondoTablero;
-  private Map<String, Icon> imgsCasilla;
 
   private final Tablero tablero;
   private final CasillaButton[][] casillas;
 
   public PanelTablero(Tablero t, AccionClicAbstract accionBoton) {
     this.fondoTablero = Recursos.IMG_FONDO;
-    this.setImgsCasilla();
 
     tablero = t;
     int filas = t.getCantFilas();
@@ -43,18 +41,7 @@ public class PanelTablero extends JPanel {
     this.inicializar(accionBoton);
     this.setVisible(true);
   }
-  
-  private void setImgsCasilla() {
-    this.imgsCasilla = new HashMap<String, Icon>();
-    
-    imgsCasilla.put("Moneda", Recursos.IMG_MONEDA);
-    imgsCasilla.put("Nula", Recursos.IMG_NULA);
-    imgsCasilla.put("Vacia", Recursos.IMG_VACIA);
-  }
 
-  /**
-   * @Override
-   */
   @Override
   public void paint(Graphics g) {
     g.drawImage(
@@ -84,18 +71,13 @@ public class PanelTablero extends JPanel {
     return getBoton(casilla.getFila(), casilla.getColumna());
   }
 
-  private void inicializarBoton(Casilla casilla, AccionClicAbstract accion) {
-    CasillaButton boton = new CasillaButton(casilla, imgsCasilla);
+  private void inicializarBoton(Casilla casilla, AccionClicAbstract accion, Map<String, Icon> imgs) {
+    CasillaButton boton = new CasillaButton(casilla, imgs);
     boton.addActionListener(accion);
     casillas[casilla.getFila()][casilla.getColumna()] = boton;
     this.add(boton);
   }
   
-  /**
-   * 
-   * @param casilla
-   * @return la fila correspondiente al botón pasado como parámetro.
-   */
   private int getFila(CasillaButton casilla) {
     Point punto = casilla.getLocation();
     int alturaCasilla = casilla.getSize().height;
@@ -103,11 +85,6 @@ public class PanelTablero extends JPanel {
     return (int) ((punto.getY() + mitad) / alturaCasilla);
   }
 
-  /**
-   * 
-   * @param casilla
-   * @return la columna correspondiente al botón pasado como parámetro.
-   */
   private int getColumna(CasillaButton casilla) {
     Point punto = casilla.getLocation();
     int anchoCasilla = casilla.getSize().width;
@@ -119,20 +96,31 @@ public class PanelTablero extends JPanel {
     return tablero.getCasilla(getFila(casilla), getColumna(casilla));
   }
 
+  
+  private Map<String, Icon> obtenerImgsCasilla() {
+    Map<String, Icon> imgsCasilla = new HashMap<String, Icon>();
+    imgsCasilla.put("Moneda", Recursos.IMG_MONEDA);
+    imgsCasilla.put("Nula", Recursos.IMG_NULA);
+    imgsCasilla.put("Vacia", Recursos.IMG_VACIA);
+    return imgsCasilla;
+  }
+  
   private void inicializar(AccionClicAbstract accion) {
-    tablero.getCasillas().forEach((casilla) -> {
-      this.inicializarBoton(casilla, accion);
-    }); 
+    Map<String, Icon> imgs = obtenerImgsCasilla();
+    
+    tablero.getCasillas().forEach(casilla -> this.inicializarBoton(casilla, accion, imgs));
   }
 
   public void actualizar() {
-    tablero.getCasillas().forEach((casilla) -> {
-      this.setBoton(casilla);
-    });
+    tablero.getCasillas().forEach(casilla -> this.setBoton(casilla));
   }
 
   public void colorearCasilla(Casilla casilla, Color color) {
     getBoton(casilla).colorear(color);
+  }
+  
+  public void quitarColor(Casilla casilla) {
+    getBoton(casilla).quitarColor();
   }
   
   public void colorearCasillas(List<Casilla> casillasAColorear, Color color) {

@@ -11,7 +11,7 @@ import juego.Casilla;
 import juego.Juego;
 import juego.Tablero;
 import menuinicial.VentanaPrincipal;
-import pregunta.Observador;
+import pregunta.modelo.Observador;
 import vista.CasillaButton;
 import vista.PreguntaDireccion;
 import vista.PanelTablero;
@@ -102,6 +102,7 @@ public class ManejadorJuego {
   private void accionClicCasilla(Casilla casilla, Observador o) {
     logger.info(String.format("Click en: (%d, %d)", casilla.getFila(), casilla.getColumna()));
     if(!casilla.puedeSaltar()) {
+      panelTablero.quitarColor(casilla);
       return;
     }
     

@@ -24,7 +24,7 @@ public class CasillaButton extends JButton {
   }
   
   private void setTipoCasilla(TipoCasilla tipoCasilla) {
-    this.setContentAreaFilled(false);
+    quitarColor();
     String tipo = tipoCasilla.name();
     this.setIcon(imgs.get(tipo));
   }
@@ -37,4 +37,8 @@ public class CasillaButton extends JButton {
     this.setContentAreaFilled(true);
     this.setBackground(color);
   }
+  
+  public void quitarColor() {
+    this.setContentAreaFilled(false);
   }
+}

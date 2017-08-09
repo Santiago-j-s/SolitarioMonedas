@@ -11,7 +11,6 @@ import menuinicial.VentanaPrincipal;
 public class Lanzador implements AccionesAplicacion {
   private VentanaPrincipal ventana;
   private final FxPanelInicio fxPanel = new FxPanelInicio();
-  private JFXPanel panel;
   
 
   private Lanzador() {
@@ -32,7 +31,7 @@ public class Lanzador implements AccionesAplicacion {
   
   @Override
   public void nuevoJuego() {
-    panel = fxPanel.getPanel();
+    JFXPanel panel = fxPanel.getPanel();
     EventQueue.invokeLater(() -> {
       ventana.setContentPane(panel);
       ventana.reset(this);
