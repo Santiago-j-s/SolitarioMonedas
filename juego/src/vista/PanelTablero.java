@@ -28,18 +28,18 @@ public class PanelTablero extends JPanel {
   private final CasillaButton[][] casillas;
 
   public PanelTablero(Tablero t, AccionClicAbstract accionBoton) {
-    this.fondoTablero = Recursos.IMG_FONDO;
+    fondoTablero = Recursos.IMG_FONDO;
 
     tablero = t;
     int filas = t.getCantFilas();
     int columnas = t.getCantColumnas();
-    this.setLayout(new GridLayout(filas, columnas));
+    setLayout(new GridLayout(filas, columnas));
     casillas = new CasillaButton[filas][columnas];
 
-    this.setPreferredSize(SIZE);
+    setPreferredSize(SIZE);
 
-    this.inicializar(accionBoton);
-    this.setVisible(true);
+    inicializar(accionBoton);
+    setVisible(true);
   }
 
   @Override
@@ -99,9 +99,11 @@ public class PanelTablero extends JPanel {
   
   private Map<String, Icon> obtenerImgsCasilla() {
     Map<String, Icon> imgsCasilla = new HashMap<String, Icon>();
+    
     imgsCasilla.put("Moneda", Recursos.IMG_MONEDA);
     imgsCasilla.put("Nula", Recursos.IMG_NULA);
     imgsCasilla.put("Vacia", Recursos.IMG_VACIA);
+    
     return imgsCasilla;
   }
   
