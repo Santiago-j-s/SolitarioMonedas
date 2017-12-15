@@ -52,6 +52,7 @@ public class AccionClicPregunta extends AccionClicAbstract implements Observador
   public void incorrecto() {
     SwingUtilities.invokeLater(() -> {
       super.incorrecto();
+      controladorPregunta.cerrarPregunta();
     });
   }
 }

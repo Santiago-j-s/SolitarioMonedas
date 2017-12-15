@@ -14,7 +14,7 @@ import pregunta.FachadaPregunta;
 
 public class FxPanelInicio implements Categorizable {
   private JFXPanel fxPanel = new JFXPanel();
-  private String categoria = "preguntas";
+  private String categoria = "sistemas-operativos";
 
   @FXML
   private Button categoriaButton;

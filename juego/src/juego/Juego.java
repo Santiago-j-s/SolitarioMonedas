@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Juego {
   private Tablero tablero;
-  private EstadoJuego estado = new EstadoJuego();
+  private Estado estado;
   
   private static final int SALTOS_PARA_PREGUNTA = 2;
 
@@ -14,6 +14,7 @@ public class Juego {
    */
   public Juego() {
     this.tablero = new Tablero5x5();
+    this.estado = new Estado();
   }
 
   private Casilla getCasilla(int fila, int columna) {
@@ -51,6 +52,18 @@ public class Juego {
   
   public boolean fin() {
     return victoria() || derrota();
+  }
+  
+  public void acertar() {
+    estado.add1Acierto();
+  }
+  
+  public void fallar() {
+    estado.add1Fallo();
+  }
+  
+  public Estado getEstado() {
+    return estado;
   }
 
   public List<Direccion> direccionesSalto(Casilla casilla) {

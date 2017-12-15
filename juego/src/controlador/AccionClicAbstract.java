@@ -34,9 +34,13 @@ public abstract class AccionClicAbstract
 
   @Override
   public void correcto() {
+    manejador.acertarPregunta();
     manejador.saltoMoneda(casillaPresionada);
   }
 
   @Override
-  public void incorrecto() {}
+  public void incorrecto() {
+    manejador.fallarPregunta();
+    manejador.saltoMoneda(casillaPresionada);
+  }
 }

@@ -1,4 +1,4 @@
-package pregunta;
+package juego;
 
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
@@ -6,13 +6,11 @@ import javax.swing.SwingUtilities;
 import javafx.application.Platform;
 import javafx.embed.swing.JFXPanel;
 
-class VentanaPregunta {
-
+public class VentanaEstado {
   private JFrame frame;
 
-  VentanaPregunta(JFXPanel panel) {
-    frame = new JFrame("Pregunta");
-    frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+  VentanaEstado(JFXPanel panel) {
+    frame = new JFrame("Estadísticas");
     frame.add(panel);
     frame.setResizable(true);
     frame.setVisible(true);

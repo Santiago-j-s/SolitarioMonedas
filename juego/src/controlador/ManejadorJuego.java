@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 import juego.Direccion;
+import juego.FxEstadisticas;
 import juego.Casilla;
 import juego.Juego;
 import juego.Tablero;
@@ -27,6 +28,7 @@ public class ManejadorJuego {
   private Juego juego;
   private PanelTablero panelTablero;
   private VentanaPrincipal ventanaPrincipal;
+  private FxEstadisticas panelEstadisticas = new FxEstadisticas();
   private final Logger logger = Logger.getLogger(getClass().getName());
   
   private void iniciarPanelTablero(AccionClicAbstract accionBoton) {
@@ -83,8 +85,8 @@ public class ManejadorJuego {
   }
  
   private void mensajeFinJuego() {
-    String mensaje = juego.victoria() ? "Felicidades, ha ganado" : "Ha perdido";
-    JOptionPane.showMessageDialog(ventanaPrincipal, mensaje);
+    String mensaje = juego.victoria() ? "¡Ha ganado!" : "Ha perdido";
+    panelEstadisticas.lanzarEstadisticas(juego.getEstado(), mensaje);
   }
   
   private void saltoMoneda(Casilla casilla) {
@@ -122,5 +124,13 @@ public class ManejadorJuego {
   public void accionClicCasilla(CasillaButton casilla, Observador o) {
     casilla.colorear(Color.MAGENTA);
     accionClicCasilla(panelTablero.getCasilla(casilla), o);
+  }
+  
+  public void acertarPregunta() {
+    juego.acertar();
+  }
+  
+  public void fallarPregunta() {
+    juego.fallar();
   }
 }
