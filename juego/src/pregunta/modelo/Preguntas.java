@@ -26,7 +26,7 @@ import com.google.gson.reflect.TypeToken;
 public class Preguntas implements Categorizable {
   List<Pregunta> historico_preguntas = new ArrayList<Pregunta>();
   String categoria;
-  String recursos_path = Paths.get("juego", "src", "recursos", "preguntas")
+  String recursos_path = Paths.get("./preguntas")
       .toString();
 
   /**

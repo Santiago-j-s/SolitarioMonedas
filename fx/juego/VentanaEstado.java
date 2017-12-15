@@ -13,11 +13,11 @@ public class VentanaEstado {
     frame = new JFrame("Estadísticas");
     frame.add(panel);
     frame.setResizable(true);
-    frame.setVisible(true);
     frame.setAlwaysOnTop(true);
     Platform.runLater(() -> {
       SwingUtilities.invokeLater(() -> {
         frame.pack();
+        frame.setVisible(true);
       });
     });
   }

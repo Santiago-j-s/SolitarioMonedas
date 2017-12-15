@@ -1,0 +1,50 @@
+[
+	{
+		"enunciado": "¿Cuáles son los objetos principales del juego Solitario con Monedas?",
+		"opciones": [
+			{ "tituloOpcion": "Casillas (Vacías y Nulas), Monedas, Tablero", "esCorrecta": true},
+			{ "tituloOpcion": "Ayuda", "esCorrecta": false},
+			{ "tituloOpcion": "Autores", "esCorrecta": false}
+		]
+	},
+	{
+		"enunciado": "¿Cuáles son las 3 partes del modelo MVC?",
+		"opciones": [
+			{ "tituloOpcion": "Modelo, Vista y Controlador", "esCorrecta": true},
+			{ "tituloOpcion": "Métodos, Vista y Controlador", "esCorrecta": false},
+			{ "tituloOpcion": "Modelo, Vista y Capas", "esCorrecta": false}
+		]
+	},
+	{
+		"enunciado": "Si diseñase un juego de computadora de acción ¿qué parte del modelo MVC tendría las acciones que el personaje principal puede realizar?",
+		"opciones": [
+			{ "tituloOpcion": "Modelo", "esCorrecta": true},
+			{ "tituloOpcion": "Métodos", "esCorrecta": false},
+			{ "tituloOpcion": "Controlador", "esCorrecta": false}
+		]
+	},
+	{
+		"enunciado": "En un juego de dos dimensiones ¿cómo puedo identificar la posición de un objeto?",
+		"opciones": [
+			{ "tituloOpcion": "Con un par ordenado que indica la posición respecto de la esquina superior izquierda.", "esCorrecta": true},
+			{ "tituloOpcion": "Con un par ordenado que indica la posición respecto del medio de la pantalla", "esCorrecta": false},
+			{ "tituloOpcion": "Con un par ordenado que indica la posición respecto de la esquina inferior derecha.", "esCorrecta": false}
+		]
+	},
+	{
+		"enunciado": "Si el jugador hace un clic en un juego ¿qué parte del modelo MVC decide como va a responder el juego ante esa acción?",
+		"opciones": [
+			{ "tituloOpcion": "El controlador", "esCorrecta": true},
+			{ "tituloOpcion": "El modelo", "esCorrecta": false},
+			{ "tituloOpcion": "La vista", "esCorrecta": false},
+		]
+	},
+	{
+		"enunciado": "¿Qué datos necesitaría de la nave para poder representarla correctamente en el juego?",
+		"opciones": [
+			{ "tituloOpcion": "Posición, Velocidad, Imagen, Tamaño, Dirección del Movimiento", "esCorrecta": true},
+			{ "tituloOpcion": "Solo la imagen es necesaria", "esCorrecta": false},
+			{ "tituloOpcion": "Solo la posición y el tamaño son necesarios", "esCorrecta": false}
+		]
+	}
+]

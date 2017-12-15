@@ -27,6 +27,7 @@ public class VentanaPrincipal extends JFrame {
 
   private JMenuItem nuevoJuego;
   private JMenuItem salir;
+  private JMenuItem autores;
   private JMenuItem ayuda;
 
   private ImageIcon icono;
@@ -44,6 +45,7 @@ public class VentanaPrincipal extends JFrame {
 
     setMinimumSize(new Dimension(400, 400));
 
+    setResizable(false);
     setLocationByPlatform(true);
     setVisible(true);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -57,13 +59,18 @@ public class VentanaPrincipal extends JFrame {
   public void setSalirListener(ActionListener listener) {
     salir.addActionListener(listener);
   }
+  
+  public void setAutoresListener(ActionListener listener) {
+    autores.addActionListener(listener);
+  }
 
   public void reset(AccionesAplicacion app) {
     nuevoJuego.setEnabled(false);
-    ayuda.setEnabled(false);
 
     setNuevoJuegoListener(event -> app.nuevoJuego());
     setSalirListener(event -> app.salir());
+    setAutoresListener(event -> new FxPanelAutores());
+    this.ayuda.addActionListener(event -> new FxAyuda());
 
     revalidate();
     repaint();
@@ -87,6 +94,8 @@ public class VentanaPrincipal extends JFrame {
     salir = new JMenuItem("Salir");
     menuJuego.add(salir);
     
+    autores = new JMenuItem("Autores");
+    
     return menuJuego;
   }
   
@@ -95,6 +104,7 @@ public class VentanaPrincipal extends JFrame {
    
     ayuda = new JMenuItem("Ver ayuda");
     menuAyuda.add(this.ayuda);
+    menuAyuda.add(this.autores);
     
     return menuAyuda;
   }

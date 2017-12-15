@@ -14,7 +14,7 @@ public class Recursos {
   private static final String MENU_FONDO = "/pantallaMenuInicialConLogo.png";
   private static final String ICONO = "/logoJuego2.png";
   
-  public static final Path PREGUNTAS_PATH = Paths.get("juego", "src", "recursos", "preguntas");
+  public static final Path PREGUNTAS_PATH = Paths.get("./preguntas");
   public static final ImageIcon IMG_MONEDA = obtenerImagen(MONEDA_PATH);
   public static final ImageIcon IMG_VACIA = obtenerImagen(VACIA_PATH);
   public static final ImageIcon IMG_NULA = obtenerImagen(NULA_PATH);
