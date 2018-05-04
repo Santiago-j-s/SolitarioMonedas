@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/SolitarioMonedas.iml" filepath="$PROJECT_DIR$/SolitarioMonedas.iml" />
+      <module fileurl="file://$PROJECT_DIR$/juego/juego.iml" filepath="$PROJECT_DIR$/juego/juego.iml" />
+    </modules>
+  </component>
+</project>
