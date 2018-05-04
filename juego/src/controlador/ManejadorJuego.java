@@ -4,8 +4,6 @@ import java.awt.Color;
 import java.util.List;
 import java.util.logging.Logger;
 
-import javax.swing.JOptionPane;
-
 import juego.Direccion;
 import juego.FxEstadisticas;
 import juego.Casilla;
