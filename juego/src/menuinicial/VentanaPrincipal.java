@@ -64,13 +64,17 @@ public class VentanaPrincipal extends JFrame {
     autores.addActionListener(listener);
   }
 
+  public void setAyudaListener(ActionListener listener) {
+    ayuda.addActionListener(listener);
+  }
+
   public void reset(AccionesAplicacion app) {
     nuevoJuego.setEnabled(false);
 
     setNuevoJuegoListener(event -> app.nuevoJuego());
     setSalirListener(event -> app.salir());
     setAutoresListener(event -> new FxPanelAutores());
-    this.ayuda.addActionListener(event -> new FxAyuda());
+    setAyudaListener(event -> new FxAyuda());
 
     revalidate();
     repaint();
@@ -95,6 +99,7 @@ public class VentanaPrincipal extends JFrame {
     menuJuego.add(salir);
     
     autores = new JMenuItem("Autores");
+    ayuda = new JMenuItem("Ayuda");
     
     return menuJuego;
   }
@@ -102,9 +107,8 @@ public class VentanaPrincipal extends JFrame {
   private JMenu crearMenuAyuda() {
     JMenu menuAyuda = new JMenu("Acerca de");
    
-    ayuda = new JMenuItem("Ver ayuda");
-    menuAyuda.add(this.ayuda);
     menuAyuda.add(this.autores);
+    menuAyuda.add(this.ayuda);
     
     return menuAyuda;
   }

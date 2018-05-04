@@ -13,35 +13,35 @@ import javafx.fxml.FXML;
 import javafx.scene.web.WebView;
 
 public class FxAyuda {
-  public class FxPanelAutores {
-    class VentanaAyuda {
-      JDialog dialog = new JDialog();
+  @FXML
+  private WebView web;
 
-      VentanaAyuda(JFXPanel panel) {
-        dialog.setAlwaysOnTop(true);
-        dialog.setLocationByPlatform(true);
-        dialog.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        dialog.add(panel);
-        Platform.runLater(() -> {
-          SwingUtilities.invokeLater(() -> {
-            dialog.setMinimumSize(new Dimension(800, 600));
-            dialog.setResizable(false);
-            dialog.setVisible(true);
-          });
-        });
-      }
-    }
+  class VentanaAyuda {
+    JDialog dialog = new JDialog();
 
-    @FXML
-    private WebView web;
-    
-    public void FxAyuda() {
-      JFXPanel fxPanel = new JFXPanel();
-      web.getEngine().load(getClass().getResource("/solitario.html").toString());
+    VentanaAyuda(JFXPanel panel) {
+      dialog.setAlwaysOnTop(true);
+      dialog.setLocationByPlatform(true);
+      dialog.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+      dialog.setResizable(false);
+      dialog.add(panel);
       Platform.runLater(() -> {
-        FxUtilities.initScene("ayuda.fxml", this, fxPanel);
+        SwingUtilities.invokeLater(() -> {
+          dialog.setMinimumSize(new Dimension(800, 600));
+          dialog.pack();
+          dialog.setVisible(true);
+        });
       });
-      new VentanaAyuda(fxPanel);
     }
+  }
+
+  public FxAyuda() {
+    JFXPanel fxPanel = new JFXPanel();
+    Platform.runLater(() -> {
+      FxUtilities.initScene("ayuda.fxml", this, fxPanel);
+      web.getEngine()
+          .load(getClass().getResource("./solitario.html").toString());
+    });
+    new VentanaAyuda(fxPanel);
   }
 }
