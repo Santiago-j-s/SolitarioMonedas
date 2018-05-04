@@ -50,6 +50,7 @@ public class FxModeloSeleccion {
   
   // Returns the filenames without extensions
   List<String> obtenerCategorias() throws IOException {
+    System.out.println(Recursos.PREGUNTAS_PATH);
     List<String> categorias = Files.list(Recursos.PREGUNTAS_PATH)
         .map(c -> nombreArchivoSinExtension(c))
         .collect(Collectors.toList());
