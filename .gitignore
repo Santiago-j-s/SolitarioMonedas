@@ -6,3 +6,6 @@
 .project
 juego/src/recursos/preguntas
 out/
+build/
+.idea/workspace.xml
+.gradle/
