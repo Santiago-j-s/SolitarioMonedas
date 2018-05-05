@@ -16,6 +16,8 @@ plugins {
 version '1.0-SNAPSHOT'
 
 apply plugin: 'kotlin'
+apply plugin: 'java'
+apply plugin: 'application'
 
 sourceCompatibility = 1.8
 
@@ -34,3 +36,5 @@ compileKotlin {
 compileTestKotlin {
     kotlinOptions.jvmTarget = "1.8"
 }
+
+mainClassName = "controlador.Lanzador"
