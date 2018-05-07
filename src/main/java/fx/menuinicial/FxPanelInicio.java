@@ -24,7 +24,7 @@ public class FxPanelInicio implements Categorizable {
 
   public FxPanelInicio() {
     Platform.runLater(() -> {
-      FxUtilities.initScene("panelInicio.fxml", this, fxPanel);
+      FxUtilities.initScene("/fx/panelInicio.fxml", this, fxPanel);
     });
   }
   
