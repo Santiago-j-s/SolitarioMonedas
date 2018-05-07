@@ -33,7 +33,7 @@ public class FxPanelAutores {
   public FxPanelAutores() {
     JFXPanel fxPanel = new JFXPanel();
     Platform.runLater(() -> {
-      FxUtilities.initScene("autores.fxml", this, fxPanel);
+      FxUtilities.initScene("/fx/autores.fxml", this, fxPanel);
     });
     new VentanaAutores(fxPanel);
   }
