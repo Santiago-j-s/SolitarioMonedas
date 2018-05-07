@@ -31,7 +31,7 @@ public class FxEstadisticas {
   
   public void start() {
     Platform.runLater(() -> {
-      FxUtilities.initScene("estadisticas.fxml", this, fxPanel);
+      FxUtilities.initScene("/fx/estadisticas.fxml", this, fxPanel);
     });
   }
 
