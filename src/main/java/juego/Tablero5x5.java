@@ -1,5 +1,7 @@
 package juego;
 
+import vista.Recursos;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
@@ -56,7 +58,7 @@ public class Tablero5x5 implements Tablero {
 	}
 
 	private BufferedReader abrirArchivo(String nombreArchivo) {
-	  return new BufferedReader(new InputStreamReader(getClass().getResourceAsStream(nombreArchivo)));
+	  return new BufferedReader(new InputStreamReader(getClass().getClassLoader().getResourceAsStream(nombreArchivo)));
 	}
 	
 	private ArrayList<String> lineasArchivo(String nombreArchivo) {
@@ -80,7 +82,7 @@ public class Tablero5x5 implements Tablero {
 	}
 	
 	private void completaTableroDesdeArchivo() {
-		String nombreArchivo = "/Tableros.txt"; // TODO: Recurso
+		String nombreArchivo = Recursos.TABLERO;
 		ArrayList<String> lineas = lineasArchivo(nombreArchivo);
 			
 		Random g = new Random();

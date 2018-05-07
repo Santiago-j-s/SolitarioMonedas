@@ -22,6 +22,7 @@ public class Recursos {
   public static final ImageIcon IMG_FONDO = obtenerImagen(FONDO_PATH);
   public static final ImageIcon IMG_MENU = obtenerImagen(MENU_FONDO);
   public static final ImageIcon IMG_ICONO = obtenerImagen(ICONO);
+  public static final String TABLERO = "Tableros.txt";
 
   private static ImageIcon obtenerImagen(String imgPath) {
     String path = RECURSOS_PATH + imgPath;
