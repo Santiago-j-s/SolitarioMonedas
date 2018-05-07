@@ -38,7 +38,7 @@ public class FxPanelPregunta {
 
   public void start() {
     Platform.runLater(() -> {
-      FxUtilities.initScene("panelPregunta.fxml", this, fxPanel);
+      FxUtilities.initScene("/fx/panelPregunta.fxml", this, fxPanel);
     });
   }
 

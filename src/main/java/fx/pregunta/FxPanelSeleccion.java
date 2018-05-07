@@ -43,7 +43,7 @@ public class FxPanelSeleccion {
 
   public void start() {
     Platform.runLater(() -> {
-      FxUtilities.initScene("panelSeleccion.fxml", this, fxPanel);
+      FxUtilities.initScene("/fx/panelSeleccion.fxml", this, fxPanel);
       try {
         this.modelo = new ModeloSeleccion(listView);
       } catch (IOException e) {
