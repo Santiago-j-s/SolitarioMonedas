@@ -1,5 +1,5 @@
 <component name="ArtifactManager">
-  <artifact type="jar" name="SolitarioMonedas:jar">
+  <artifact type="jar" build-on-make="true" name="SolitarioMonedas:jar">
     <output-path>$PROJECT_DIR$/out/artifacts/SolitarioMonedas_jar</output-path>
     <root id="archive" name="SolitarioMonedas.jar">
       <element id="directory" name="META-INF">

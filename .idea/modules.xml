@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/SolitarioMonedas.iml" filepath="$PROJECT_DIR$/.idea/modules/SolitarioMonedas.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/SolitarioMonedas_main.iml" filepath="$PROJECT_DIR$/.idea/modules/SolitarioMonedas_main.iml" group="SolitarioMonedas" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/SolitarioMonedas_test.iml" filepath="$PROJECT_DIR$/.idea/modules/SolitarioMonedas_test.iml" group="SolitarioMonedas" />
+    </modules>
+  </component>
+</project>
