@@ -47,8 +47,8 @@ public class FxPanelSeleccion {
       try {
         this.modelo = new ModeloSeleccion(listView);
       } catch (IOException e) {
-        System.exit(1);
         e.printStackTrace();
+        System.exit(1);
       }
     });
   }
