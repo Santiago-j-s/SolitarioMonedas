@@ -15,6 +15,7 @@ import java.util.List;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import vista.Recursos;
 
 /**
  * Clase que almacena una serie de preguntas que se utilizaran a lo largo del
@@ -26,9 +27,7 @@ import com.google.gson.reflect.TypeToken;
 public class Preguntas implements Categorizable {
   List<Pregunta> historico_preguntas = new ArrayList<Pregunta>();
   String categoria;
-    String recursos_path = Paths.get("src","main", "java", "recursos", "preguntas").toString();
-//  String recursos_path = Paths.get("./preguntas")
-//      .toStrling();
+    String recursos_path = Recursos.PREGUNTAS_PATH.toString();
 
   /**
    * Obtiene las preguntas desde un archivo json
@@ -78,13 +77,13 @@ public class Preguntas implements Categorizable {
   }
 
   @Override
-  public void setCategoria(String categoria) {
-    this.categoria = categoria;
+  public void setCategoriaInicial(String categoriaInicial) {
+    this.categoria = categoriaInicial;
     this.inicializarPreguntas();
   }
   
   @Override
-  public String getCategoria() {
+  public String getCategoriaInicial() {
     return categoria;
   }
 }

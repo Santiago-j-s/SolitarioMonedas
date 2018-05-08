@@ -1,6 +1,6 @@
 package pregunta.modelo;
 
 public interface Categorizable {
-  public void setCategoria(String categoria);
-  public String getCategoria();
+  public void setCategoriaInicial(String categoriaInicial);
+  public String getCategoriaInicial();
 }

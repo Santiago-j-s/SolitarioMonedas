@@ -32,7 +32,7 @@ public class FxPanelSeleccion {
   @FXML
   public void setCategoria() {
     EventQueue.invokeLater(() -> {
-      this.categorizable.setCategoria(this.getCategoria());
+      this.categorizable.setCategoriaInicial(this.getCategoria());
       ((JFrame) fxPanel.getTopLevelAncestor()).dispose();
     });
   }

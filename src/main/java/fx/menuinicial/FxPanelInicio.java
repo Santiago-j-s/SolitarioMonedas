@@ -15,7 +15,7 @@ import pregunta.FachadaPregunta;
 
 public class FxPanelInicio implements Categorizable {
   private JFXPanel fxPanel = new JFXPanel();
-  private String categoria = "preguntas";
+  private String categoriaInicial = "patrones";
 
   @FXML
   private Button categoriaButton;
@@ -46,17 +46,17 @@ public class FxPanelInicio implements Categorizable {
   @FXML
   public void comenzarJuego(ActionEvent e) {
     EventQueue.invokeLater(() -> {
-      new ManejadorJuego(this.getCategoria(), getVentana());
+      new ManejadorJuego(this.getCategoriaInicial(), getVentana());
     });
   }
 
   @Override
-  public void setCategoria(String categoria) {
-    this.categoria = categoria;
+  public void setCategoriaInicial(String categoriaInicial) {
+    this.categoriaInicial = categoriaInicial;
   }
 
   @Override
-  public String getCategoria() {
-    return this.categoria;
+  public String getCategoriaInicial() {
+    return this.categoriaInicial;
   }
 }

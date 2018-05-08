@@ -60,11 +60,11 @@ public class FxPanelPregunta {
   }
   
   public String getCategoria() {
-    return this.preguntas.getCategoria();
+    return this.preguntas.getCategoriaInicial();
   }
   
   public void setCategoria(String categoria) {
-    this.preguntas.setCategoria(categoria);
+    this.preguntas.setCategoriaInicialcategoria);
   }
   
   @FXML
