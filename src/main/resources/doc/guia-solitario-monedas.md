@@ -23,7 +23,7 @@ Las opciones disponibles son :
 
 Al hacer click en el botón **Seleccionar preguntas** se despliega la siguiente ventana que permite seleccionar con con conjunto de preguntas jugar.
 
-<center>![](seleccionar-categoria.png)</center>
+<center>![](seleccionar-categoriaInicial.png)</center>
 
 Hacer click en la categoría elegida y hacer click en el boton **Iniciar Juego**.
 

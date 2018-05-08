@@ -38,9 +38,9 @@ public class FxAyuda {
   public FxAyuda() {
     JFXPanel fxPanel = new JFXPanel();
     Platform.runLater(() -> {
-      FxUtilities.initScene("ayuda.fxml", this, fxPanel);
+      FxUtilities.initScene("/fx/ayuda.fxml", this, fxPanel);
       web.getEngine()
-          .load(getClass().getResource("./solitario.html").toString());
+          .load(getClass().getClassLoader().getResource("doc/solitario.html").toString());
     });
     new VentanaAyuda(fxPanel);
   }
